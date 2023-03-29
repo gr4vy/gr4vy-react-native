@@ -59,16 +59,7 @@ To edit the Java or Kotlin files, open `example/android` in Android studio and f
 
 ### Commit message convention
 
-We follow the [conventional commits specification](https://www.conventionalcommits.org/en) for our commit messages:
-
-- `fix`: bug fixes, e.g. fix crash due to deprecated method.
-- `feat`: new features, e.g. add new method to the module.
-- `refactor`: code refactor, e.g. migrate from class components to hooks.
-- `docs`: changes into documentation, e.g. add usage example for the module..
-- `test`: adding or updating tests, e.g. add integration tests using detox.
-- `chore`: tooling changes, e.g. change CI config.
-
-Our pre-commit hooks verify that your commit message matches this format when committing.
+Auto will use the PR title as the message in the change log. This means it needs to be human readable and meaningful. Try to avoid using ticket numbers or meta information - instead describe the value the change brings.
 
 ### Linting and tests
 
@@ -78,15 +69,39 @@ We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint]
 
 Our pre-commit hooks verify that the linter and tests pass when committing.
 
-### Publishing to npm
+### Releasing a PR
 
-We use [release-it](https://github.com/release-it/release-it) to make it easier to publish new versions. It handles common tasks like bumping version based on semver, creating tags and releases etc.
+We use [auto](https://github.com/intuit/auto) to make it easier to publish new versions. It handles common tasks like bumping version based on semver, creating tags and releases etc.
 
-To publish new versions, run the following:
+Raising a PR against the `main` branch will trigger Github actions.
 
-```sh
-yarn release
+PR titles are limited in character length and you may need to provide more details. You can add a `## Release Notes` section for this. Only this section will appear in the Change Log, not the entire body of the PR.
+
+```md
+## Release Notes
+
+Write additional notes here...
 ```
+
+Labels inform what type of change has occurred so that the correct semver number can be assigned for the release.
+
+The following labels will increment the version number:
+
+- `major` - 💥 Breaking Change (major)
+- `minor` - 🚀 Enhancement (minor)
+- `patch` - 🐛 Bug Fix (patch)
+- `performance` - 🏎 Performance (patch)
+
+The following labels will have no effect on the version:
+
+- `internal` - 🏠 Internal (no version)
+- `documentation` - 📝 Documentation (no version)
+- `test`- 🧪 Tests (no version)
+- `dependencies` - 🔩 Dependency Updates (no version)
+
+Finally, to trigger a release you must include the release label:
+
+- `release` - Create a release when PR is merged
 
 ### Scripts
 
