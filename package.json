@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/embed-react-native",
-  "version": "0.1.0",
+  "version": "0.1.1--canary.063c63a.0",
   "description": "Embed Gr4vy in your React Native app to store card details, authorize payments, and capture a transaction.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -49,7 +49,8 @@
   },
   "homepage": "https://github.com/gr4vy/gr4vy-react-native#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.2.2",
