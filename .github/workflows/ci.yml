@@ -53,6 +53,7 @@ jobs:
         with:
           scan-type: 'fs'
           ignore-unfixed: true
+          skip-dirs: node_modules
           exit-code: 1
 
   release:
