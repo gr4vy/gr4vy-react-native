@@ -42,8 +42,9 @@ function App(): JSX.Element {
     const amount = 1299
     const currency = 'USD'
     const country = 'US'
-    const buyerId = null
+    const buyerId = 'baa7b3b3-a4f1-49e3-afb0-0f41b48f5aa2'
     const debugMode = true
+    const externalIdentifier = null
 
     const onPaymentMethodSelectedSubscription =
       EmbedReactNativeEventEmitter.addListener(
@@ -58,6 +59,7 @@ function App(): JSX.Element {
       currency,
       country,
       buyerId,
+      externalIdentifier,
       env,
       debugMode,
       (error: string) => {

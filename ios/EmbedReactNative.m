@@ -10,6 +10,7 @@ RCT_EXTERN_METHOD(
     currency:(NSString *)currency
     country:(NSString *)country
     buyerId:(NSString *)buyerId
+    externalIdentifier:(NSString *)externalIdentifier
     environment:(NSString *)environment
     debugMode:(BOOL)debugMode
     errorCallback:(RCTResponseSenderBlock)errorCallback

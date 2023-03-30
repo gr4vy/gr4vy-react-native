@@ -13,6 +13,7 @@ class EmbedReactNative: NSObject {
                  currency: String,
                  country: String,
                  buyerId: String?,
+                 externalIdentifier: String?,
                  environment: String?,
                  debugMode: Bool = false,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
@@ -23,6 +24,7 @@ class EmbedReactNative: NSObject {
                               currency: currency,
                               country: country,
                               buyerId: buyerId,
+                              externalIdentifier: externalIdentifier,
                               environment: (environment != nil && environment?.lowercased() == "production") ? .production : .sandbox,
                               debugMode: debugMode) else {
         completion(nil)
@@ -50,6 +52,7 @@ class EmbedReactNative: NSObject {
     currency: String,
     country: String,
     buyerId: String?,
+    externalIdentifier: String?,
     environment: String?,
     debugMode: Bool,
     errorCallback: @escaping RCTResponseSenderBlock,
@@ -61,6 +64,7 @@ class EmbedReactNative: NSObject {
              currency: currency,
              country: country,
              buyerId: buyerId,
+             externalIdentifier: externalIdentifier,
              environment: environment,
              debugMode: debugMode) { (gr4vy) in
       if gr4vy == nil {

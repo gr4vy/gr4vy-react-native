@@ -23,6 +23,7 @@ export interface Gr4vyInterface {
     currency: string,
     country: string,
     buyerId?: string | null,
+    externalIdentifier?: string | null,
     environment?: string | null,
     debugMode?: boolean,
     onError?: (error: string) => void,
