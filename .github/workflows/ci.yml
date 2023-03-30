@@ -61,7 +61,8 @@ jobs:
 
     needs:
       - lint
-      - tests
+      - scan
+      - test
 
     steps:
       - name: Checkout
