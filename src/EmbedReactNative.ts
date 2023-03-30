@@ -22,7 +22,7 @@ export interface Gr4vyInterface {
     amount: number,
     currency: string,
     country: string,
-    paymentMethodId?: string | null,
+    buyerId?: string | null,
     environment?: string | null,
     onError?: (error: string) => void,
     onTransaction?: (transaction: Gr4vyTransactionResult) => void
