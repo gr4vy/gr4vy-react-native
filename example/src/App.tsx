@@ -42,6 +42,8 @@ function App(): JSX.Element {
     const amount = 1299
     const currency = 'USD'
     const country = 'US'
+    const buyerId = null
+    const debugMode = true
 
     const onPaymentMethodSelectedSubscription =
       EmbedReactNativeEventEmitter.addListener(
@@ -55,8 +57,9 @@ function App(): JSX.Element {
       amount,
       currency,
       country,
-      null,
+      buyerId,
       env,
+      debugMode,
       (error: string) => {
         console.error(error)
         onPaymentMethodSelectedSubscription.remove()

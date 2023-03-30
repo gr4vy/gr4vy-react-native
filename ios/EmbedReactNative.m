@@ -11,6 +11,7 @@ RCT_EXTERN_METHOD(
     country:(NSString *)country
     buyerId:(NSString *)buyerId
     environment:(NSString *)environment
+    debugMode:(BOOL)debugMode
     errorCallback:(RCTResponseSenderBlock)errorCallback
     successCallback:(RCTResponseSenderBlock)successCallback)
 @end

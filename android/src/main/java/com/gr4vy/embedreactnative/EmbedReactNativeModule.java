@@ -81,6 +81,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     String country,
     String buyerId,
     String environment,
+    Boolean debugMode,
     Callback errorCallback,
     Callback successCallback) {
       Log.d("Gr4vy", "showPaymentSheet()");

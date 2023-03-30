@@ -14,6 +14,7 @@ class EmbedReactNative: NSObject {
                  country: String,
                  buyerId: String?,
                  environment: String?,
+                 debugMode: Bool = false,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
     DispatchQueue.main.async(execute: {
       guard let gr4vy = Gr4vy(gr4vyId: gr4vyId,
@@ -23,7 +24,7 @@ class EmbedReactNative: NSObject {
                               country: country,
                               buyerId: buyerId,
                               environment: (environment != nil && environment?.lowercased() == "production") ? .production : .sandbox,
-                              debugMode: true) else {
+                              debugMode: debugMode) else {
         completion(nil)
         return
       }
@@ -50,6 +51,7 @@ class EmbedReactNative: NSObject {
     country: String,
     buyerId: String?,
     environment: String?,
+    debugMode: Bool,
     errorCallback: @escaping RCTResponseSenderBlock,
     successCallback: @escaping RCTResponseSenderBlock)
   {
@@ -59,7 +61,8 @@ class EmbedReactNative: NSObject {
              currency: currency,
              country: country,
              buyerId: buyerId,
-             environment: environment) { (gr4vy) in
+             environment: environment,
+             debugMode: debugMode) { (gr4vy) in
       if gr4vy == nil {
         errorCallback([NSNull(), "Failed to initialize Gr4vy SDK"])
       }

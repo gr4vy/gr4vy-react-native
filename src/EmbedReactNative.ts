@@ -24,6 +24,7 @@ export interface Gr4vyInterface {
     country: string,
     buyerId?: string | null,
     environment?: string | null,
+    debugMode?: boolean,
     onError?: (error: string) => void,
     onTransaction?: (transaction: Gr4vyTransactionResult) => void
   ): void
