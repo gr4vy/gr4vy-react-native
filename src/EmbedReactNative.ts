@@ -29,6 +29,11 @@ export interface Gr4vyInterface {
     intent?: 'authorize' | 'capture',
     metadata?: Record<string, string>,
     paymentSource?: 'installment' | 'recurring' | null,
+    cartItems?: {
+      name: string
+      quantity: string
+      unitAmount: string
+    } | null,
     environment?: string | null,
     debugMode?: boolean,
     onError?: (error: string) => void,

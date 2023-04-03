@@ -49,6 +49,7 @@ function App(): JSX.Element {
     const intent = 'capture'
     const metadata = {}
     const paymentSource = null
+    const cartItems = null
     const debugMode = true
 
     const onPaymentMethodSelectedSubscription =
@@ -70,6 +71,7 @@ function App(): JSX.Element {
       intent,
       metadata,
       paymentSource,
+      cartItems,
       env,
       debugMode,
       (error: string) => {
