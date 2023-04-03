@@ -1,6 +1,7 @@
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
 // #import <React/RCTConvert.h>
+#import <Foundation/Foundation.h>
 
 // typedef NS_ENUM(NSInteger, PaymentSource) {
 //   installment = 1,
@@ -19,6 +20,12 @@
 //     )
 // @end
 
+@implementation CartItemObj: NSObject
+    NSString *name;
+    int quantity;
+    int unitAmount;
+@end
+
 @interface RCT_EXTERN_MODULE(EmbedReactNative, NSObject)
 
 RCT_EXTERN_METHOD(
@@ -34,6 +41,7 @@ RCT_EXTERN_METHOD(
     intent:(NSString *)intent
     metadata:(NSDictionary *)metadata
     paymentSource:(NSString *)paymentSource
+    cartItems:(NSArray<CartItemObj *>)cartItems
     environment:(NSString *)environment
     debugMode:(BOOL)debugMode
     errorCallback:(RCTResponseSenderBlock)errorCallback

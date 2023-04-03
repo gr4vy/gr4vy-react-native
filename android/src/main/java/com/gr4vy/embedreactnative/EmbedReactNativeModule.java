@@ -86,6 +86,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     String intent,
     Map<String, String> metadata,
     String paymentSource,
+    Any cartItems, // cartItems: List<CartItem>? = null, in kotlin?
     String environment,
     Boolean debugMode,
     Callback errorCallback,

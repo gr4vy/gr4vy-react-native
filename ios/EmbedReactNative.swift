@@ -19,6 +19,7 @@ class EmbedReactNative: NSObject {
                  intent: String?,
                  metadata: [String: String]?,
                  paymentSource: gr4vy_embed_react_native.Gr4vyPaymentSource,
+                 cartItems: [Gr4vyCartItem]?,
                  environment: String?,
                  debugMode: Bool = false,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
@@ -35,6 +36,7 @@ class EmbedReactNative: NSObject {
                               intent: intent,
                               metadata: metadata,
                               paymentSource: paymentSource,
+                              cartItems: cartItems,
                               environment: (environment != nil && environment?.lowercased() == "production") ? .production : .sandbox,
                               debugMode: debugMode) else {
         completion(nil)
@@ -68,6 +70,7 @@ class EmbedReactNative: NSObject {
     intent: String?,
     metadata: [String: String]?,
     paymentSource: gr4vy_embed_react_native.Gr4vyPaymentSource,
+    cartItems: [Gr4vyCartItem]?,
     environment: String?,
     debugMode: Bool,
     errorCallback: @escaping RCTResponseSenderBlock,
@@ -85,6 +88,7 @@ class EmbedReactNative: NSObject {
              intent: intent,
              metadata: metadata,
              paymentSource: paymentSource,
+             cartItems: cartItems,
              environment: environment,
              debugMode: debugMode) { (gr4vy) in
       if gr4vy == nil {
