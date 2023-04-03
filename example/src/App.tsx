@@ -14,9 +14,9 @@ const onPaymentMethodSelected = (paymentMethod: Gr4vyPaymentMethod) => {
 }
 
 const config = {
-  gr4vyId: GR4VY_ID,
+  gr4vyId: `${GR4VY_ID}`,
   env: 'sandbox',
-  token: TOKEN,
+  token: `${TOKEN}`,
   amount: total,
   currency: 'USD',
   country: 'US',
