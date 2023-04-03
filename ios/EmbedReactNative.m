@@ -1,5 +1,23 @@
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
+// #import <React/RCTConvert.h>
+
+// typedef NS_ENUM(NSInteger, PaymentSource) {
+//   installment = 1,
+//   recurring = 2
+// };
+
+// @implementation RCTConvert (PaymentSource)
+//     RCT_ENUM_CONVERTER(
+//         PaymentSource,
+//         (@{
+//             @"installment": @(installment),
+//             @"recurring": @(recurring)
+//         }),
+//         installment,
+//         integerValue
+//     )
+// @end
 
 @interface RCT_EXTERN_MODULE(EmbedReactNative, NSObject)
 
@@ -11,6 +29,11 @@ RCT_EXTERN_METHOD(
     country:(NSString *)country
     buyerId:(NSString *)buyerId
     externalIdentifier:(NSString *)externalIdentifier
+    store:(NSString *)store
+    display:(NSString *)display
+    intent:(NSString *)intent
+    metadata:(NSDictionary *)metadata
+    paymentSource:(NSString *)paymentSource
     environment:(NSString *)environment
     debugMode:(BOOL)debugMode
     errorCallback:(RCTResponseSenderBlock)errorCallback

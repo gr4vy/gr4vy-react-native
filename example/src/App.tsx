@@ -43,8 +43,13 @@ function App(): JSX.Element {
     const currency = 'USD'
     const country = 'US'
     const buyerId = 'baa7b3b3-a4f1-49e3-afb0-0f41b48f5aa2'
-    const debugMode = true
     const externalIdentifier = null
+    const store = 'ask'
+    const display = 'all'
+    const intent = 'capture'
+    const metadata = {}
+    const paymentSource = null
+    const debugMode = true
 
     const onPaymentMethodSelectedSubscription =
       EmbedReactNativeEventEmitter.addListener(
@@ -60,6 +65,11 @@ function App(): JSX.Element {
       country,
       buyerId,
       externalIdentifier,
+      store,
+      display,
+      intent,
+      metadata,
+      paymentSource,
       env,
       debugMode,
       (error: string) => {
