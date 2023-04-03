@@ -18,12 +18,28 @@ class EmbedReactNative: NSObject {
                  display: String?,
                  intent: String?,
                  metadata: [String: String]?,
-                 paymentSource: gr4vy_embed_react_native.Gr4vyPaymentSource,
-                 cartItems: [Gr4vyCartItem]?,
+                 paymentSource: String?,
+                 cartItems: [RCTCartItem]?,
                  environment: String?,
                  debugMode: Bool = false,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
-    DispatchQueue.main.async(execute: {
+    var paymentSourceConverted: Gr4vyPaymentSource?
+    if paymentSource != nil {
+        paymentSourceConverted = Gr4vyPaymentSource(rawValue: paymentSource!)
+    }
+
+    // let cartItemsConverted = cartItems.map { (item: RCTCartItem) -> Gr4vyCartItem in
+    //   return Gr4vyCartItem(name: item.name, quantity: item.quantity, unitAmount: item.unitAmount)
+    // }
+
+    var cartItemsConverted: [Gr4vyCartItem]?
+    if let cartItems = cartItems {
+      cartItemsConverted = cartItems.compactMap { (item: RCTCartItem) -> Gr4vyCartItem? in
+        return try? Gr4vyCartItem(name: item.name, quantity: item.quantity, unitAmount: item.unitAmount)
+      }
+    }
+
+    DispatchQueue.main.async(execute: {  
       guard let gr4vy = Gr4vy(gr4vyId: gr4vyId,
                               token: token,
                               amount: amount,
@@ -35,8 +51,8 @@ class EmbedReactNative: NSObject {
                               display: display,
                               intent: intent,
                               metadata: metadata,
-                              paymentSource: paymentSource,
-                              cartItems: cartItems,
+                              paymentSource: paymentSourceConverted,
+                              cartItems: cartItemsConverted,
                               environment: (environment != nil && environment?.lowercased() == "production") ? .production : .sandbox,
                               debugMode: debugMode) else {
         completion(nil)
@@ -69,8 +85,8 @@ class EmbedReactNative: NSObject {
     display: String?,
     intent: String?,
     metadata: [String: String]?,
-    paymentSource: gr4vy_embed_react_native.Gr4vyPaymentSource,
-    cartItems: [Gr4vyCartItem]?,
+    paymentSource: String?,
+    cartItems: [RCTCartItem]?,
     environment: String?,
     debugMode: Bool,
     errorCallback: @escaping RCTResponseSenderBlock,

@@ -1,30 +1,8 @@
 #import <React/RCTBridgeModule.h>
+#import <React/RCTConvert.h>
 #import <React/RCTEventEmitter.h>
-// #import <React/RCTConvert.h>
 #import <Foundation/Foundation.h>
-
-// typedef NS_ENUM(NSInteger, PaymentSource) {
-//   installment = 1,
-//   recurring = 2
-// };
-
-// @implementation RCTConvert (PaymentSource)
-//     RCT_ENUM_CONVERTER(
-//         PaymentSource,
-//         (@{
-//             @"installment": @(installment),
-//             @"recurring": @(recurring)
-//         }),
-//         installment,
-//         integerValue
-//     )
-// @end
-
-@implementation CartItemObj: NSObject
-    NSString *name;
-    int quantity;
-    int unitAmount;
-@end
+#import "RCTCartItem.h"
 
 @interface RCT_EXTERN_MODULE(EmbedReactNative, NSObject)
 
@@ -41,7 +19,7 @@ RCT_EXTERN_METHOD(
     intent:(NSString *)intent
     metadata:(NSDictionary *)metadata
     paymentSource:(NSString *)paymentSource
-    cartItems:(NSArray<CartItemObj *>)cartItems
+    cartItems:(NSArray<RCTCartItem *> *)cartItems
     environment:(NSString *)environment
     debugMode:(BOOL)debugMode
     errorCallback:(RCTResponseSenderBlock)errorCallback
@@ -50,4 +28,8 @@ RCT_EXTERN_METHOD(
   
 @interface RCT_EXTERN_MODULE(EmbedReactNativeEvents, RCTEventEmitter)
   RCT_EXTERN_METHOD(supportedEvents)
+@end
+
+@implementation RCTConvert (RCTCartItemArray)
+  RCT_ARRAY_CONVERTER(RCTCartItem)
 @end
