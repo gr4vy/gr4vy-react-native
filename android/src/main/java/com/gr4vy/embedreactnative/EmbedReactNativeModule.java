@@ -10,6 +10,8 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.module.annotations.ReactModule;
 
@@ -84,9 +86,9 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     String store,
     String display,
     String intent,
-    Map<String, String> metadata,
+    ReadableMap metadata,
     String paymentSource,
-    Any cartItems, // cartItems: List<CartItem>? = null, in kotlin?
+    ReadableArray cartItems,
     String environment,
     Boolean debugMode,
     Callback errorCallback,
@@ -94,17 +96,17 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       Log.d("Gr4vy", "showPaymentSheet()");
 
       ReactApplicationContext context = getReactApplicationContext();
-      Intent intent = new Intent(context, Gr4vyActivity.class);
+      Intent androidIntent = new Intent(context, Gr4vyActivity.class);
 
       this.successCallback = successCallback;
       this.errorCallback = errorCallback;
 
-      intent.putExtra(EXTRA_TOKEN, token);
-      intent.putExtra(EXTRA_AMOUNT, Integer.valueOf(amount.intValue()));
-      intent.putExtra(EXTRA_CURRENCY, currency);
-      intent.putExtra(EXTRA_COUNTRY, country);
-      intent.putExtra(EXTRA_BUYER_ID, buyerId);
+      androidIntent.putExtra(EXTRA_TOKEN, token);
+      androidIntent.putExtra(EXTRA_AMOUNT, Integer.valueOf(amount.intValue()));
+      androidIntent.putExtra(EXTRA_CURRENCY, currency);
+      androidIntent.putExtra(EXTRA_COUNTRY, country);
+      androidIntent.putExtra(EXTRA_BUYER_ID, buyerId);
 
-      context.startActivityForResult(intent, GR4VY_PAYMENT_SHEET_REQUEST, null);
+      context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
     }
 }
