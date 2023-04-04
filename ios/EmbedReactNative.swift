@@ -28,10 +28,6 @@ class EmbedReactNative: NSObject {
         paymentSourceConverted = Gr4vyPaymentSource(rawValue: paymentSource!)
     }
 
-    // let cartItemsConverted = cartItems.map { (item: RCTCartItem) -> Gr4vyCartItem in
-    //   return Gr4vyCartItem(name: item.name, quantity: item.quantity, unitAmount: item.unitAmount)
-    // }
-
     var cartItemsConverted: [Gr4vyCartItem]?
     if let cartItems = cartItems {
       cartItemsConverted = cartItems.compactMap { (item: RCTCartItem) -> Gr4vyCartItem? in
