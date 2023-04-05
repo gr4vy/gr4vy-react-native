@@ -84,9 +84,7 @@ class EmbedReactNative: NSObject {
     paymentSource: String?,
     cartItems: [RCTCartItem]?,
     environment: String?,
-    debugMode: Bool,
-    errorCallback: @escaping RCTResponseSenderBlock,
-    successCallback: @escaping RCTResponseSenderBlock)
+    debugMode: Bool)
   {
     gr4vyInit(gr4vyId: gr4vyId,
              token: token,
@@ -104,7 +102,15 @@ class EmbedReactNative: NSObject {
              environment: environment,
              debugMode: debugMode) { (gr4vy) in
       if gr4vy == nil {
-        errorCallback([NSNull(), "Failed to initialize Gr4vy SDK"])
+        EmbedReactNativeEvents.emitter.sendEvent(
+          withName: "onEvent",
+          body: [
+            "name": "generalError",
+            "data": [
+              "message" : "Failed to initialize Gr4vy SDK"
+            ]
+          ]
+        )
       }
 
       DispatchQueue.main.async(execute: {
@@ -116,28 +122,55 @@ class EmbedReactNative: NSObject {
               
               switch event {
               case .transactionFailed(let transactionID, let status, let paymentMethodID):
-                successCallback([[
-                  "success": false,
-                  "transactionId": transactionID,
-                  "status": status,
-                  "paymentMethodId": paymentMethodID as Any
-                ]])
+                EmbedReactNativeEvents.emitter.sendEvent(
+                  withName: "onEvent",
+                  body: [
+                    "name": "transactionFailed",
+                    "data": [
+                      "success": true,
+                      "transactionId": transactionID,
+                      "status": status,
+                      "paymentMethodId": paymentMethodID as Any
+                    ]
+                  ]
+                )
                 break
               case .transactionCreated(let transactionID, let status, let paymentMethodID):
-                successCallback([[
-                  "success": true,
-                  "transactionId": transactionID,
-                  "status": status,
-                  "paymentMethodId": paymentMethodID as Any
-                ]])
+                EmbedReactNativeEvents.emitter.sendEvent(
+                  withName: "onEvent",
+                  body: [
+                    "name": "transactionCreated",
+                    "data": [
+                      "success": true,
+                      "transactionId": transactionID,
+                      "status": status,
+                      "paymentMethodId": paymentMethodID as Any
+                    ]
+                  ]
+                )
                 break
               case .generalError(let error):
-                errorCallback([error.description, self.GR4VY_ERROR])
+                EmbedReactNativeEvents.emitter.sendEvent(
+                  withName: "onEvent",
+                  body: [
+                    "name": "generalError",
+                    "data": [
+                      "message" : error.description
+                    ]
+                  ]
+                )
                 break
               case .paymentMethodSelected(let id, let method, let mode):
                 EmbedReactNativeEvents.emitter.sendEvent(
-                  withName: "onPaymentMethodSelected",
-                  body: ["id" : id, "method": method, "mode": mode]
+                  withName: "onEvent",
+                  body: [
+                    "name": "paymentSelected",
+                    "data": [
+                      "id" : id,
+                      "method": method,
+                      "mode": mode
+                    ]
+                  ]
                 )
                 break
               }

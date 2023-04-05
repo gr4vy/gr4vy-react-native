@@ -15,6 +15,6 @@ open class EmbedReactNativeEvents: RCTEventEmitter {
   }
   
   open override func supportedEvents() -> [String] {
-    ["onPaymentMethodSelected"]
+    ["onEvent"]
   }
 }

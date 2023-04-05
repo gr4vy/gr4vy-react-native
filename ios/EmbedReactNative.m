@@ -21,9 +21,7 @@ RCT_EXTERN_METHOD(
     paymentSource:(NSString *)paymentSource
     cartItems:(NSArray<RCTCartItem *> *)cartItems
     environment:(NSString *)environment
-    debugMode:(BOOL)debugMode
-    errorCallback:(RCTResponseSenderBlock)errorCallback
-    successCallback:(RCTResponseSenderBlock)successCallback)
+    debugMode:(BOOL)debugMode)
 @end
   
 @interface RCT_EXTERN_MODULE(EmbedReactNativeEvents, RCTEventEmitter)

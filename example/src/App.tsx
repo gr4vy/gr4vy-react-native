@@ -20,8 +20,7 @@ import { Colors, Header } from 'react-native/Libraries/NewAppScreen'
 
 import EmbedReactNative, {
   EmbedReactNativeEventEmitter,
-  Gr4vyTransactionResult,
-  Gr4vyPaymentMethod,
+  Gr4vyEvent,
 } from '@gr4vy/embed-react-native'
 
 function App(): JSX.Element {
@@ -31,8 +30,9 @@ function App(): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   }
 
-  const onPaymentMethodSelected = (paymentMethod: Gr4vyPaymentMethod) => {
-    console.log('onPaymentMethodSelected', paymentMethod)
+  const onEvent = (event: Gr4vyEvent) => {
+    const { name, data } = event
+    console[name === 'generalError' ? 'error' : 'log'](name, data)
   }
 
   const startPayment = () => {
@@ -52,11 +52,7 @@ function App(): JSX.Element {
     const cartItems = null
     const debugMode = true
 
-    const onPaymentMethodSelectedSubscription =
-      EmbedReactNativeEventEmitter.addListener(
-        'onPaymentMethodSelected',
-        onPaymentMethodSelected
-      )
+    EmbedReactNativeEventEmitter.addListener('onEvent', onEvent)
 
     EmbedReactNative.showPaymentSheet(
       gr4vyId,
@@ -73,15 +69,7 @@ function App(): JSX.Element {
       paymentSource,
       cartItems,
       env,
-      debugMode,
-      (error: string) => {
-        console.error(error)
-        onPaymentMethodSelectedSubscription.remove()
-      },
-      (transactionResult: Gr4vyTransactionResult) => {
-        console.log(transactionResult)
-        onPaymentMethodSelectedSubscription.remove()
-      }
+      debugMode
     )
   }
 

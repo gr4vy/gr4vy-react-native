@@ -2,8 +2,12 @@ import { NativeModules, NativeEventEmitter, Platform } from 'react-native'
 
 const { EmbedReactNative, EmbedReactNativeEvents } = NativeModules
 
+export interface Gr4vyError {
+  message: string
+}
+
 export interface Gr4vyTransactionResult {
-  sucess: boolean
+  success: boolean
   transactionId: string
   status: string
   paymentMethodId?: string
@@ -13,6 +17,15 @@ export interface Gr4vyPaymentMethod {
   id: number
   method: string
   mode: string
+}
+
+export type Gr4vyEvent = {
+  name:
+    | 'transactionCreated'
+    | 'transactionFailed'
+    | 'paymentMethodSelected'
+    | 'generalError'
+  data: Gr4vyError | Gr4vyTransactionResult
 }
 
 export interface Gr4vyInterface {
@@ -35,9 +48,7 @@ export interface Gr4vyInterface {
       unitAmount: string
     } | null,
     environment?: string | null,
-    debugMode?: boolean,
-    onError?: (error: string) => void,
-    onTransaction?: (transaction: Gr4vyTransactionResult) => void
+    debugMode?: boolean
   ): void
 }
 
