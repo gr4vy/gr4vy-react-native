@@ -18,8 +18,6 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_AMOUNT;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CURRENCY;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_COUNTRY;
 
-import android.app.Activity;
-
 public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandler {
   private Gr4vySDK gr4vySDK;
   private final ActivityResultRegistry activityResultRegistry = this.getActivityResultRegistry();
@@ -96,7 +94,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       data.putExtra(EXTRA_TRANSACTION_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getTransactionId());
       data.putExtra(EXTRA_PAYMENT_METHOD_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getPaymentMethodId());
 
-      setResult(Activity.RESULT_OK, data);
+      setResult(RESULT_OK, data);
     }
     else if (gr4vyResult instanceof Gr4vyResult.TransactionFailed) {
       Log.d("Gr4vy", "Gr4vyResult.TransactionFailed");
@@ -112,7 +110,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       data.putExtra(EXTRA_TRANSACTION_ID, ((Gr4vyResult.TransactionFailed) gr4vyResult).getTransactionId());
       data.putExtra(EXTRA_PAYMENT_METHOD_ID, ((Gr4vyResult.TransactionFailed) gr4vyResult).getPaymentMethodId());
 
-      setResult(Activity.RESULT_OK, data);
+      setResult(RESULT_OK, data);
     }
     else if (gr4vyResult instanceof Gr4vyResult.GeneralError) {
       Log.d("Gr4vy", "Gr4vyResult.GeneralError");
@@ -122,7 +120,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       data.putExtra(EXTRA_EVENT, "generalError");
       data.putExtra(EXTRA_ERROR, ((Gr4vyResult.GeneralError) gr4vyResult).getReason());
 
-      setResult(Activity.RESULT_OK, data);
+      setResult(RESULT_OK, data);
     }
     else {
         Log.d("Gr4vy", "An unknown error has occurred.");

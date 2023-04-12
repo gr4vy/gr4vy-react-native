@@ -37,14 +37,10 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     ActivityEventListener activityEventListener = new BaseActivityEventListener() {
       @Override
       public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        Log.d("Gr4vy", "onActivityResult");
         if (requestCode == GR4VY_PAYMENT_SHEET_REQUEST) {
           if (resultCode == Activity.RESULT_OK) {
             String event = data.getStringExtra(Gr4vyActivity.EXTRA_EVENT);
             String error = data.getStringExtra(Gr4vyActivity.EXTRA_ERROR);
-
-            Log.d("Gr4vy", "event:" + event);
-            Log.d("Gr4vy", "error:" + error);
 
             if (error == null) {
               boolean success = data.getBooleanExtra(Gr4vyActivity.EXTRA_SUCCESS, false);
@@ -62,8 +58,6 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
               resultData.putString("paymentMethodId", paymentMethodId);
 
               result.putMap("data", resultData);
-
-              Log.d("Gr4vy", "result:" + result);
 
               EmbedReactNativeEvents.sendEvent(context, "onEvent", result);
             }
