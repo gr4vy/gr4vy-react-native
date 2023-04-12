@@ -52,6 +52,7 @@ function App(): JSX.Element {
     const cartItems = null
     const debugMode = true
 
+    EmbedReactNativeEventEmitter.removeAllListeners('onEvent')
     EmbedReactNativeEventEmitter.addListener('onEvent', onEvent)
 
     EmbedReactNative.showPaymentSheet(
