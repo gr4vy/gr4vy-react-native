@@ -122,6 +122,6 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_COUNTRY, country);
       androidIntent.putExtra(EXTRA_BUYER_ID, buyerId);
 
-      getCurrentActivity().startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST);
+      context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
     }
 }

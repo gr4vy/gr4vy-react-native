@@ -35,6 +35,8 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   String currency;
   String country;
 
+  Boolean sdkLaunched = false;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -53,6 +55,10 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   public void onStart() {
     super.onStart();
 
+    if (sdkLaunched) {
+      return;
+    }
+
     gr4vySDK.launch(
             this,
             token,
@@ -67,6 +73,8 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             null,
             PaymentSource.NOT_SET,
             null);
+    
+    sdkLaunched = true;
   }
 
   @Override
@@ -88,16 +96,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       data.putExtra(EXTRA_TRANSACTION_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getTransactionId());
       data.putExtra(EXTRA_PAYMENT_METHOD_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getPaymentMethodId());
 
-      Bundle bundle = data.getExtras();
-      if (bundle != null) {
-        for (String key : bundle.keySet()) {
-          Log.d("Gr4vy", "data:");
-          Log.e("Gr4vy", key + " : " + (bundle.get(key) != null ? bundle.get(key) : "NULL"));
-        }
-      }
-
       setResult(Activity.RESULT_OK, data);
-      finish();
     }
     else if (gr4vyResult instanceof Gr4vyResult.TransactionFailed) {
       Log.d("Gr4vy", "Gr4vyResult.TransactionFailed");
@@ -114,7 +113,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       data.putExtra(EXTRA_PAYMENT_METHOD_ID, ((Gr4vyResult.TransactionFailed) gr4vyResult).getPaymentMethodId());
 
       setResult(Activity.RESULT_OK, data);
-      finish();
     }
     else if (gr4vyResult instanceof Gr4vyResult.GeneralError) {
       Log.d("Gr4vy", "Gr4vyResult.GeneralError");
@@ -125,12 +123,12 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       data.putExtra(EXTRA_ERROR, ((Gr4vyResult.GeneralError) gr4vyResult).getReason());
 
       setResult(Activity.RESULT_OK, data);
-      finish();
     }
     else {
         Log.d("Gr4vy", "An unknown error has occurred.");
     }
 
+    sdkLaunched = false;
     finish();
   }
 }
