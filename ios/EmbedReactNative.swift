@@ -69,23 +69,36 @@ class EmbedReactNative: NSObject {
   }
   
   @objc
-  func showPaymentSheet(
-    _ gr4vyId: String,
-    token: String,
-    amount: Double,
-    currency: String,
-    country: String,
-    buyerId: String?,
-    externalIdentifier: String?,
-    store: String?,
-    display: String?,
-    intent: String?,
-    metadata: [String: String]?,
-    paymentSource: String?,
-    cartItems: [RCTCartItem]?,
-    environment: String?,
-    debugMode: Bool)
+  func showPaymentSheet(_ config: [String: Any])
   {
+    guard let gr4vyId = config["gr4vyId"] as? String,
+          let environment = config["environment"] as? String?,
+          let token = config["token"] as? String,
+          let amount = config["amount"] as? Double,
+          let currency = config["currency"] as? String,
+          let country = config["country"] as? String,
+          let buyerId = config["buyerId"] as? String?,
+          let externalIdentifier = config["externalIdentifier"] as? String?,
+          let store = config["store"] as? String?,
+          let display = config["display"] as? String?,
+          let intent = config["intent"] as? String?,
+          let metadata = config["metadata"] as? [String: String]?,
+          let paymentSource = config["paymentSource"] as? String?,
+          let cartItems = config["cartItems"] as? [RCTCartItem]?,
+          let debugMode = config["debugMode"] as? Bool
+    else {
+        EmbedReactNativeEvents.emitter.sendEvent(
+          withName: "onEvent",
+          body: [
+            "name": "generalError",
+            "data": [
+              "message" : "Invalid configuration"
+            ]
+          ]
+        )
+        return
+    }
+      
     gr4vyInit(gr4vyId: gr4vyId,
              token: token,
              amount: Int(amount),

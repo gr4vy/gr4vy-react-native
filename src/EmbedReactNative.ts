@@ -29,7 +29,8 @@ export type Gr4vyEvent = {
 }
 
 export type Gr4vyConfig = {
-  gr4vId: string
+  gr4vyId: string
+  environment?: string | null
   token: string
   amount: number
   currency: string
@@ -46,12 +47,11 @@ export type Gr4vyConfig = {
     quantity: string
     unitAmount: string
   } | null
-  environment?: string | null
   debugMode?: boolean
 }
 
 export interface Gr4vyInterface {
-  showPaymentSheet(...args: Gr4vyConfig[keyof Gr4vyConfig][]): void
+  showPaymentSheet(config: Gr4vyConfig): void
 }
 
 const LINKING_ERROR =

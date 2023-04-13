@@ -89,23 +89,24 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void showPaymentSheet(
-    String gr4vyId,
-    String token,
-    Double amount,
-    String currency,
-    String country,
-    String buyerId,
-    String externalIdentifier,
-    String store,
-    String display,
-    String intent,
-    ReadableMap metadata,
-    String paymentSource,
-    ReadableArray cartItems,
-    String environment,
-    Boolean debugMode) {
+  public void showPaymentSheet(ReadableMap config) {
       Log.d("Gr4vy", "showPaymentSheet()");
+
+      String gr4vyId = config.getString("gr4vyId");
+      String environment = config.getString("environment");
+      String token = config.getString("token");
+      Double amount = config.getDouble("amount");
+      String currency = config.getString("currency");
+      String country = config.getString("country");
+      String buyerId = config.getString("buyerId");
+      String externalIdentifier = config.getString("externalIdentifier");
+      String store = config.getString("store");
+      String display = config.getString("display");
+      String intent = config.getString("intent");
+      ReadableMap metadata = config.getMap("metadata");
+      String paymentSource = config.getString("paymentSource");
+      ReadableArray cartItems = config.getArray("cartItems");
+      Boolean debugMode = config.getBoolean("debugMode");
 
       ReactApplicationContext context = getReactApplicationContext();
       Intent androidIntent = new Intent(context, Gr4vyActivity.class);
