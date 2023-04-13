@@ -15,7 +15,7 @@ const config = {
   amount: total,
   currency: 'USD',
   country: 'US',
-  buyerId: 'baa7b3b3-a4f1-49e3-afb0-0f41b48f5aa2',
+  buyerId: null,
   externalIdentifier: null,
   store: 'ask',
   display: 'all',
