@@ -2,7 +2,6 @@
 #import <React/RCTConvert.h>
 #import <React/RCTEventEmitter.h>
 #import <Foundation/Foundation.h>
-#import "RCTCartItem.h"
 
 @interface RCT_EXTERN_MODULE(EmbedReactNative, NSObject)
   RCT_EXTERN_METHOD(showPaymentSheet:(NSDictionary *)config)

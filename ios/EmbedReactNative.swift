@@ -49,13 +49,6 @@ class EmbedReactNative: NSObject {
     if paymentSource != nil {
         paymentSourceConverted = Gr4vyPaymentSource(rawValue: paymentSource!)
     }
-
-//    var cartItemsConverted: [Gr4vyCartItem]?
-//    if let cartItems = cartItems {
-//      cartItemsConverted = cartItems.compactMap { (item: RCTCartItem) -> Gr4vyCartItem? in
-//        return try? Gr4vyCartItem(name: item.name, quantity: item.quantity, unitAmount: item.unitAmount)
-//      }
-//    }
     
 //    var themeConverted: Gr4vyTheme?
 //    if theme != nil {
