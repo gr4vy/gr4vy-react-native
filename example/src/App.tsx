@@ -19,6 +19,44 @@ const config: Gr4vyConfig = {
   store: 'ask',
   display: 'all',
   intent: 'capture',
+  theme: {
+    fonts: {
+      body: 'google:Lato',
+    },
+    colors: {
+      text: '#fff',
+      subtleText: '#a1b0bd',
+      labelText: '#fff',
+      primary: '#fff',
+      pageBackground: '#1d334b',
+      containerBackgroundUnchecked: '#1d334b',
+      containerBackground: '#2c4765',
+      containerBorder: '#304c6a',
+      inputBorder: '#f2f2f2',
+      inputBackground: '#2a4159',
+      inputText: '#fff',
+      danger: '#ff556a',
+      dangerBackground: '#2c4765',
+      dangerText: '#fff',
+      info: '#3ea2ff',
+      infoBackground: '#e7f2fb',
+      infoText: '#0367c4',
+      focus: '#4844ff',
+      headerText: '#ffffff',
+      headerBackground: '#2c4765',
+    },
+    borderWidths: {
+      container: 'thin',
+      input: 'thin',
+    },
+    radii: {
+      container: 'subtle',
+      input: 'subtle',
+    },
+    shadows: {
+      focusRing: '0 0 0 2px #ffffff, 0 0 0 4px #4844ff',
+    },
+  },
   debugMode: true,
 }
 

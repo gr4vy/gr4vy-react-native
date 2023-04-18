@@ -47,6 +47,46 @@ export type Gr4vyConfig = {
     quantity: string
     unitAmount: string
   } | null
+  theme?: {
+    fonts?: {
+      body?: string
+    }
+    borderWidths?: {
+      container?: 'none' | 'thin' | 'thick'
+      input?: 'thin' | 'thick'
+    }
+    colors?: {
+      primary?: string
+      text?: string
+      subtleText?: string
+      labelText?: string
+      containerBackgroundUnchecked?: string
+      containerBackground?: string
+      containerBorder?: string
+      pageBackground?: string
+      inputBorder?: string
+      inputText?: string
+      inputBackground?: string
+      inputRadioBorder?: string
+      inputRadioBorderChecked?: string
+      info?: string
+      infoBackground?: string
+      infoText?: string
+      danger?: string
+      dangerBackground?: string
+      dangerText?: string
+      focus?: string
+      headerBackground?: string
+      headerText?: string
+    }
+    radii?: {
+      input?: 'none' | 'subtle' | 'rounded'
+      container?: 'none' | 'subtle' | 'rounded'
+    }
+    shadows?: {
+      focusRing?: string
+    }
+  }
   debugMode?: boolean
 }
 
