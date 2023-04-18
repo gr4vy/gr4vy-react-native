@@ -13,7 +13,9 @@ import com.gr4vy.android_sdk.Gr4vySDK;
 import com.gr4vy.android_sdk.models.Gr4vyResult;
 import com.gr4vy.android_sdk.models.PaymentSource;
 
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_GR4VY_ID;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_TOKEN;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_ENVIRONMENT;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_AMOUNT;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CURRENCY;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_COUNTRY;
@@ -28,7 +30,9 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   static final String EXTRA_TRANSACTION_ID = "EXTRA_TRANSACTION_ID";
   static final String EXTRA_PAYMENT_METHOD_ID = "EXTRA_PAYMENT_METHOD_ID";
 
+  String gr4vyId;
   String token;
+  String environment;
   int amount;
   String currency;
   String country;
@@ -40,7 +44,9 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     super.onCreate(savedInstanceState);
 
     Intent intent = getIntent();
+    this.gr4vyId = intent.getStringExtra(EXTRA_GR4VY_ID);
     this.token = intent.getStringExtra(EXTRA_TOKEN);
+    this.environment = intent.getStringExtra(EXTRA_ENVIRONMENT);
     this.amount = intent.getIntExtra(EXTRA_AMOUNT, 0);
     this.currency = intent.getStringExtra(EXTRA_CURRENCY);
     this.country = intent.getStringExtra(EXTRA_COUNTRY);
@@ -59,6 +65,8 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
 
     gr4vySDK.launch(
             this,
+            gr4vyId,
+            environment,
             token,
             amount,
             currency,
@@ -70,6 +78,12 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             null,
             null,
             PaymentSource.NOT_SET,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null);
     
     sdkLaunched = true;

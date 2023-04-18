@@ -24,7 +24,9 @@ import android.util.Log;
 @ReactModule(name = EmbedReactNativeModule.NAME)
 public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   public static final String NAME = "EmbedReactNative";
+  static final String EXTRA_GR4VY_ID = "EXTRA_GR4VY_ID";
   static final String EXTRA_TOKEN = "EXTRA_TOKEN";
+  static final String EXTRA_ENVIRONMENT = "EXTRA_ENVIRONMENT";
   static final String EXTRA_AMOUNT = "EXTRA_AMOUNT";
   static final String EXTRA_CURRENCY = "EXTRA_CURRENCY";
   static final String EXTRA_COUNTRY = "EXTRA_COUNTRY";
@@ -111,7 +113,9 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       ReactApplicationContext context = getReactApplicationContext();
       Intent androidIntent = new Intent(context, Gr4vyActivity.class);
 
+      androidIntent.putExtra(EXTRA_GR4VY_ID, gr4vyId);
       androidIntent.putExtra(EXTRA_TOKEN, token);
+      androidIntent.putExtra(EXTRA_ENVIRONMENT, environment);
       androidIntent.putExtra(EXTRA_AMOUNT, Integer.valueOf(amount.intValue()));
       androidIntent.putExtra(EXTRA_CURRENCY, currency);
       androidIntent.putExtra(EXTRA_COUNTRY, country);
