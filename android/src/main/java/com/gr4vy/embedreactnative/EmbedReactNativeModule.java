@@ -12,13 +12,16 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+// import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.module.annotations.ReactModule;
 
 import com.gr4vy.embedreactnative.EmbedReactNativeEvents;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 
 @ReactModule(name = EmbedReactNativeModule.NAME)
@@ -31,7 +34,24 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_CURRENCY = "EXTRA_CURRENCY";
   static final String EXTRA_COUNTRY = "EXTRA_COUNTRY";
   static final String EXTRA_BUYER_ID = "EXTRA_BUYER_ID";
+  static final String EXTRA_EXTERNAL_IDENTIFIER = "EXTRA_EXTERNAL_IDENTIFIER";
+  static final String EXTRA_STORE = "EXTRA_STORE";
+  static final String EXTRA_DISPLAY = "EXTRA_DISPLAY";
+  static final String EXTRA_INTENT = "EXTRA_INTENT";
+  static final String EXTRA_METADATA = "EXTRA_METADATA";
+  static final String EXTRA_THEME = "EXTRA_THEME";
+  static final String EXTRA_PAYMENT_SOURCE = "EXTRA_PAYMENT_SOURCE";
+  static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
+
+  public static <T> T coalesce(T... items) {
+    for (T item : items) {
+      if (item != null) {
+        return item;
+      }
+    }
+    return null;
+  }
 
   public EmbedReactNativeModule(ReactApplicationContext context) {
     super(context);
@@ -93,6 +113,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void showPaymentSheet(ReadableMap config) {
       Log.d("Gr4vy", "showPaymentSheet()");
+      ReadableMap emptyMap = Arguments.createMap();
 
       String gr4vyId = config.getString("gr4vyId");
       String environment = config.getString("environment");
@@ -105,13 +126,35 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       String store = config.getString("store");
       String display = config.getString("display");
       String intent = config.getString("intent");
-      ReadableMap metadata = config.getMap("metadata");
+      ReadableMap metadata = coalesce(config.getMap("metadata"), emptyMap);
+      ReadableMap theme = coalesce(config.getMap("theme"), emptyMap);
       String paymentSource = config.getString("paymentSource");
       ReadableArray cartItems = config.getArray("cartItems");
       Boolean debugMode = config.getBoolean("debugMode");
 
+      // WritableNativeArray cartItemsArray = new WritableNativeArray();
+      // for (int i = 0; i < cartItems.size(); i++) {
+      //     String cartItem = cartItems.getString(i);
+      //     cartItemsArray.pushString(cartItem);
+      // }
+
+      // String cartItemsJson = cartItemsArray.toString();
+
       ReactApplicationContext context = getReactApplicationContext();
       Intent androidIntent = new Intent(context, Gr4vyActivity.class);
+
+      // `putExtra` doesn't accept ReadableMap, so we have to convert it
+      // to the appropriate type (Bundle)
+
+      // Convert ReadableMap(s) to WritableMap(s)
+      WritableNativeMap metadataWritableMap = new WritableNativeMap();
+      metadataWritableMap.merge(metadata);
+      WritableNativeMap themeWritableMap = new WritableNativeMap();
+      themeWritableMap.merge(theme);
+
+      // Convert WritableMap(s) to Bundle(s)
+      Bundle metadataBundle = Arguments.toBundle(metadataWritableMap);
+      Bundle themeBundle = Arguments.toBundle(themeWritableMap);
 
       androidIntent.putExtra(EXTRA_GR4VY_ID, gr4vyId);
       androidIntent.putExtra(EXTRA_TOKEN, token);
@@ -120,6 +163,14 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_CURRENCY, currency);
       androidIntent.putExtra(EXTRA_COUNTRY, country);
       androidIntent.putExtra(EXTRA_BUYER_ID, buyerId);
+      androidIntent.putExtra(EXTRA_EXTERNAL_IDENTIFIER, externalIdentifier);
+      androidIntent.putExtra(EXTRA_STORE, store);
+      androidIntent.putExtra(EXTRA_DISPLAY, display);
+      androidIntent.putExtra(EXTRA_INTENT, intent);
+      // androidIntent.putExtra(EXTRA_CART_ITEMS, cartItems);
+      androidIntent.putExtra(EXTRA_PAYMENT_SOURCE, paymentSource);
+      androidIntent.putExtra(EXTRA_METADATA, metadataBundle);
+      androidIntent.putExtra(EXTRA_THEME, themeBundle);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
     }

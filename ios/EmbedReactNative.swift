@@ -43,6 +43,10 @@ class EmbedReactNative: NSObject {
                  cartItems: [Gr4vyCartItem]?,
                  environment: String?,
                  theme: Gr4vyTheme?,
+                 buyerExternalIdentifier: String?,
+                 locale: String?,
+                 requireSecurityCode: Bool?,
+                 shippingDetailsId: String?,
                  debugMode: Bool = false,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
     var paymentSourceConverted: Gr4vyPaymentSource?
@@ -66,6 +70,10 @@ class EmbedReactNative: NSObject {
                               cartItems: cartItems,
                               environment: (environment != nil && environment?.lowercased() == "production") ? .production : .sandbox,
                               theme: theme,
+                              buyerExternalIdentifier: buyerExternalIdentifier,
+                              locale: locale,
+                              requireSecurityCode: requireSecurityCode,
+                              shippingDetailsId: shippingDetailsId,
                               debugMode: debugMode) else {
         completion(nil)
         return
@@ -263,7 +271,6 @@ class EmbedReactNative: NSObject {
 //      )
     
     guard let gr4vyId = config["gr4vyId"] as? String,
-          let environment = config["environment"] as? String?,
           let token = config["token"] as? String,
           let amount = config["amount"] as? Double,
           let currency = config["currency"] as? String,
@@ -276,7 +283,12 @@ class EmbedReactNative: NSObject {
           let metadata = config["metadata"] as? [String: String]?,
           let paymentSource = config["paymentSource"] as? String?,
           let cartItems = config["cartItems"] as? [Gr4vyCartItem]?,
+          let environment = config["environment"] as? String?,
           let theme = config["theme"] as? [String: [String: String?]?]?,
+          let buyerExternalIdentifier = config["buyerExternalIdentifier"] as? String?,
+          let locale = config["locale"] as? String?,
+          let requireSecurityCode = config["requireSecurityCode"] as? Bool?,
+          let shippingDetailsId = config["shippingDetailsId"] as? String?,
           let debugMode = config["debugMode"] as? Bool
     else {
         EmbedReactNativeEvents.emitter.sendEvent(
@@ -306,6 +318,10 @@ class EmbedReactNative: NSObject {
              cartItems: cartItems,
              environment: environment,
              theme: buildTheme(theme),
+             buyerExternalIdentifier: buyerExternalIdentifier,
+             locale: locale,
+             requireSecurityCode: requireSecurityCode,
+             shippingDetailsId: shippingDetailsId,
              debugMode: debugMode) { (gr4vy) in
       if gr4vy == nil {
         EmbedReactNativeEvents.emitter.sendEvent(
