@@ -10,7 +10,3 @@
 @interface RCT_EXTERN_MODULE(EmbedReactNativeEvents, RCTEventEmitter)
   RCT_EXTERN_METHOD(supportedEvents)
 @end
-
-@implementation RCTConvert (RCTCartItemArray)
-  RCT_ARRAY_CONVERTER(RCTCartItem)
-@end
