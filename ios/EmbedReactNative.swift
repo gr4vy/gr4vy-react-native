@@ -19,20 +19,13 @@ class EmbedReactNative: NSObject {
                  intent: String?,
                  metadata: [String: String]?,
                  paymentSource: String?,
-                 cartItems: [RCTCartItem]?,
+                 cartItems: [Gr4vyCartItem]?,
                  environment: String?,
                  debugMode: Bool = false,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
     var paymentSourceConverted: Gr4vyPaymentSource?
     if paymentSource != nil {
         paymentSourceConverted = Gr4vyPaymentSource(rawValue: paymentSource!)
-    }
-
-    var cartItemsConverted: [Gr4vyCartItem]?
-    if let cartItems = cartItems {
-      cartItemsConverted = cartItems.compactMap { (item: RCTCartItem) -> Gr4vyCartItem? in
-        return try? Gr4vyCartItem(name: item.name, quantity: item.quantity, unitAmount: item.unitAmount)
-      }
     }
 
     DispatchQueue.main.async(execute: {  
@@ -48,7 +41,7 @@ class EmbedReactNative: NSObject {
                               intent: intent,
                               metadata: metadata,
                               paymentSource: paymentSourceConverted,
-                              cartItems: cartItemsConverted,
+                              cartItems: cartItems,
                               environment: (environment != nil && environment?.lowercased() == "production") ? .production : .sandbox,
                               debugMode: debugMode) else {
         completion(nil)
@@ -84,7 +77,7 @@ class EmbedReactNative: NSObject {
           let intent = config["intent"] as? String?,
           let metadata = config["metadata"] as? [String: String]?,
           let paymentSource = config["paymentSource"] as? String?,
-          let cartItems = config["cartItems"] as? [RCTCartItem]?,
+          let cartItems = config["cartItems"] as? [Gr4vyCartItem]?,
           let debugMode = config["debugMode"] as? Bool
     else {
         EmbedReactNativeEvents.emitter.sendEvent(

@@ -2,4 +2,3 @@
 #import <React/RCTUtils.h>
 #import <React/RCTEventEmitter.h>
 #import <React/RCTConvert.h>
-#import "RCTCartItem.h"
