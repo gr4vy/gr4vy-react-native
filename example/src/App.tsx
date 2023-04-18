@@ -35,6 +35,8 @@ const config: Gr4vyConfig = {
       inputBorder: '#f2f2f2',
       inputBackground: '#2a4159',
       inputText: '#fff',
+      inputRadioBorder: '#fff',
+      inputRadioBorderChecked: '#fff',
       danger: '#ff556a',
       dangerBackground: '#2c4765',
       dangerText: '#fff',

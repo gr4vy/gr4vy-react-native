@@ -49,11 +49,6 @@ class EmbedReactNative: NSObject {
     if paymentSource != nil {
         paymentSourceConverted = Gr4vyPaymentSource(rawValue: paymentSource!)
     }
-    
-//    var themeConverted: Gr4vyTheme?
-//    if theme != nil {
-//        themeConverted = Gr4vyTheme(fonts: Gr4vyFonts(body: "google:Lato"))
-//    }
 
     DispatchQueue.main.async(execute: {  
       guard let gr4vy = Gr4vy(gr4vyId: gr4vyId,
@@ -80,38 +75,41 @@ class EmbedReactNative: NSObject {
     })
   }
     
-  func buildTheme(_ source: [String: Any]?) -> Gr4vyTheme? {
+  func buildTheme(_ source: [String: [String: String?]?]?) -> Gr4vyTheme? {
     guard let theme = source,
-          let fonts = theme["fonts"] as? [String: String],
-          let fontsBody = fonts["body"],
-          let colors = theme["colors"] as? [String: String],
-          let colorsText = colors["text"],
-          let colorsSubtleText = colors["subtleText"],
-          let colorsLabelText = colors["labelText"],
-          let colorsPrimary = colors["primary"],
-          let colorsPageBackground = colors["pageBackground"],
-          let colorsContainerBackgroundUnchecked = colors["containerBackgroundUnchecked"],
-          let colorsContainerBorder = colors["containerBorder"],
-          let colorsInputBorder = colors["inputBorder"],
-          let colorsInputBackground = colors["inputBackground"],
-          let colorsInputText = colors["inputText"],
-          let colorsDanger = colors["danger"],
-          let colorsDangerBackground = colors["dangerBackground"],
-          let colorsDangerText = colors["dangerText"],
-          let colorsInfo = colors["info"],
-          let colorsInfoBackground = colors["infoBackground"],
-          let colorsInfoText = colors["infoText"],
-          let colorsFocus = colors["focus"],
-          let colorsHeaderText = colors["headerText"],
-          let colorsHeaderBackground = colors["headerBackground"],
-          let borderWidths = theme["borderWidths"] as? [String: String],
-          let borderWidthsContainer = borderWidths["container"],
-          let borderWidthsInput = borderWidths["input"],
-          let radii = theme["radii"] as? [String: String],
-          let radiiContainer = radii["container"],
-          let radiiInput = radii["input"],
-          let shadows = theme["shadows"] as? [String: String],
-          let shadowsFocusRing = shadows["focusRing"]
+          let fonts = theme["fonts"] ?? [:],
+          let fontsBody = fonts["body"] ?? "",
+          let colors = theme["colors"] ?? [:],
+          let colorsText = colors["text"] ?? "",
+          let colorsSubtleText = colors["subtleText"] ?? "",
+          let colorsLabelText = colors["labelText"] ?? "",
+          let colorsPrimary = colors["primary"] ?? "",
+          let colorsPageBackground = colors["pageBackground"] ?? "",
+          let colorsContainerBackgroundUnchecked = colors["containerBackgroundUnchecked"] ?? "",
+          let colorsContainerBackground = colors["containerBackground"] ?? "",
+          let colorsContainerBorder = colors["containerBorder"] ?? "",
+          let colorsInputBorder = colors["inputBorder"] ?? "",
+          let colorsInputBackground = colors["inputBackground"] ?? "",
+          let colorsInputText = colors["inputText"] ?? "",
+          let colorsInputRadioBorder = colors["inputRadioBorder"] ?? "",
+          let colorsInputRadioBorderChecked = colors["inputRadioBorderChecked"] ?? "",
+          let colorsDanger = colors["danger"] ?? "",
+          let colorsDangerBackground = colors["dangerBackground"] ?? "",
+          let colorsDangerText = colors["dangerText"] ?? "",
+          let colorsInfo = colors["info"] ?? "",
+          let colorsInfoBackground = colors["infoBackground"] ?? "",
+          let colorsInfoText = colors["infoText"] ?? "",
+          let colorsFocus = colors["focus"] ?? "",
+          let colorsHeaderText = colors["headerText"] ?? "",
+          let colorsHeaderBackground = colors["headerBackground"] ?? "",
+          let borderWidths = theme["borderWidths"] ?? [:],
+          let borderWidthsContainer = borderWidths["container"] ?? "",
+          let borderWidthsInput = borderWidths["input"] ?? "",
+          let radii = theme["radii"] ?? [:],
+          let radiiContainer = radii["container"] ?? "",
+          let radiiInput = radii["input"] ?? "",
+          let shadows = theme["shadows"] ?? [:],
+          let shadowsFocusRing = shadows["focusRing"] ?? ""
     else {
       return nil
     }
@@ -126,7 +124,23 @@ class EmbedReactNative: NSObject {
         labelText: colorsLabelText,
         primary: colorsPrimary,
         pageBackground: colorsPageBackground,
-        containerBackgroundUnchecked: colorsContainerBackgroundUnchecked
+        containerBackgroundUnchecked: colorsContainerBackgroundUnchecked,
+        containerBackground: colorsContainerBackground,
+        containerBorder: colorsContainerBorder,
+        inputBorder: colorsInputBorder,
+        inputBackground: colorsInputBackground,
+        inputText: colorsInputText,
+        inputRadioBorder: colorsInputRadioBorder,
+        inputRadioBorderChecked: colorsInputRadioBorderChecked,
+        danger: colorsDanger,
+        dangerBackground: colorsDangerBackground,
+        dangerText: colorsDangerText,
+        info: colorsInfo,
+        infoBackground: colorsInfoBackground,
+        infoText: colorsInfoText,
+        focus: colorsFocus,
+        headerText: colorsHeaderText,
+        headerBackground: colorsHeaderBackground
       ),
       borderWidths: Gr4vyBorderWidths(
         container: borderWidthsContainer,
@@ -262,7 +276,7 @@ class EmbedReactNative: NSObject {
           let metadata = config["metadata"] as? [String: String]?,
           let paymentSource = config["paymentSource"] as? String?,
           let cartItems = config["cartItems"] as? [Gr4vyCartItem]?,
-//          let theme = config["theme"] as? Gr4vyTheme?,
+          let theme = config["theme"] as? [String: [String: String?]?]?,
           let debugMode = config["debugMode"] as? Bool
     else {
         EmbedReactNativeEvents.emitter.sendEvent(
@@ -276,18 +290,6 @@ class EmbedReactNative: NSObject {
         )
         return
     }
-      
-//      guard let themeConfig = config["theme"] as? [String: Any],
-//            let fonts = themeConfig["fonts"] as? [String: String],
-//            let body = fonts["body"]
-//      else {
-//          // Handle configuration error
-//          return
-//      }
-//
-//      let theme = Gr4vyTheme(fonts: Gr4vyFonts(body: body))
-      
-      let theme = config["theme"] as? [String: Any]
       
     gr4vyInit(gr4vyId: gr4vyId,
              token: token,
