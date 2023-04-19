@@ -5,14 +5,11 @@ import androidx.annotation.NonNull;
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.BaseActivityEventListener;
-import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.ReadableArray;
+// import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
-// import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.module.annotations.ReactModule;
@@ -139,7 +136,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       Boolean requireSecurityCode = config.getBoolean("requireSecurityCode");
       String shippingDetailsId = config.getString("shippingDetailsId");
       String paymentSource = config.getString("paymentSource");
-      ReadableArray cartItems = config.getArray("cartItems");
+      // ReadableArray cartItems = config.getArray("cartItems");
       Boolean debugMode = config.getBoolean("debugMode");
 
       // WritableNativeArray cartItemsArray = new WritableNativeArray();

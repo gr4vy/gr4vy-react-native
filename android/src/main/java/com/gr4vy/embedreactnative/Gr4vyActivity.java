@@ -9,14 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.ReadableArray;
+// import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.ReadableNativeMap;
-import com.facebook.react.bridge.WritableArray;
-import com.facebook.react.bridge.WritableNativeArray;
+// import com.facebook.react.bridge.WritableArray;
+// import com.facebook.react.bridge.WritableNativeArray;
 
-import org.json.JSONArray;
-import org.json.JSONException;
+// import org.json.JSONArray;
+// import org.json.JSONException;
 
 import com.gr4vy.android_sdk.*;
 import com.gr4vy.android_sdk.models.*;
@@ -67,12 +66,12 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   String display;
   String intent;
   String cartItems;
-  String paymentSource;
+  PaymentSource paymentSource;
   HashMap metadata;
-  ReadableMap theme;
+  Gr4vyTheme theme;
   String buyerExternalIdentifier;
   String locale;
-  ReadableMap statementDescriptor;
+  Gr4vyStatementDescriptor statementDescriptor;
   Boolean requireSecurityCode;
   String shippingDetailsId;
 
@@ -214,16 +213,16 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     this.display = intent.getStringExtra(EXTRA_DISPLAY);
     this.intent = intent.getStringExtra(EXTRA_INTENT);
     // this.cartItems = intent.getStringExtra(EXTRA_CART_ITEMS);
-    this.paymentSource = intent.getStringExtra(EXTRA_PAYMENT_SOURCE);
-//    this.metadata = (ReadableMap) Arguments.fromBundle(intent.getBundleExtra(EXTRA_METADATA));
-    this.theme = (ReadableMap) Arguments.fromBundle(intent.getBundleExtra(EXTRA_THEME));
     this.buyerExternalIdentifier = intent.getStringExtra(EXTRA_BUYER_EXTERNAL_IDENTIFIER);
     this.requireSecurityCode = intent.getExtras().getBoolean(EXTRA_REQUIRE_SECURITY_CODE);
     this.shippingDetailsId = intent.getStringExtra(EXTRA_SHIPPING_DETAILS_ID);
     this.locale = intent.getStringExtra(EXTRA_LOCALE);
-    this.statementDescriptor = (ReadableMap) Arguments.fromBundle(intent.getBundleExtra(EXTRA_STATEMENT_DESCRIPTOR));
 
-    // Convert metadata to HashMap
+    // Convert theme to Gr4vyTheme
+    ReadableMap themeMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_THEME));
+    this.theme = buildTheme(themeMap);
+
+    // Convert metadata to HashMap (Gr4vyMetaData typealias)
     Bundle metadataBundle = intent.getExtras().getBundle(EXTRA_METADATA);
     HashMap<String, Object> metadataHashMap = new HashMap<>();
     for (String key : metadataBundle.keySet()) {
@@ -231,6 +230,17 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       metadataHashMap.put(key, value);
     }
     this.metadata = metadataHashMap;
+
+    // Convert statementDescriptor to Gr4vyStatementDescriptor
+    ReadableMap statementDescriptorMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_STATEMENT_DESCRIPTOR));
+    this.statementDescriptor = convertStatementDescriptor(statementDescriptorMap);
+
+    // Set paymentSource according to its type requirements
+    String paymentSourceString = intent.getStringExtra(EXTRA_PAYMENT_SOURCE);
+    this.paymentSource =
+      paymentSourceString != null ?
+        PaymentSource.valueOf(paymentSourceString.toUpperCase()) :
+        PaymentSource.NOT_SET;
 
     this.gr4vySDK = new Gr4vySDK(activityResultRegistry, this, this);
     getLifecycle().addObserver(this.gr4vySDK);
@@ -243,11 +253,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     if (sdkLaunched) {
       return;
     }
-
-    PaymentSource paymentSource =
-      this.paymentSource != null ?
-        PaymentSource.valueOf(this.paymentSource.toUpperCase()) :
-        PaymentSource.NOT_SET;
 
     gr4vySDK.launch(
             this,
@@ -265,10 +270,10 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             null,
             paymentSource,
             metadata,
-            buildTheme(theme),
+            theme,
             buyerExternalIdentifier,
             locale,
-            convertStatementDescriptor(statementDescriptor),
+            statementDescriptor,
             requireSecurityCode,
             shippingDetailsId);
 
