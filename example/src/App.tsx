@@ -1,5 +1,5 @@
 import { GR4VY_ID, TOKEN } from '@env'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
 import { Checkout } from './components/Checkout'
 import EmbedReactNative, {
@@ -7,7 +7,15 @@ import EmbedReactNative, {
   Gr4vyConfig,
   Gr4vyEvent,
 } from '@gr4vy/embed-react-native'
-import { total } from './constants/data'
+import { products, total } from './constants/data'
+
+const cartItems = products.map(({ title, price }) => ({
+  name: title,
+  quantity: 1,
+  unitAmount: price,
+}))
+
+console.log('cartItems', cartItems)
 
 const config: Gr4vyConfig = {
   gr4vyId: `${GR4VY_ID}`,
@@ -19,6 +27,7 @@ const config: Gr4vyConfig = {
   store: 'ask',
   display: 'all',
   intent: 'capture',
+  // cartItems,
   theme: {
     fonts: {
       body: 'google:Lato',
@@ -68,17 +77,20 @@ const onEvent = (event: Gr4vyEvent) => {
 }
 
 function App(): JSX.Element {
-  const onEventSubscription = EmbedReactNativeEventEmitter.addListener(
-    'onEvent',
-    (event: Gr4vyEvent) => {
-      onEvent(event)
-      onEventSubscription.remove()
-    }
-  )
-
   const handleCheckout = () => {
     EmbedReactNative.showPaymentSheet(config)
   }
+
+  useEffect(() => {
+    const onEventSubscription = EmbedReactNativeEventEmitter.addListener(
+      'onEvent',
+      onEvent
+    )
+
+    return () => {
+      onEventSubscription.remove()
+    }
+  }, [])
 
   return (
     <SafeAreaView>
