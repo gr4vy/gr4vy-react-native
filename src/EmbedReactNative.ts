@@ -42,11 +42,12 @@ export type Gr4vyConfig = {
   intent?: 'authorize' | 'capture'
   metadata?: Record<string, string>
   paymentSource?: 'installment' | 'recurring' | null
-  cartItems?: {
+  applePayMerchantId?: string
+  cartItems?: Array<{
     name: string
-    quantity: string
-    unitAmount: string
-  } | null
+    quantity: number
+    unitAmount: number
+  }> | null
   theme?: {
     fonts?: {
       body?: string
@@ -87,6 +88,17 @@ export type Gr4vyConfig = {
       focusRing?: string
     }
   }
+  buyerExternalIdentifier?: string
+  locale?: string
+  statementDescriptor?: {
+    name?: string
+    description?: string
+    phoneNumber?: string
+    city?: string
+    url?: string
+  }
+  requireSecurityCode?: boolean
+  shippingDetailsId?: string
   debugMode?: boolean
 }
 

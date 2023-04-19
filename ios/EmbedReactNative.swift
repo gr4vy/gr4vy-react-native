@@ -45,6 +45,7 @@ class EmbedReactNative: NSObject {
                  theme: Gr4vyTheme?,
                  buyerExternalIdentifier: String?,
                  locale: String?,
+                 statementDescriptor: Gr4vyStatementDescriptor?,
                  requireSecurityCode: Bool?,
                  shippingDetailsId: String?,
                  debugMode: Bool = false,
@@ -67,11 +68,12 @@ class EmbedReactNative: NSObject {
                               intent: intent,
                               metadata: metadata,
                               paymentSource: paymentSourceConverted,
-                              cartItems: cartItems,
+//                              cartItems: cartItems,
                               environment: (environment != nil && environment?.lowercased() == "production") ? .production : .sandbox,
                               theme: theme,
                               buyerExternalIdentifier: buyerExternalIdentifier,
                               locale: locale,
+                              statementDescriptor: statementDescriptor,
                               requireSecurityCode: requireSecurityCode,
                               shippingDetailsId: shippingDetailsId,
                               debugMode: debugMode) else {
@@ -163,6 +165,44 @@ class EmbedReactNative: NSObject {
       )
     )
   }
+    
+  func convertStatementDescriptor(_ source: [String: String?]?) -> Gr4vyStatementDescriptor? {
+    guard let statementDescriptor = source,
+          let name = statementDescriptor["name"] ?? "",
+          let description = statementDescriptor["description"] ?? "",
+          let phoneNumber = statementDescriptor["phoneNumber"] ?? "",
+          let city = statementDescriptor["city"] ?? "",
+          let url = statementDescriptor["url"] ?? "" else {
+        return nil
+    }
+      
+    return Gr4vyStatementDescriptor(
+        name: name,
+        description: description,
+        phoneNumber: phoneNumber,
+        city: city,
+        url: url
+    )
+  }
+    
+//  func convertCartItems(_ cartItems: NSArray?) -> [Gr4vyCartItemWrapper] {
+//    guard let cartItems = cartItems else {
+//      return []
+//    }
+//
+//    var result = [Gr4vyCartItemWrapper]()
+//    for item in cartItems {
+//      guard let dict = item as? [String: Any],
+//            let name = dict["name"] as? String,
+//            let quantity = dict["quantity"] as? Int,
+//            let unitAmount = dict["unitAmount"] as? Int else {
+//          return []
+//      }
+//      result.append(Gr4vyCartItemWrapper(name: name, quantity: quantity, unitAmount: unitAmount))
+//    }
+//
+//    return result
+//  }
   
   @objc
   func constantsToExport() -> [AnyHashable : Any]! {
@@ -282,11 +322,12 @@ class EmbedReactNative: NSObject {
           let intent = config["intent"] as? String?,
           let metadata = config["metadata"] as? [String: String]?,
           let paymentSource = config["paymentSource"] as? String?,
-          let cartItems = config["cartItems"] as? [Gr4vyCartItem]?,
+          let cartItems = config["cartItems"] as? NSArray?,
           let environment = config["environment"] as? String?,
           let theme = config["theme"] as? [String: [String: String?]?]?,
           let buyerExternalIdentifier = config["buyerExternalIdentifier"] as? String?,
           let locale = config["locale"] as? String?,
+          let statementDescriptor = config["statementDescriptor"] as? [String: String?]?,
           let requireSecurityCode = config["requireSecurityCode"] as? Bool?,
           let shippingDetailsId = config["shippingDetailsId"] as? String?,
           let debugMode = config["debugMode"] as? Bool
@@ -315,11 +356,12 @@ class EmbedReactNative: NSObject {
              intent: intent,
              metadata: metadata,
              paymentSource: paymentSource,
-             cartItems: cartItems,
+            //  cartItems: cartItems,
              environment: environment,
              theme: buildTheme(theme),
              buyerExternalIdentifier: buyerExternalIdentifier,
              locale: locale,
+             statementDescriptor: convertStatementDescriptor(statementDescriptor),
              requireSecurityCode: requireSecurityCode,
              shippingDetailsId: shippingDetailsId,
              debugMode: debugMode) { (gr4vy) in
