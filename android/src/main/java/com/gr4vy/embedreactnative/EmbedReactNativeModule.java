@@ -40,6 +40,11 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_INTENT = "EXTRA_INTENT";
   static final String EXTRA_METADATA = "EXTRA_METADATA";
   static final String EXTRA_THEME = "EXTRA_THEME";
+  static final String EXTRA_BUYER_EXTERNAL_IDENTIFIER = "EXTRA_BUYER_EXTERNAL_IDENTIFIER";
+  static final String EXTRA_LOCALE = "EXTRA_LOCALE";
+  static final String EXTRA_STATEMENT_DESCRIPTOR = "EXTRA_STATEMENT_DESCRIPTOR";
+  static final String EXTRA_REQUIRE_SECURITY_CODE = "EXTRA_REQUIRE_SECURITY_CODE";
+  static final String EXTRA_SHIPPING_DETAILS_ID = "EXTRA_SHIPPING_DETAILS_ID";
   static final String EXTRA_PAYMENT_SOURCE = "EXTRA_PAYMENT_SOURCE";
   static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
@@ -128,6 +133,11 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       String intent = config.getString("intent");
       ReadableMap metadata = coalesce(config.getMap("metadata"), emptyMap);
       ReadableMap theme = coalesce(config.getMap("theme"), emptyMap);
+      String buyerExternalIdentifier = config.getString("buyerExternalIdentifier");
+      String locale = config.getString("locale");
+      ReadableMap statementDescriptor = coalesce(config.getMap("statementDescriptor"), emptyMap);
+      Boolean requireSecurityCode = config.getBoolean("requireSecurityCode");
+      String shippingDetailsId = config.getString("shippingDetailsId");
       String paymentSource = config.getString("paymentSource");
       ReadableArray cartItems = config.getArray("cartItems");
       Boolean debugMode = config.getBoolean("debugMode");
@@ -151,10 +161,13 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       metadataWritableMap.merge(metadata);
       WritableNativeMap themeWritableMap = new WritableNativeMap();
       themeWritableMap.merge(theme);
+      WritableNativeMap statementDescriptorWritableMap = new WritableNativeMap();
+      statementDescriptorWritableMap.merge(statementDescriptor);
 
       // Convert WritableMap(s) to Bundle(s)
       Bundle metadataBundle = Arguments.toBundle(metadataWritableMap);
       Bundle themeBundle = Arguments.toBundle(themeWritableMap);
+      Bundle statementDescriptorBundle = Arguments.toBundle(statementDescriptorWritableMap);
 
       androidIntent.putExtra(EXTRA_GR4VY_ID, gr4vyId);
       androidIntent.putExtra(EXTRA_TOKEN, token);
@@ -171,6 +184,11 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_PAYMENT_SOURCE, paymentSource);
       androidIntent.putExtra(EXTRA_METADATA, metadataBundle);
       androidIntent.putExtra(EXTRA_THEME, themeBundle);
+      androidIntent.putExtra(EXTRA_BUYER_EXTERNAL_IDENTIFIER, buyerExternalIdentifier);
+      androidIntent.putExtra(EXTRA_LOCALE, locale);
+      androidIntent.putExtra(EXTRA_STATEMENT_DESCRIPTOR, statementDescriptorBundle);
+      androidIntent.putExtra(EXTRA_REQUIRE_SECURITY_CODE, requireSecurityCode);
+      androidIntent.putExtra(EXTRA_SHIPPING_DETAILS_ID, shippingDetailsId);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
     }

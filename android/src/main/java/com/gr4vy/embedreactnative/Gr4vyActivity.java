@@ -35,6 +35,11 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_DISPLAY;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_INTENT;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_METADATA;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_THEME;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_BUYER_EXTERNAL_IDENTIFIER;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_LOCALE;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_STATEMENT_DESCRIPTOR;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_REQUIRE_SECURITY_CODE;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_SHIPPING_DETAILS_ID;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_PAYMENT_SOURCE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CART_ITEMS;
 
@@ -65,6 +70,11 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   String paymentSource;
   HashMap metadata;
   ReadableMap theme;
+  String buyerExternalIdentifier;
+  String locale;
+  ReadableMap statementDescriptor;
+  Boolean requireSecurityCode;
+  String shippingDetailsId;
 
   Boolean sdkLaunched = false;
 
@@ -145,6 +155,26 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     );
   }
 
+  protected Gr4vyStatementDescriptor convertStatementDescriptor(ReadableMap statementDescriptor) {
+    if (statementDescriptor == null) {
+      return null;
+    }
+
+    String name = statementDescriptor.getString("name");
+    String description = statementDescriptor.getString("description");
+    String phoneNumber = statementDescriptor.getString("phoneNumber");
+    String city = statementDescriptor.getString("city");
+    String url = statementDescriptor.getString("url");
+
+    return new Gr4vyStatementDescriptor(
+      name,
+      description,
+      phoneNumber,
+      city,
+      url
+    );
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -187,6 +217,11 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     this.paymentSource = intent.getStringExtra(EXTRA_PAYMENT_SOURCE);
 //    this.metadata = (ReadableMap) Arguments.fromBundle(intent.getBundleExtra(EXTRA_METADATA));
     this.theme = (ReadableMap) Arguments.fromBundle(intent.getBundleExtra(EXTRA_THEME));
+    this.buyerExternalIdentifier = intent.getStringExtra(EXTRA_BUYER_EXTERNAL_IDENTIFIER);
+    this.requireSecurityCode = intent.getExtras().getBoolean(EXTRA_REQUIRE_SECURITY_CODE);
+    this.shippingDetailsId = intent.getStringExtra(EXTRA_SHIPPING_DETAILS_ID);
+    this.locale = intent.getStringExtra(EXTRA_LOCALE);
+    this.statementDescriptor = (ReadableMap) Arguments.fromBundle(intent.getBundleExtra(EXTRA_STATEMENT_DESCRIPTOR));
 
     // Convert metadata to HashMap
     Bundle metadataBundle = intent.getExtras().getBundle(EXTRA_METADATA);
@@ -209,6 +244,11 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       return;
     }
 
+    PaymentSource paymentSource =
+      this.paymentSource != null ?
+        PaymentSource.valueOf(this.paymentSource.toUpperCase()) :
+        PaymentSource.NOT_SET;
+
     gr4vySDK.launch(
             this,
             gr4vyId,
@@ -223,14 +263,14 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             display,
             intent,
             null,
-            PaymentSource.NOT_SET,
+            paymentSource,
             metadata,
             buildTheme(theme),
-            null,
-            null,
-            null,
-            null,
-            null);
+            buyerExternalIdentifier,
+            locale,
+            convertStatementDescriptor(statementDescriptor),
+            requireSecurityCode,
+            shippingDetailsId);
 
     sdkLaunched = true;
   }
