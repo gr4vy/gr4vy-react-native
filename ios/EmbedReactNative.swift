@@ -1,27 +1,6 @@
 import Foundation
 import gr4vy_ios
 
-//public struct Gr4vyFonts {
-//    public var body: String?
-//
-//    public init(body: String? = nil) {
-//        self.body = body
-//    }
-//}
-//
-//public struct Gr4vyTheme {
-//    public var fonts: Gr4vyFonts?
-//
-//    public init(fonts: Gr4vyFonts? = nil) {
-//        self.fonts = fonts
-//    }
-//
-//    public init(bodyFont: String? = nil) {
-//        let fonts = Gr4vyFonts(body: bodyFont)
-//        self.init(fonts: fonts)
-//    }
-//}
-
 @objc(EmbedReactNative)
 class EmbedReactNative: NSObject {
   let GR4VY_TRANSACTION_CREATED = "GR4VY_TRANSACTION_CREATED"
@@ -42,6 +21,7 @@ class EmbedReactNative: NSObject {
                  paymentSource: String?,
 //                 cartItems: [Gr4vyCartItem]?,
                  environment: String?,
+                 applePayMerchantId: String?,
                  theme: Gr4vyTheme?,
                  buyerExternalIdentifier: String?,
                  locale: String?,
@@ -70,6 +50,7 @@ class EmbedReactNative: NSObject {
                               paymentSource: paymentSourceConverted,
 //                              cartItems: cartItems,
                               environment: (environment != nil && environment?.lowercased() == "production") ? .production : .sandbox,
+                              applePayMerchantId: applePayMerchantId,
                               theme: theme,
                               buyerExternalIdentifier: buyerExternalIdentifier,
                               locale: locale,
@@ -185,12 +166,12 @@ class EmbedReactNative: NSObject {
     )
   }
     
-//  func convertCartItems(_ cartItems: NSArray?) -> [Gr4vyCartItemWrapper] {
+//  func convertCartItems(_ cartItems: NSArray?) -> [Gr4vyCartItem] {
 //    guard let cartItems = cartItems else {
 //      return []
 //    }
 //
-//    var result = [Gr4vyCartItemWrapper]()
+//    var result = [Gr4vyCartItem]()
 //    for item in cartItems {
 //      guard let dict = item as? [String: Any],
 //            let name = dict["name"] as? String,
@@ -198,7 +179,7 @@ class EmbedReactNative: NSObject {
 //            let unitAmount = dict["unitAmount"] as? Int else {
 //          return []
 //      }
-//      result.append(Gr4vyCartItemWrapper(name: name, quantity: quantity, unitAmount: unitAmount))
+//      result.append(Gr4vyCartItem(name: name, quantity: quantity, unitAmount: unitAmount))
 //    }
 //
 //    return result
@@ -216,100 +197,6 @@ class EmbedReactNative: NSObject {
   @objc
   func showPaymentSheet(_ config: [String: Any])
   {
-//    let configTheme = config["theme"] as? String
-//    if let configThemeUTF8 = configTheme?.utf8 {
-//        let configData = Data(configThemeUTF8)
-//        guard let object = try? JSONSerialization.jsonObject(with: configData, options: []),
-//              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
-//              let myTest = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else {
-//            EmbedReactNativeEvents.emitter.sendEvent(
-//              withName: "onEvent",
-//              body: [
-//                "name": "generalError",
-//                "data": [
-//                  "message" : "Nope"
-//                ]
-//              ]
-//            )
-//            return
-//        }
-//        EmbedReactNativeEvents.emitter.sendEvent(
-//          withName: "onEvent",
-//          body: [
-//            "name": "generalError",
-//            "data": [
-//              "message" : "Test \(myTest)"
-//            ]
-//          ]
-//        )
-//    }
-    
-//      guard let configTheme = config["theme"] as? String,
-//            let object = try? JSONSerialization.jsonObject(with: Data(configTheme.utf8), options: []) else {
-//          EmbedReactNativeEvents.emitter.sendEvent(
-//            withName: "onEvent",
-//            body: [
-//              "name": "generalError",
-//              "data": [
-//                "message" : "Fuck"
-//              ]
-//            ]
-//          )
-//          return
-//      }
-      
-//      do {
-//          let configTheme = config["theme"] as? String
-//          if let configThemeUTF8 = configTheme?.utf8 {
-//              let configData = Data(configThemeUTF8)
-//              let object = try? JSONSerialization.jsonObject(with: configData, options: [])
-//          }
-//
-//          EmbedReactNativeEvents.emitter.sendEvent(
-//            withName: "onEvent",
-//            body: [
-//              "name": "generalError",
-//              "data": [
-//                "message" : "WHAT: \(configTheme)"
-//              ]
-//            ]
-//          )
-//      } catch let error {
-//          EmbedReactNativeEvents.emitter.sendEvent(
-//            withName: "onEvent",
-//            body: [
-//              "name": "generalError",
-//              "data": [
-//                "message" : "ERROR: \(error)"
-//              ]
-//            ]
-//          )
-//          return
-//      }
-      
-//      guard let myTest = try? JSONSerialization.data(withJSONObject: config["theme"], options: .withoutEscapingSlashes) else {
-//          EmbedReactNativeEvents.emitter.sendEvent(
-//            withName: "onEvent",
-//            body: [
-//              "name": "generalError",
-//              "data": [
-//                "message" : "Bro"
-//              ]
-//            ]
-//          )
-//          return
-//      }
-      
-//      EmbedReactNativeEvents.emitter.sendEvent(
-//        withName: "onEvent",
-//        body: [
-//          "name": "generalError",
-//          "data": [
-//            "message" : "Bro \(String(decoding: myTest, as: UTF8.self))"
-//          ]
-//        ]
-//      )
-    
     guard let gr4vyId = config["gr4vyId"] as? String,
           let token = config["token"] as? String,
           let amount = config["amount"] as? Double,
@@ -322,8 +209,9 @@ class EmbedReactNative: NSObject {
           let intent = config["intent"] as? String?,
           let metadata = config["metadata"] as? [String: String]?,
           let paymentSource = config["paymentSource"] as? String?,
-          let cartItems = config["cartItems"] as? NSArray?,
+//          let cartItems = config["cartItems"] as? NSArray?,
           let environment = config["environment"] as? String?,
+          let applePayMerchantId = config["applePayMerchantId"] as? String?,
           let theme = config["theme"] as? [String: [String: String?]?]?,
           let buyerExternalIdentifier = config["buyerExternalIdentifier"] as? String?,
           let locale = config["locale"] as? String?,
@@ -356,8 +244,9 @@ class EmbedReactNative: NSObject {
              intent: intent,
              metadata: metadata,
              paymentSource: paymentSource,
-//             cartItems: cartItems,
+//             cartItems: convertCartItems(cartItems),
              environment: environment,
+             applePayMerchantId: applePayMerchantId,
              theme: buildTheme(theme),
              buyerExternalIdentifier: buyerExternalIdentifier,
              locale: locale,
