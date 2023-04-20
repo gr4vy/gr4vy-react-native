@@ -133,7 +133,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       String buyerExternalIdentifier = config.getString("buyerExternalIdentifier");
       String locale = config.getString("locale");
       ReadableMap statementDescriptor = coalesce(config.getMap("statementDescriptor"), emptyMap);
-      Boolean requireSecurityCode = config.getBoolean("requireSecurityCode");
+      Boolean requireSecurityCode = config.hasKey("requireSecurityCode") ? config.getBoolean("requireSecurityCode") : false;
       String shippingDetailsId = config.getString("shippingDetailsId");
       String paymentSource = config.getString("paymentSource");
       // ReadableArray cartItems = config.getArray("cartItems");
