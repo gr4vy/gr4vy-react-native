@@ -171,14 +171,6 @@ Returns data about a failed transaction.
 
 To enable Apple Pay in your iOS project, in addition to passing the `applePayMerchantId` configuration option to the `showPaymentSheet` function, you'll also need to enable Apple Pay within the Signing & Capabilities Xcode project settings and set the Apple Pay Merchant IDs (NOTE: ensure your provisioning profiles and signing certificates are updated to contain this valid Apple Merchant ID). The SDK will do various checks to ensure the device is capable of Apple Pay and will be enabled if both the device and merchant IDs are valid.
 
-## Tests
-
-Run tests via `yarn test`.
-
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
