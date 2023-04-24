@@ -122,3 +122,11 @@ When you're sending a pull request:
 - Review the documentation to make sure it looks good.
 - Follow the pull request template when opening a pull request.
 - For pull requests that change the API or implementation, discuss with maintainers first by opening an issue.
+
+### SDK upgrades
+
+From time to time a new version of the iOS and/or the Android SDKs will be published. To upgrade the version used by this library, do the following:
+
+- for iOS, open the `gr4vy-embed-react-native.podspec` file and bump the version number in `s.dependency "gr4vy-ios", "X.X.X"` (check that it corresponds to what is published (here)[https://github.com/CocoaPods/Specs/tree/master/Specs/4/f/7/gr4vy-ios]). Then, run `yarn` in the project root to re-run `pod install` and make sure the `Podfile.lock` references the new version
+- for Android, open the `android/build.gradle` file and bump the version number in `implementation "com.github.gr4vy:gr4vy-android:vX.X.X"`
+- Check that everything still builds and works fine with the example app
