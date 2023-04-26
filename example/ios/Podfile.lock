@@ -74,9 +74,9 @@ PODS:
   - fmt (6.2.1)
   - glog (0.3.5)
   - gr4vy-embed-react-native (0.1.1):
-    - gr4vy-ios (= 1.5.1)
+    - gr4vy-ios (= 1.5.4)
     - React-Core
-  - gr4vy-ios (1.5.1)
+  - gr4vy-ios (1.5.4)
   - hermes-engine (0.71.4):
     - hermes-engine/Pre-built (= 0.71.4)
   - hermes-engine/Pre-built (0.71.4)
@@ -592,8 +592,8 @@ SPEC CHECKSUMS:
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  gr4vy-embed-react-native: 578bffd755f074c94b9df8f136c1a947b55603f3
-  gr4vy-ios: e1cbd8934da252f1959efb221bdc7443bdb1bf38
+  gr4vy-embed-react-native: 73e3b9419dead5531630d40c589f1a4e4f7645df
+  gr4vy-ios: ba5447189ff68ff853990ae4299a1d5c4954de99
   hermes-engine: a1f157c49ea579c28b0296bda8530e980c45bdb3
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
@@ -628,6 +628,6 @@ SPEC CHECKSUMS:
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 29f6f795c7b34799d1b58851e1b434e6038c1c0b
+PODFILE CHECKSUM: 51c7c9264e191727b01adbaa6cef385b99728ce5
 
 COCOAPODS: 1.12.0
