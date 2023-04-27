@@ -19,7 +19,7 @@ class EmbedReactNative: NSObject {
                  intent: String?,
                  metadata: [String: String]?,
                  paymentSource: String?,
-//                 cartItems: [Gr4vyCartItem]?,
+                 cartItems: [Gr4vyCartItem]?,
                  environment: String?,
                  applePayMerchantId: String?,
                  theme: Gr4vyTheme?,
@@ -48,7 +48,7 @@ class EmbedReactNative: NSObject {
                               intent: intent,
                               metadata: metadata,
                               paymentSource: paymentSourceConverted,
-//                              cartItems: cartItems,
+                              cartItems: cartItems,
                               environment: (environment != nil && environment?.lowercased() == "production") ? .production : .sandbox,
                               applePayMerchantId: applePayMerchantId,
                               theme: theme,
@@ -166,24 +166,24 @@ class EmbedReactNative: NSObject {
     )
   }
     
-//  func convertCartItems(_ cartItems: NSArray?) -> [Gr4vyCartItem] {
-//    guard let cartItems = cartItems else {
-//      return []
-//    }
-//
-//    var result = [Gr4vyCartItem]()
-//    for item in cartItems {
-//      guard let dict = item as? [String: Any],
-//            let name = dict["name"] as? String,
-//            let quantity = dict["quantity"] as? Int,
-//            let unitAmount = dict["unitAmount"] as? Int else {
-//          return []
-//      }
-//      result.append(Gr4vyCartItem(name: name, quantity: quantity, unitAmount: unitAmount))
-//    }
-//
-//    return result
-//  }
+  func convertCartItems(_ cartItems: NSArray?) -> [Gr4vyCartItem] {
+    guard let cartItems = cartItems else {
+      return []
+    }
+
+    var result = [Gr4vyCartItem]()
+    for item in cartItems {
+      guard let dict = item as? [String: Any],
+            let name = dict["name"] as? String,
+            let quantity = dict["quantity"] as? Int,
+            let unitAmount = dict["unitAmount"] as? Int else {
+          return []
+      }
+      result.append(Gr4vyCartItem(name: name, quantity: quantity, unitAmount: unitAmount))
+    }
+
+    return result
+  }
   
   @objc
   func constantsToExport() -> [AnyHashable : Any]! {
@@ -209,7 +209,7 @@ class EmbedReactNative: NSObject {
           let intent = config["intent"] as? String?,
           let metadata = config["metadata"] as? [String: String]?,
           let paymentSource = config["paymentSource"] as? String?,
-//          let cartItems = config["cartItems"] as? NSArray?,
+          let cartItems = config["cartItems"] as? NSArray?,
           let environment = config["environment"] as? String?,
           let applePayMerchantId = config["applePayMerchantId"] as? String?,
           let theme = config["theme"] as? [String: [String: String?]?]?,
@@ -244,7 +244,7 @@ class EmbedReactNative: NSObject {
              intent: intent,
              metadata: metadata,
              paymentSource: paymentSource,
-//             cartItems: convertCartItems(cartItems),
+             cartItems: convertCartItems(cartItems),
              environment: environment,
              applePayMerchantId: applePayMerchantId,
              theme: buildTheme(theme),
@@ -280,7 +280,7 @@ class EmbedReactNative: NSObject {
                   body: [
                     "name": "transactionFailed",
                     "data": [
-                      "success": true,
+                      "success": false,
                       "transactionId": transactionID,
                       "status": status,
                       "paymentMethodId": paymentMethodID as Any
