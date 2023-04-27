@@ -9,16 +9,17 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
-// import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
-// import com.facebook.react.bridge.WritableArray;
-// import com.facebook.react.bridge.WritableNativeArray;
 
-// import org.json.JSONArray;
-// import org.json.JSONException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 import com.gr4vy.android_sdk.*;
 import com.gr4vy.android_sdk.models.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.coalesce;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_GR4VY_ID;
@@ -65,7 +66,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   String store;
   String display;
   String intent;
-  String cartItems;
+  List<CartItem> cartItems;
   PaymentSource paymentSource;
   HashMap metadata;
   Gr4vyTheme theme;
@@ -174,32 +175,30 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     );
   }
 
+  protected static List<CartItem> convertCartItems(String cartItemsJson) {
+    List<CartItem> cartItemList = new ArrayList<CartItem>();
+    try {
+      JSONArray cartItemsJsonArray = new JSONArray(cartItemsJson);
+      for (int i = 0; i < cartItemsJsonArray.length(); i++) {
+        JSONObject cartItemJsonObject = cartItemsJsonArray.getJSONObject(i);
+        String name = cartItemJsonObject.getString("name");
+        int quantity = cartItemJsonObject.getInt("quantity");
+        int unitAmount = cartItemJsonObject.getInt("unitAmount");
+        CartItem cartItem = new CartItem(name, quantity, unitAmount);
+        cartItemList.add(cartItem);
+      }
+    } catch (JSONException e) {
+      e.printStackTrace();
+      return null;
+    }
+    return cartItemList;
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     Intent intent = getIntent();
-
-    // Convert the JSON string to a ReadableArray
-    // String cartItemsJson = intent.getStringExtra(EXTRA_CART_ITEMS);
-    // ReadableArray cartItems = null;
-    // try {
-    //     JSONArray jsonArray = new JSONArray(cartItemsJson);
-    //     WritableArray writableArray = Arguments.createArray();
-
-    //     for (int i = 0; i < jsonArray.length(); i++) {
-    //         writableArray.pushString(jsonArray.getString(i));
-    //     }
-
-    //     WritableNativeArray nativeArray = new WritableNativeArray();
-    //     for (int i = 0; i < writableArray.size(); i++) {
-    //         nativeArray.pushString(writableArray.getString(i));
-    //     }
-
-    //     cartItems = nativeArray;
-    // } catch (JSONException e) {
-    //     e.printStackTrace();
-    // }
 
     this.gr4vyId = intent.getStringExtra(EXTRA_GR4VY_ID);
     this.token = intent.getStringExtra(EXTRA_TOKEN);
@@ -212,11 +211,13 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     this.store = intent.getStringExtra(EXTRA_STORE);
     this.display = intent.getStringExtra(EXTRA_DISPLAY);
     this.intent = intent.getStringExtra(EXTRA_INTENT);
-    // this.cartItems = intent.getStringExtra(EXTRA_CART_ITEMS);
     this.buyerExternalIdentifier = intent.getStringExtra(EXTRA_BUYER_EXTERNAL_IDENTIFIER);
     this.requireSecurityCode = intent.getExtras().getBoolean(EXTRA_REQUIRE_SECURITY_CODE);
     this.shippingDetailsId = intent.getStringExtra(EXTRA_SHIPPING_DETAILS_ID);
     this.locale = intent.getStringExtra(EXTRA_LOCALE);
+
+    // Convert the cartItems JSON string to List<CartItem>
+    this.cartItems = convertCartItems(intent.getStringExtra(EXTRA_CART_ITEMS));
 
     // Convert theme to Gr4vyTheme
     ReadableMap themeMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_THEME));
@@ -267,7 +268,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             store,
             display,
             intent,
-            null,
+            cartItems,
             paymentSource,
             metadata,
             theme,

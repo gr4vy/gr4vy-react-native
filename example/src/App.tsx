@@ -9,13 +9,19 @@ import EmbedReactNative, {
 } from '@gr4vy/embed-react-native'
 import { products, total } from './constants/data'
 
-const cartItems = products.map(({ title, price }) => ({
+let cartItems = products.map(({ title, price }) => ({
   name: title,
   quantity: 1,
   unitAmount: price,
 }))
 
-console.log('cartItems', cartItems)
+const shipping = {
+  name: 'shipping',
+  quantity: 1,
+  unitAmount: 375,
+}
+
+cartItems.push(shipping)
 
 const config: Gr4vyConfig = {
   gr4vyId: `${GR4VY_ID}`,
@@ -27,7 +33,7 @@ const config: Gr4vyConfig = {
   store: 'ask',
   display: 'all',
   intent: 'capture',
-  // cartItems,
+  cartItems,
   theme: {
     fonts: {
       body: 'google:Lato',

@@ -8,12 +8,15 @@ import com.facebook.react.bridge.BaseActivityEventListener;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-// import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.module.annotations.ReactModule;
 
+import com.gr4vy.android_sdk.models.CartItem;
 import com.gr4vy.embedreactnative.EmbedReactNativeEvents;
 
 import android.app.Activity;
@@ -106,6 +109,19 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     context.addActivityEventListener(activityEventListener);
   }
 
+  private static WritableArray convertCartItemsToJson(ReadableArray cartItemsArray) {
+    WritableArray cartItemsWritableArray = new WritableNativeArray();
+    for (int i = 0; i < cartItemsArray.size(); i++) {
+      ReadableMap cartItemMap = cartItemsArray.getMap(i);
+      WritableMap cartItemWritableMap = new WritableNativeMap();
+      cartItemWritableMap.putString("name", cartItemMap.getString("name"));
+      cartItemWritableMap.putInt("quantity", cartItemMap.getInt("quantity"));
+      cartItemWritableMap.putInt("unitAmount", cartItemMap.getInt("unitAmount"));
+      cartItemsWritableArray.pushMap(cartItemWritableMap);
+    }
+    return cartItemsWritableArray;
+  }
+
   @Override
   @NonNull
   public String getName() {
@@ -136,16 +152,9 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       Boolean requireSecurityCode = config.hasKey("requireSecurityCode") ? config.getBoolean("requireSecurityCode") : false;
       String shippingDetailsId = config.getString("shippingDetailsId");
       String paymentSource = config.getString("paymentSource");
-      // ReadableArray cartItems = config.getArray("cartItems");
+      ReadableArray cartItems = config.getArray("cartItems");
       Boolean debugMode = config.getBoolean("debugMode");
 
-      // WritableNativeArray cartItemsArray = new WritableNativeArray();
-      // for (int i = 0; i < cartItems.size(); i++) {
-      //     String cartItem = cartItems.getString(i);
-      //     cartItemsArray.pushString(cartItem);
-      // }
-
-      // String cartItemsJson = cartItemsArray.toString();
 
       ReactApplicationContext context = getReactApplicationContext();
       Intent androidIntent = new Intent(context, Gr4vyActivity.class);
@@ -177,7 +186,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_STORE, store);
       androidIntent.putExtra(EXTRA_DISPLAY, display);
       androidIntent.putExtra(EXTRA_INTENT, intent);
-      // androidIntent.putExtra(EXTRA_CART_ITEMS, cartItems);
+      androidIntent.putExtra(EXTRA_CART_ITEMS, convertCartItemsToJson(cartItems).toString());
       androidIntent.putExtra(EXTRA_PAYMENT_SOURCE, paymentSource);
       androidIntent.putExtra(EXTRA_METADATA, metadataBundle);
       androidIntent.putExtra(EXTRA_THEME, themeBundle);
