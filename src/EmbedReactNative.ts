@@ -20,11 +20,7 @@ export interface Gr4vyPaymentMethod {
 }
 
 export type Gr4vyEvent = {
-  name:
-    | 'transactionCreated'
-    | 'transactionFailed'
-    | 'paymentMethodSelected'
-    | 'generalError'
+  name: 'transactionCreated' | 'transactionFailed' | 'generalError'
   data: Gr4vyError | Gr4vyTransactionResult
 }
 

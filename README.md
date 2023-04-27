@@ -120,21 +120,6 @@ Returns data containing the message of an error that has occurred.
 }
 ```
 
-#### `paymentMethodSelected`
-
-Returns data about the currently selected payment method.
-
-```json
-{
-  "name": "paymentMethodSelected",
-  "data": {
-    "id": "...",
-    "method": "card",
-    "mode": "card"
-  }
-}
-```
-
 #### `transactionCreated`
 
 Returns data about a successfully created transaction.

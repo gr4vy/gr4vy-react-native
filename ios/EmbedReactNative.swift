@@ -314,17 +314,8 @@ class EmbedReactNative: NSObject {
                 )
                 break
               case .paymentMethodSelected(let id, let method, let mode):
-                EmbedReactNativeEvents.emitter.sendEvent(
-                  withName: "onEvent",
-                  body: [
-                    "name": "paymentSelected",
-                    "data": [
-                      "id" : id,
-                      "method": method,
-                      "mode": mode
-                    ]
-                  ]
-                )
+                // TODO: remove on the next SDK update, needs to be here
+                // otherwise a build error is thrown.
                 break
               }
             })
