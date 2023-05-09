@@ -23,20 +23,6 @@ jobs:
       - name: Typecheck files
         run: yarn typecheck
 
-  test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup
-        uses: ./.github/actions/setup
-
-      - name: Run unit tests
-        run: yarn test --maxWorkers=2 --coverage
-
   scan:
     runs-on: ubuntu-latest
     timeout-minutes: 2
@@ -63,7 +49,6 @@ jobs:
     needs:
       - lint
       - scan
-      - test
 
     steps:
       - name: Checkout

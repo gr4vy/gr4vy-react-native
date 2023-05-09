@@ -1,9 +1,6 @@
 module.exports = {
   root: true,
   extends: ['@react-native-community', 'prettier'],
-  env: {
-    jest: true,
-  },
   rules: {
     'prettier/prettier': [
       'error',

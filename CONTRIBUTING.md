@@ -43,12 +43,6 @@ To fix formatting errors, run the following:
 yarn lint --fix
 ```
 
-Remember to add tests for your change if possible. Run the unit tests by:
-
-```sh
-yarn test
-```
-
 To edit the Objective-C or Swift files, open `example/ios/EmbedReactNativeExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > @gr4vy/embed-react-native`.
 
 To edit the Java or Kotlin files, open `example/android` in Android studio and find the source files at `gr4vy-embed-react-native` under `Android`.
@@ -57,13 +51,13 @@ To edit the Java or Kotlin files, open `example/android` in Android studio and f
 
 Auto will use the PR title as the message in the change log. This means it needs to be human readable and meaningful. Try to avoid using ticket numbers or meta information - instead describe the value the change brings.
 
-### Linting and tests
+### Linting
 
 [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [TypeScript](https://www.typescriptlang.org/)
 
-We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint](https://eslint.org/) with [Prettier](https://prettier.io/) for linting and formatting the code, and [Jest](https://jestjs.io/) for testing.
+We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint](https://eslint.org/) with [Prettier](https://prettier.io/) for linting and formatting the code.
 
-Our pre-commit hooks verify that the linter and tests pass when committing.
+Our pre-commit hooks verify that the linter pass when committing.
 
 ### Releasing a PR
 
@@ -92,7 +86,6 @@ The following labels will have no effect on the version:
 
 - `internal` - 🏠 Internal (no version)
 - `documentation` - 📝 Documentation (no version)
-- `test`- 🧪 Tests (no version)
 - `dependencies` - 🔩 Dependency Updates (no version)
 
 Finally, to trigger a release you must include the release label:
@@ -106,7 +99,6 @@ The `package.json` file contains various scripts for common tasks:
 - `yarn bootstrap`: setup project by installing all dependencies and pods.
 - `yarn typecheck`: type-check files with TypeScript.
 - `yarn lint`: lint files with ESLint.
-- `yarn test`: run unit tests with Jest.
 - `yarn example start`: start the Metro server for the example app.
 - `yarn example android`: run the example app on Android.
 - `yarn example ios`: run the example app on iOS.
@@ -118,7 +110,7 @@ The `package.json` file contains various scripts for common tasks:
 When you're sending a pull request:
 
 - Prefer small pull requests focused on one change.
-- Verify that linters and tests are passing.
+- Verify that linters are passing.
 - Review the documentation to make sure it looks good.
 - Follow the pull request template when opening a pull request.
 - For pull requests that change the API or implementation, discuss with maintainers first by opening an issue.
