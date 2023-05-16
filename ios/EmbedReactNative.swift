@@ -14,7 +14,7 @@ class EmbedReactNative: NSObject {
                  country: String,
                  buyerId: String?,
                  externalIdentifier: String?,
-                 store: String?,
+                 store: Gr4vyStore?,
                  display: String?,
                  intent: String?,
                  metadata: [String: String]?,
@@ -28,6 +28,7 @@ class EmbedReactNative: NSObject {
                  statementDescriptor: Gr4vyStatementDescriptor?,
                  requireSecurityCode: Bool?,
                  shippingDetailsId: String?,
+                 merchantAccountId: String?,
                  debugMode: Bool = false,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
     var paymentSourceConverted: Gr4vyPaymentSource?
@@ -57,6 +58,7 @@ class EmbedReactNative: NSObject {
                               statementDescriptor: statementDescriptor,
                               requireSecurityCode: requireSecurityCode,
                               shippingDetailsId: shippingDetailsId,
+                              merchantAccountId: merchantAccountId,
                               debugMode: debugMode) else {
         completion(nil)
         return
@@ -184,6 +186,25 @@ class EmbedReactNative: NSObject {
 
     return result
   }
+    
+  func convertStore(_ store: Any?) -> Gr4vyStore? {
+    guard let storeValue = store else {
+      return nil
+    }
+      
+    if let storeBool = storeValue as? Bool {
+      return storeBool ? .true : .false
+    } else if let storeString = store as? String {
+      switch storeString {
+        case "ask":
+          return .ask
+        default:
+          return nil
+      }
+    }
+    
+    return nil
+  }
   
   @objc
   func constantsToExport() -> [AnyHashable : Any]! {
@@ -204,7 +225,7 @@ class EmbedReactNative: NSObject {
           let country = config["country"] as? String,
           let buyerId = config["buyerId"] as? String?,
           let externalIdentifier = config["externalIdentifier"] as? String?,
-          let store = config["store"] as? String?,
+          let store = config["store"],
           let display = config["display"] as? String?,
           let intent = config["intent"] as? String?,
           let metadata = config["metadata"] as? [String: String]?,
@@ -218,6 +239,7 @@ class EmbedReactNative: NSObject {
           let statementDescriptor = config["statementDescriptor"] as? [String: String?]?,
           let requireSecurityCode = config["requireSecurityCode"] as? Bool?,
           let shippingDetailsId = config["shippingDetailsId"] as? String?,
+          let merchantAccountId = config["merchantAccountId"] as? String?,
           let debugMode = config["debugMode"] as? Bool
     else {
         EmbedReactNativeEvents.emitter.sendEvent(
@@ -239,7 +261,7 @@ class EmbedReactNative: NSObject {
              country: country,
              buyerId: buyerId,
              externalIdentifier: externalIdentifier,
-             store: store,
+             store: convertStore(store),
              display: display,
              intent: intent,
              metadata: metadata,
@@ -253,6 +275,7 @@ class EmbedReactNative: NSObject {
              statementDescriptor: convertStatementDescriptor(statementDescriptor),
              requireSecurityCode: requireSecurityCode,
              shippingDetailsId: shippingDetailsId,
+             merchantAccountId: merchantAccountId,
              debugMode: debugMode) { (gr4vy) in
       if gr4vy == nil {
         EmbedReactNativeEvents.emitter.sendEvent(
@@ -287,7 +310,7 @@ class EmbedReactNative: NSObject {
                     ]
                   ]
                 )
-                break
+                return
               case .transactionCreated(let transactionID, let status, let paymentMethodID):
                 EmbedReactNativeEvents.emitter.sendEvent(
                   withName: "onEvent",
@@ -301,7 +324,7 @@ class EmbedReactNative: NSObject {
                     ]
                   ]
                 )
-                break
+                return
               case .generalError(let error):
                 EmbedReactNativeEvents.emitter.sendEvent(
                   withName: "onEvent",
@@ -312,11 +335,18 @@ class EmbedReactNative: NSObject {
                     ]
                   ]
                 )
-                break
-              case .paymentMethodSelected(let id, let method, let mode):
-                // TODO: remove on the next SDK update, needs to be here
-                // otherwise a build error is thrown.
-                break
+                return
+              case .cancelled:
+                EmbedReactNativeEvents.emitter.sendEvent(
+                  withName: "onEvent",
+                  body: [
+                    "name": "cancelled",
+                    "data": [
+                      "message" : "User cancelled"
+                    ]
+                  ]
+                )
+                return
               }
             })
       })

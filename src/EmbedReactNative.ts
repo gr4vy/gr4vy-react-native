@@ -95,6 +95,7 @@ export type Gr4vyConfig = {
   }
   requireSecurityCode?: boolean
   shippingDetailsId?: string
+  merchantAccountId?: string
   debugMode?: boolean
 }
 
