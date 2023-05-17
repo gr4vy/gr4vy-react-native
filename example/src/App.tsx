@@ -89,6 +89,7 @@ const config: Gr4vyConfig = {
   },
   // requireSecurityCode: true,
   // shippingDetailsId: '5e842a7e-88f7-4be2-87c2-0c7175aa2395',
+  // merchantAccountId: 'plantly',
   debugMode: true,
 }
 

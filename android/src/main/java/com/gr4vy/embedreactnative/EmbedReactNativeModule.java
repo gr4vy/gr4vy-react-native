@@ -10,6 +10,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeArray;
@@ -45,6 +46,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_STATEMENT_DESCRIPTOR = "EXTRA_STATEMENT_DESCRIPTOR";
   static final String EXTRA_REQUIRE_SECURITY_CODE = "EXTRA_REQUIRE_SECURITY_CODE";
   static final String EXTRA_SHIPPING_DETAILS_ID = "EXTRA_SHIPPING_DETAILS_ID";
+  static final String EXTRA_MERCHANT_ACCOUNT_ID = "EXTRA_MERCHANT_ACCOUNT_ID";
   static final String EXTRA_PAYMENT_SOURCE = "EXTRA_PAYMENT_SOURCE";
   static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
@@ -141,7 +143,6 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       String country = config.getString("country");
       String buyerId = config.getString("buyerId");
       String externalIdentifier = config.getString("externalIdentifier");
-      String store = config.getString("store");
       String display = config.getString("display");
       String intent = config.getString("intent");
       ReadableMap metadata = coalesce(config.getMap("metadata"), emptyMap);
@@ -151,13 +152,25 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       ReadableMap statementDescriptor = coalesce(config.getMap("statementDescriptor"), emptyMap);
       Boolean requireSecurityCode = config.hasKey("requireSecurityCode") ? config.getBoolean("requireSecurityCode") : false;
       String shippingDetailsId = config.getString("shippingDetailsId");
+      String merchantAccountid = config.getString("merchantAccountId");
       String paymentSource = config.getString("paymentSource");
       ReadableArray cartItems = config.getArray("cartItems");
       Boolean debugMode = config.getBoolean("debugMode");
 
-
       ReactApplicationContext context = getReactApplicationContext();
       Intent androidIntent = new Intent(context, Gr4vyActivity.class);
+
+      // the optional `store` value can either come in as a string or a boolean
+      String store = null;
+      if (config.hasKey("store")) {
+        if (config.getType("store") == ReadableType.String) {
+          store = config.getString("store");
+        } else if (config.getType("store") == ReadableType.Boolean) {
+          store = String.valueOf(config.getBoolean("store"));
+        } else {
+          store = null;
+        }
+      }
 
       // `putExtra` doesn't accept ReadableMap, so we have to convert it
       // to the appropriate type (Bundle)
@@ -195,6 +208,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_STATEMENT_DESCRIPTOR, statementDescriptorBundle);
       androidIntent.putExtra(EXTRA_REQUIRE_SECURITY_CODE, requireSecurityCode);
       androidIntent.putExtra(EXTRA_SHIPPING_DETAILS_ID, shippingDetailsId);
+      androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
     }

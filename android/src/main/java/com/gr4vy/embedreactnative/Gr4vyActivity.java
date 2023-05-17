@@ -40,6 +40,7 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_LOCALE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_STATEMENT_DESCRIPTOR;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_REQUIRE_SECURITY_CODE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_SHIPPING_DETAILS_ID;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_MERCHANT_ACCOUNT_ID;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_PAYMENT_SOURCE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CART_ITEMS;
 
@@ -75,6 +76,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   Gr4vyStatementDescriptor statementDescriptor;
   Boolean requireSecurityCode;
   String shippingDetailsId;
+  String merchantAccountId;
 
   Boolean sdkLaunched = false;
 
@@ -214,6 +216,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     this.buyerExternalIdentifier = intent.getStringExtra(EXTRA_BUYER_EXTERNAL_IDENTIFIER);
     this.requireSecurityCode = intent.getExtras().getBoolean(EXTRA_REQUIRE_SECURITY_CODE);
     this.shippingDetailsId = intent.getStringExtra(EXTRA_SHIPPING_DETAILS_ID);
+    this.merchantAccountId = intent.getStringExtra(EXTRA_MERCHANT_ACCOUNT_ID);
     this.locale = intent.getStringExtra(EXTRA_LOCALE);
 
     // Convert the cartItems JSON string to List<CartItem>
@@ -276,7 +279,9 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             locale,
             statementDescriptor,
             requireSecurityCode,
-            shippingDetailsId);
+            shippingDetailsId,
+            merchantAccountId,
+            true);
 
     sdkLaunched = true;
   }
