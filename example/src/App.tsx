@@ -25,13 +25,10 @@ cartItems.push(shipping)
 
 const config: Gr4vyConfig = {
   gr4vyId: `${GR4VY_ID}`,
-  environment: 'sandbox',
   token: `${TOKEN}`,
   amount: total,
-  currency: 'GBP',
-  country: 'GB',
-  store: 'ask',
-  display: 'all',
+  currency: 'USD',
+  country: 'US',
   intent: 'capture',
   applePayMerchantId: 'merchant.com.gr4vy.demo',
   cartItems,
@@ -74,15 +71,6 @@ const config: Gr4vyConfig = {
     shadows: {
       focusRing: '0 0 0 2px #ffffff, 0 0 0 4px #4844ff',
     },
-  },
-  buyerExternalIdentifier: 'user-001',
-  locale: 'pt-PT',
-  statementDescriptor: {
-    name: 'RN test purchase',
-    description: 'something something',
-    phoneNumber: '+15555551234',
-    city: 'San Francisco',
-    url: 'https://gr4vy.com',
   },
   debugMode: true,
 }
