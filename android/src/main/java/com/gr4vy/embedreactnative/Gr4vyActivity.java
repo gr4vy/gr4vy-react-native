@@ -336,6 +336,16 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
 
       setResult(RESULT_OK, data);
     }
+    else if (gr4vyResult instanceof Gr4vyResult.Cancelled) {
+      Log.d("Gr4vy", "Gr4vyResult.Cancelled");
+
+      Log.d("Gr4vy", "User cancelled");
+
+      data.putExtra(EXTRA_EVENT, "cancelled");
+      data.putExtra(EXTRA_ERROR, "User cancelled");
+
+      setResult(RESULT_OK, data);
+    }
     else {
         Log.d("Gr4vy", "An unknown error has occurred.");
     }
