@@ -225,7 +225,7 @@ class EmbedReactNative: NSObject {
           let country = config["country"] as? String,
           let buyerId = config["buyerId"] as? String?,
           let externalIdentifier = config["externalIdentifier"] as? String?,
-          let store = config["store"],
+          let store = config["store"] as? Any,
           let display = config["display"] as? String?,
           let intent = config["intent"] as? String?,
           let metadata = config["metadata"] as? [String: String]?,
