@@ -30,12 +30,9 @@ const config: Gr4vyConfig = {
   amount: total,
   currency: 'GBP',
   country: 'GB',
-  // buyerId: 'baa7b3b3-a4f1-49e3-afb0-0f41b48f5aa2',
-  externalIdentifier: 'myExternalIdentifier',
   store: 'ask',
   display: 'all',
   intent: 'capture',
-  metadata: { asd: 'lol' },
   applePayMerchantId: 'merchant.com.gr4vy.demo',
   cartItems,
   theme: {
@@ -54,8 +51,8 @@ const config: Gr4vyConfig = {
       inputBorder: '#f2f2f2',
       inputBackground: '#2a4159',
       inputText: '#fff',
-      // inputRadioBorder: '#fff',
-      // inputRadioBorderChecked: '#fff',
+      inputRadioBorder: '#fff',
+      inputRadioBorderChecked: '#fff',
       danger: '#ff556a',
       dangerBackground: '#2c4765',
       dangerText: '#fff',
@@ -87,9 +84,6 @@ const config: Gr4vyConfig = {
     city: 'San Francisco',
     url: 'https://gr4vy.com',
   },
-  // requireSecurityCode: true,
-  // shippingDetailsId: '5e842a7e-88f7-4be2-87c2-0c7175aa2395',
-  // merchantAccountId: 'plantly',
   debugMode: true,
 }
 
