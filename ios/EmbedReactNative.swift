@@ -240,7 +240,7 @@ class EmbedReactNative: NSObject {
           let requireSecurityCode = config["requireSecurityCode"] as? Bool?,
           let shippingDetailsId = config["shippingDetailsId"] as? String?,
           let merchantAccountId = config["merchantAccountId"] as? String?,
-          let debugMode = config["debugMode"] as? Bool
+          let debugMode = config["debugMode"] as? Bool?
     else {
         EmbedReactNativeEvents.emitter.sendEvent(
           withName: "onEvent",
@@ -276,7 +276,7 @@ class EmbedReactNative: NSObject {
              requireSecurityCode: requireSecurityCode,
              shippingDetailsId: shippingDetailsId,
              merchantAccountId: merchantAccountId,
-             debugMode: debugMode) { (gr4vy) in
+             debugMode: debugMode ?? false) { (gr4vy) in
       if gr4vy == nil {
         EmbedReactNativeEvents.emitter.sendEvent(
           withName: "onEvent",
