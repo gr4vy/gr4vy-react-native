@@ -122,6 +122,19 @@ Returns data containing the message of an error that has occurred.
 }
 ```
 
+#### `cancelled`
+
+Returned when the user cancels the SDK.
+
+```json
+{
+  "name": "cancelled",
+  "data": {
+    "message": "User cancelled"
+  }
+}
+```
+
 #### `transactionCreated`
 
 Returns data about a successfully created transaction.
