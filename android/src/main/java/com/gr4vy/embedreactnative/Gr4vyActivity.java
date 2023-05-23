@@ -290,6 +290,28 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   }
 
   @Override
+  public void onGr4vyEvent(@NonNull Gr4vyEvent gr4vyEvent) {
+    Log.d("Gr4vy", "onGr4vyEvent");
+    Intent data = new Intent();
+
+    if (gr4vyEvent instanceof Gr4vyEvent.TransactionFailed) {
+      Log.d("Gr4vy", "Gr4vyEvent.TransactionFailed");
+
+      Log.d("Gr4vy", "success: " + false);
+      Log.d("Gr4vy", "status: " + ((Gr4vyEvent.TransactionFailed) gr4vyEvent).getStatus());
+
+      data.putExtra(EXTRA_EVENT, "transactionFailed");
+      data.putExtra(EXTRA_SUCCESS, false);
+      data.putExtra(EXTRA_STATUS, ((Gr4vyEvent.TransactionFailed) gr4vyEvent).getStatus());
+
+      setResult(RESULT_OK, data);
+    }
+
+    sdkLaunched = false;
+    finish();
+  }
+
+  @Override
   public void onGr4vyResult(@NonNull Gr4vyResult gr4vyResult) {
     Log.d("Gr4vy", "onGr4vyResult");
     Intent data = new Intent();
@@ -307,22 +329,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       data.putExtra(EXTRA_STATUS, ((Gr4vyResult.TransactionCreated) gr4vyResult).getStatus());
       data.putExtra(EXTRA_TRANSACTION_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getTransactionId());
       data.putExtra(EXTRA_PAYMENT_METHOD_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getPaymentMethodId());
-
-      setResult(RESULT_OK, data);
-    }
-    else if (gr4vyResult instanceof Gr4vyResult.TransactionFailed) {
-      Log.d("Gr4vy", "Gr4vyResult.TransactionFailed");
-
-      Log.d("Gr4vy", "success: " + false);
-      Log.d("Gr4vy", "status: " + ((Gr4vyResult.TransactionFailed) gr4vyResult).getStatus());
-      Log.d("Gr4vy", "transactionId: " + ((Gr4vyResult.TransactionFailed) gr4vyResult).getTransactionId());
-      Log.d("Gr4vy", "paymentMethodId: " + ((Gr4vyResult.TransactionFailed) gr4vyResult).getPaymentMethodId());
-
-      data.putExtra(EXTRA_EVENT, "transactionFailed");
-      data.putExtra(EXTRA_SUCCESS, true);
-      data.putExtra(EXTRA_STATUS, ((Gr4vyResult.TransactionFailed) gr4vyResult).getStatus());
-      data.putExtra(EXTRA_TRANSACTION_ID, ((Gr4vyResult.TransactionFailed) gr4vyResult).getTransactionId());
-      data.putExtra(EXTRA_PAYMENT_METHOD_ID, ((Gr4vyResult.TransactionFailed) gr4vyResult).getPaymentMethodId());
 
       setResult(RESULT_OK, data);
     }
