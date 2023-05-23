@@ -1,0 +1,36 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build beta"
+  lane :beta do
+    build_app(
+      scheme: "EmbedReactNativeExample",
+      export_method: "ad-hoc",
+      export_options: {
+      provisioningProfiles: { 
+        "org.reactjs.native.example.EmbedReactNativeExample" => "Embed React Native Example Ad-hoc",
+      }
+    }
+    )
+
+    firebase_app_distribution(
+      app: "1:206797473062:ios:50e4216c48d0eefd14ade7",
+      groups: "gr4vy-devs"
+    )
+  end
+end
