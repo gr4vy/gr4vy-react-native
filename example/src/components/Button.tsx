@@ -1,11 +1,16 @@
 import React from 'react'
-import { StyleSheet, Pressable, Text, PressableProps } from 'react-native'
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  TouchableOpacityProps,
+} from 'react-native'
 
-export const Button = ({ children, ...rest }: PressableProps) => {
+export const Button = ({ children, ...rest }: TouchableOpacityProps) => {
   return (
-    <Pressable style={styles.button} {...rest}>
+    <TouchableOpacity style={styles.button} {...rest}>
       <Text style={styles.buttonText}>{children}</Text>
-    </Pressable>
+    </TouchableOpacity>
   )
 }
 
