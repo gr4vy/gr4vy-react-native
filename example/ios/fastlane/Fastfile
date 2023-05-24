@@ -16,21 +16,24 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Build beta"
-  lane :beta do
+  desc "Build and distribute beta"
+  lane :beta do |options|
+    # ENV["APP_ENV"] = "preview"
+
     build_app(
       scheme: "EmbedReactNativeExample",
       export_method: "ad-hoc",
       export_options: {
       provisioningProfiles: { 
-        "org.reactjs.native.example.EmbedReactNativeExample" => "Embed React Native Example Ad-hoc",
+        ENV["BUNDLE_ID"] => ENV["PROVISIONING_PROFILE_NAME"],
       }
     }
     )
 
     firebase_app_distribution(
-      app: "1:206797473062:ios:50e4216c48d0eefd14ade7",
-      groups: "gr4vy-devs"
+      app: ENV["APP"],
+      groups: ENV["GROUPS"],
+      release_notes: options[:notes] || ""
     )
   end
 end
