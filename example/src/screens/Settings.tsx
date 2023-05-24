@@ -23,10 +23,10 @@ export const Settings = () => {
               setConfig({ ...config, locale: value })
             }
           >
-            <Picker.Item label="US" value="en_US" />
-            <Picker.Item label="BR" value="pt_BR" />
-            <Picker.Item label="IT" value="it_IT" />
-            <Picker.Item label="ES" value="es_ES" />
+            <Picker.Item label="US" value="en-US" />
+            <Picker.Item label="BR" value="pt-BR" />
+            <Picker.Item label="IT" value="it-IT" />
+            <Picker.Item label="ES" value="es-ES" />
           </Picker>
         </View>
         <View style={styles.inputGroup}>
