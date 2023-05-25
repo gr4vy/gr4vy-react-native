@@ -67,3 +67,8 @@ lib/
 
 # misc
 .env
+.env.preview
+*.dSYM.zip
+
+# fastlane
+report.xml
