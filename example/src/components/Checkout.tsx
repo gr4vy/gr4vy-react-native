@@ -1,8 +1,9 @@
-import { Pressable, FlatList, Text, View, StyleSheet } from 'react-native'
+import { FlatList, Text, View, StyleSheet } from 'react-native'
 import { products, shipping, subtotal, total } from '../constants/data'
 import { Item } from './Item'
 import React from 'react'
 import { formatCurrency } from '../utils/currency'
+import { Button } from '../components/Button'
 
 interface CheckoutProps {
   onCheckout: () => void
@@ -32,9 +33,7 @@ export const Checkout = ({ onCheckout }: CheckoutProps) => {
           <Text style={styles.summaryTotal}>{formatCurrency(total)}</Text>
         </View>
       </View>
-      <Pressable style={styles.button} onPress={onCheckout}>
-        <Text style={styles.buttonText}>Checkout</Text>
-      </Pressable>
+      <Button onPress={onCheckout}>Checkout</Button>
     </View>
   )
 }
@@ -43,6 +42,7 @@ const styles = StyleSheet.create({
   checkout: {
     padding: 16,
     display: 'flex',
+    flex: 1,
     flexDirection: 'column',
     gap: 24,
     backgroundColor: '#fff',
@@ -70,18 +70,5 @@ const styles = StyleSheet.create({
   },
   summaryTotal: {
     fontWeight: '700',
-  },
-  button: {
-    backgroundColor: '#1B4889',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 4,
-    height: 48,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '500',
   },
 })
