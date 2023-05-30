@@ -16,8 +16,40 @@
 default_platform(:ios)
 
 platform :ios do
+  desc "Bump iOS version"
+  private_lane :bump_version do |options|
+    build = options[:build]
+
+    latest_release = firebase_app_distribution_get_latest_release(
+      app: ENV["APP"]
+    )
+
+    build_number = build || latest_release[:buildVersion].to_i + 1
+    
+    increment_build_number({ build_number: build_number })
+
+    commit_message = "Bump example iOS version to: " + build_number
+
+    commit_version_bump(
+      message: commit_message + " [skip ci]"
+    )
+
+    create_pull_request(
+      repo: "gr4vy/gr4vy-react-native",
+      title: commit_message
+      labels: "internal",
+      base: "main",
+      reviewers: "luca-gr4vy"
+    )
+
+    puts "Bumped example app iOS version to: " + build_number
+    puts "Please review and approve the created PR at" + lane_context[SharedValues::CREATE_PULL_REQUEST_HTML_URL]
+  end
+
   desc "Build and distribute beta"
   lane :beta do |options|
+    bump_version(build: options[:build] || nil)
+
     build_app(
       scheme: "EmbedReactNativeExample",
       export_method: "ad-hoc",
