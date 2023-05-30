@@ -29,34 +29,14 @@ platform :ios do
     
     increment_build_number({ build_number: build_number })
 
-    commit_message = "Bump example iOS version to: " + build_number.to_s
-
     commit_version_bump(
-      message: commit_message + " [skip ci]",
+      message: "Bump example iOS version to: " + build_number.to_s + " [skip ci]",
       xcodeproj: "./EmbedReactNativeExample.xcodeproj"
     )
 
-    puts "Bumped example app iOS version to: " + build_number.to_s
-
-    if branch == "main"
-      puts "On `main`, creating PR ..."
-
-      create_pull_request(
-        repo: "gr4vy/gr4vy-react-native",
-        title: commit_message,
-        labels: "internal",
-        base: "main",
-        reviewers: "luca-gr4vy"
-      )
-
-      puts "Done! Please review and approve the created PR at" + lane_context[SharedValues::CREATE_PULL_REQUEST_HTML_URL]
-    else
-      puts "Pushing changes to branch `" + branch + "` ..."
-
-      push_to_git_remote
-
-      puts "Done!"
-    end
+    puts "Pushing changes to branch `" + branch + "` ..."
+    push_to_git_remote
+    puts "Done!"
   end
 
   desc "Build and distribute beta"
