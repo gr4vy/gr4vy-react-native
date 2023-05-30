@@ -16,6 +16,52 @@
 default_platform(:android)
 
 platform :android do
+  desc "Bump Android version"
+  private_lane :bump_version do |options|
+    build = options[:build]
+    branch = git_branch()
+
+    latest_release = firebase_app_distribution_get_latest_release(
+      app: ENV["APP"]
+    )
+
+    build_number = build || latest_release[:buildVersion].to_i + 1
+    
+    increment_version_code(
+      gradle_file_path: "./app/build.gradle",
+      build_number: build_number
+    )
+
+    commit_message = "Bump example Android version to: " + build_number.to_s
+
+    commit_version_bump(
+      message: commit_message + " [skip ci]",
+      xcodeproj: "./EmbedReactNativeExample.xcodeproj"
+    )
+
+    puts "Bumped example app Android version to: " + build_number.to_s
+
+    if branch == "main"
+      puts "On `main`, creating PR ..."
+
+      create_pull_request(
+        repo: "gr4vy/gr4vy-react-native",
+        title: commit_message,
+        labels: "internal",
+        base: "main",
+        reviewers: "luca-gr4vy"
+      )
+
+      puts "Done! Please review and approve the created PR at" + lane_context[SharedValues::CREATE_PULL_REQUEST_HTML_URL]
+    else
+      puts "Pushing changes to branch `" + branch + "` ..."
+
+      push_to_git_remote
+
+      puts "Done!"
+    end
+  end
+
   desc "Build and distribute beta"
   lane :beta do |options|
     gradle(
