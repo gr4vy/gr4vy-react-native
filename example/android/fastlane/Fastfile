@@ -18,7 +18,7 @@ default_platform(:android)
 platform :android do
   desc "Bump Android version"
   private_lane :bump_version do |options|
-    build = options[:build]
+    build = options[:build].to_i || nil
     branch = git_branch()
 
     latest_release = firebase_app_distribution_get_latest_release(
@@ -49,7 +49,7 @@ platform :android do
 
   desc "Build and distribute beta"
   lane :beta do |options|
-    bump_version(build: options[:build] || nil)
+    bump_version(build: options[:build])
 
     gradle(
       task: "clean assembleRelease"
