@@ -32,7 +32,8 @@ platform :ios do
     commit_message = "Bump example iOS version to: " + build_number.to_s
 
     commit_version_bump(
-      message: commit_message + " [skip ci]"
+      message: commit_message + " [skip ci]",
+      xcodeproj: "./EmbedReactNativeExample/xcodeproj"
     )
 
     puts "Bumped example app iOS version to: " + build_number.to_s
