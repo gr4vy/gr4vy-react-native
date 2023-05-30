@@ -27,8 +27,13 @@ platform :ios do
 
     build_number = build || latest_release[:buildVersion].to_i + 1
     
+    if (build == latest_release)
+      puts "Same build version number, skipping bump ..."
+      next
+    end
+    
     increment_build_number(
-      build_number: build_number
+      build_number: build_number,
       xcodeproj: "./EmbedReactNativeExample.xcodeproj"
     )
 
