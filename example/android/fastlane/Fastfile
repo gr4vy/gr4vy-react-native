@@ -28,7 +28,7 @@ platform :android do
     build_number = build || latest_release[:buildVersion].to_i + 1
     
     increment_version_code(
-      gradle_file_path: "example/android/app/build.gradle",
+      gradle_file_path: "./app/build.gradle",
       version_code: build_number
     )
 
