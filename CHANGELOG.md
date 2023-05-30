@@ -1,3 +1,21 @@
+# (Thu May 25 2023)
+
+
+
+---
+
+# v0.4.1 (Thu May 25 2023)
+
+#### 🐛 Bug Fix
+
+- chore: upgrade android sdk [#13](https://github.com/gr4vy/gr4vy-react-native/pull/13) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v0.4.0 (Mon May 22 2023)
 
 #### 🚀 Enhancement

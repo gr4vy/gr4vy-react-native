@@ -68,7 +68,7 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   
-  implementation "com.github.gr4vy:gr4vy-android:v1.6.1"
+  implementation "com.github.gr4vy:gr4vy-android:v1.6.3"
 }
 
 if (isNewArchitectureEnabled()) {
