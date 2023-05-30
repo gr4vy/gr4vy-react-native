@@ -34,7 +34,8 @@ platform :android do
 
     commit_message = "Bump example Android version to: " + build_number.to_s
 
-    commit_version_bump(
+    commit_android_version_bump(
+      gradle_file_folder: "./app",
       message: commit_message + " [skip ci]"
     )
 
