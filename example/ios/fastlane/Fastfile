@@ -42,7 +42,7 @@ platform :ios do
 
       create_pull_request(
         repo: "gr4vy/gr4vy-react-native",
-        title: commit_message
+        title: commit_message,
         labels: "internal",
         base: "main",
         reviewers: "luca-gr4vy"
