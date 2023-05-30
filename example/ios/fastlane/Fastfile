@@ -25,9 +25,10 @@ platform :ios do
       app: ENV["APP"]
     )
 
-    build_number = build || latest_release[:buildVersion].to_i + 1
+    current_build_number = latest_release[:buildVersion].to_i
+    build_number = build || current_build_number + 1
     
-    if (build == latest_release)
+    if (build == current_build_number)
       puts "Same build version number, skipping bump ..."
       next
     end
