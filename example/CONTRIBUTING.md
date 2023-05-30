@@ -20,6 +20,14 @@ To release a beta, first make sure the required gems are installed by running `b
 
 That will get the environment variables defined in `.env.preview` and run fastlane using those variables.
 
+By default, the build number is increased by 1 each time the process is triggered, but you can also set it manually:
+
+```sh
+./beta.sh ios notes:"Release notes" build:5
+```
+
+That will update the necessary files and create a new commit with message `Bump example iOS version to: {build} [skip ci]`. Then, if on `main` it will create a PR to review and merge, if on any other branch it will push directly.
+
 If everything goes well, you should see the releases in the Firebase App Distribution console.
 
 NOTE: you might have to run `chmod +x ./beta.sh` if the terminal complains about not having the permissions to run the script.
