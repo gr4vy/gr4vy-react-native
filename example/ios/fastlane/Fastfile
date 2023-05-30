@@ -29,13 +29,13 @@ platform :ios do
     
     increment_build_number({ build_number: build_number })
 
-    commit_message = "Bump example iOS version to: " + build_number
+    commit_message = "Bump example iOS version to: " + build_number.to_s
 
     commit_version_bump(
       message: commit_message + " [skip ci]"
     )
 
-    puts "Bumped example app iOS version to: " + build_number
+    puts "Bumped example app iOS version to: " + build_number.to_s
 
     if branch == "main"
       puts "On `main`, creating PR ..."
