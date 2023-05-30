@@ -52,6 +52,10 @@ platform :ios do
       puts "Done! Please review and approve the created PR at" + lane_context[SharedValues::CREATE_PULL_REQUEST_HTML_URL]
     else
       puts "Pushing changes to branch `" + branch + "` ..."
+
+      push_to_git_remote
+
+      puts "Done!"
     end
   end
 
