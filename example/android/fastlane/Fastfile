@@ -40,10 +40,13 @@ platform :android do
 
     puts "Bumped example app Android version to: " + build_number.to_s
 
+    puts "token: " + ENV["GITHUB_TOKEN"]
+
     if branch == "task/beta-releases"
       puts "On `main`, creating PR ..."
 
       create_pull_request(
+        api_token: ENV["GITHUB_TOKEN"],
         repo: "gr4vy/gr4vy-react-native",
         title: commit_message,
         labels: "internal",
