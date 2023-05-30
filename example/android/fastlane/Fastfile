@@ -32,37 +32,13 @@ platform :android do
       version_code: build_number
     )
 
-    commit_message = "Bump example Android version to: " + build_number.to_s
-
     commit_android_version_bump(
-      message: commit_message + " [skip ci]"
+      message: "Bump example Android version to: " + build_number.to_s + " [skip ci]"
     )
 
-    puts "Bumped example app Android version to: " + build_number.to_s
-
-    puts "token: " + ENV["GITHUB_TOKEN"]
-
-    if branch == "task/beta-releases"
-      puts "On `main`, creating PR ..."
-
-      create_pull_request(
-        api_token: ENV["GITHUB_TOKEN"],
-        repo: "gr4vy/gr4vy-react-native",
-        title: commit_message,
-        labels: "internal",
-        head: "chore/bump-example-version",
-        base: "main",
-        reviewers: "luca-gr4vy"
-      )
-
-      puts "Done! Please review and approve the created PR at" + lane_context[SharedValues::CREATE_PULL_REQUEST_HTML_URL].to_s
-    else
-      puts "Pushing changes to branch `" + branch + "` ..."
-
-      push_to_git_remote
-
-      puts "Done!"
-    end
+    puts "Pushing changes to branch `" + branch + "` ..."
+    push_to_git_remote
+    puts "Done!"
   end
 
   desc "Build and distribute beta"
