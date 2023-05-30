@@ -50,6 +50,7 @@ platform :android do
         repo: "gr4vy/gr4vy-react-native",
         title: commit_message,
         labels: "internal",
+        head: "chore/bump-example-version",
         base: "main",
         reviewers: "luca-gr4vy"
       )
