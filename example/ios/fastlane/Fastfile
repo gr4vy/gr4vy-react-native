@@ -47,10 +47,10 @@ platform :ios do
       scheme: "EmbedReactNativeExample",
       export_method: "ad-hoc",
       export_options: {
-      provisioningProfiles: { 
-        ENV["BUNDLE_ID"] => ENV["PROVISIONING_PROFILE_NAME"],
+        provisioningProfiles: { 
+          ENV["BUNDLE_ID"] => ENV["PROVISIONING_PROFILE_NAME"],
+        }
       }
-    }
     )
 
     firebase_app_distribution(
