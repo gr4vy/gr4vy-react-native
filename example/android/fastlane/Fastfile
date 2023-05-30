@@ -64,6 +64,8 @@ platform :android do
 
   desc "Build and distribute beta"
   lane :beta do |options|
+    bump_version(build: options[:build] || nil)
+
     gradle(
       task: "clean assembleRelease"
     )
