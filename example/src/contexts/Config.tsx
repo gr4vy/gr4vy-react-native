@@ -25,13 +25,22 @@ export const ConfigProvider = ({ children }: PropsWithChildren<{}>) => {
 
   const setAndStoreConfig = (value: Gr4vyConfig) => {
     setConfig(value)
-    storeData(value)
+    storeData({
+      ...value,
+      gr4vyId: defaultConfig.gr4vyId,
+      token: defaultConfig.token,
+    })
   }
 
   useLayoutEffect(() => {
     const getStoredConfig = async () => {
       const data = await getData()
-      setConfig({ ...config, ...data })
+      const storedConfig = {
+        ...data,
+        gr4vyId: defaultConfig.gr4vyId,
+        token: defaultConfig.token,
+      }
+      setConfig({ ...config, ...storedConfig })
     }
     getStoredConfig()
     // eslint-disable-next-line react-hooks/exhaustive-deps

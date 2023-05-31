@@ -14,6 +14,9 @@ export const Settings = () => {
 
   return (
     <View style={styles.container}>
+      <View>
+        <Text>gr4vyId: {config.gr4vyId}</Text>
+      </View>
       <ScrollView style={styles.form}>
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Locale</Text>
