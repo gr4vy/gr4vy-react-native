@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native'
-import { Picker } from '@react-native-picker/picker'
 import { getVersion, getBuildNumber } from 'react-native-device-info'
 import { Button } from '../components/Button'
+import { Picker } from '../components/Picker'
 import { darkTheme } from '../utils/config'
 import { useConfig } from '../contexts/Config'
 
@@ -24,77 +24,61 @@ export const Settings = () => {
       <ScrollView style={styles.form}>
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Locale</Text>
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={config?.locale}
-              onValueChange={(value: string) =>
-                setConfig({ ...config, locale: value })
-              }
-              style={styles.pickerStyle}
-              itemStyle={styles.pickerItemStyle}
-            >
-              <Picker.Item label="US" value="en-US" />
-              <Picker.Item label="BR" value="pt-BR" />
-              <Picker.Item label="IT" value="it-IT" />
-              <Picker.Item label="ES" value="es-ES" />
-            </Picker>
-          </View>
+          <Picker
+            selectedValue={config?.locale}
+            onValueChange={(value: string) =>
+              setConfig({ ...config, locale: value })
+            }
+          >
+            <Picker.Item label="US" value="en-US" />
+            <Picker.Item label="BR" value="pt-BR" />
+            <Picker.Item label="IT" value="it-IT" />
+            <Picker.Item label="ES" value="es-ES" />
+          </Picker>
         </View>
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Country</Text>
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={config?.country}
-              onValueChange={(value: string) =>
-                setConfig({ ...config, country: value })
-              }
-              style={styles.pickerStyle}
-              itemStyle={styles.pickerItemStyle}
-            >
-              <Picker.Item label="United States" value="US" />
-              <Picker.Item label="Great Britain" value="GB" />
-              <Picker.Item label="Brazil" value="BR" />
-              <Picker.Item label="Italy" value="IT" />
-              <Picker.Item label="Spain" value="ES" />
-            </Picker>
-          </View>
+          <Picker
+            selectedValue={config?.country}
+            onValueChange={(value: string) =>
+              setConfig({ ...config, country: value })
+            }
+          >
+            <Picker.Item label="United States" value="US" />
+            <Picker.Item label="Great Britain" value="GB" />
+            <Picker.Item label="Brazil" value="BR" />
+            <Picker.Item label="Italy" value="IT" />
+            <Picker.Item label="Spain" value="ES" />
+          </Picker>
         </View>
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Currency</Text>
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={config?.currency}
-              onValueChange={(value: string) =>
-                setConfig({ ...config, currency: value })
-              }
-              style={styles.pickerStyle}
-              itemStyle={styles.pickerItemStyle}
-            >
-              <Picker.Item label="US Dollar" value="USD" />
-              <Picker.Item label="British Pound" value="GBP" />
-              <Picker.Item label="Brazilian Real" value="BRL" />
-              <Picker.Item label="Euro" value="EUR" />
-            </Picker>
-          </View>
+          <Picker
+            selectedValue={config?.currency}
+            onValueChange={(value: string) =>
+              setConfig({ ...config, currency: value })
+            }
+          >
+            <Picker.Item label="US Dollar" value="USD" />
+            <Picker.Item label="British Pound" value="GBP" />
+            <Picker.Item label="Brazilian Real" value="BRL" />
+            <Picker.Item label="Euro" value="EUR" />
+          </Picker>
         </View>
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Theme</Text>
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={config?.theme ? 'dark' : 'light'}
-              onValueChange={(value: string) =>
-                setConfig({
-                  ...config,
-                  theme: value === 'dark' ? darkTheme : undefined,
-                })
-              }
-              style={styles.pickerStyle}
-              itemStyle={styles.pickerItemStyle}
-            >
-              <Picker.Item label="Light" value="light" />
-              <Picker.Item label="Dark" value="dark" />
-            </Picker>
-          </View>
+          <Picker
+            selectedValue={config?.theme ? 'dark' : 'light'}
+            onValueChange={(value: string) =>
+              setConfig({
+                ...config,
+                theme: value === 'dark' ? darkTheme : undefined,
+              })
+            }
+          >
+            <Picker.Item label="Light" value="light" />
+            <Picker.Item label="Dark" value="dark" />
+          </Picker>
         </View>
       </ScrollView>
       <Button onPress={save}>Save</Button>
@@ -126,17 +110,5 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     textAlign: 'center',
-  },
-  pickerContainer: {
-    marginTop: 16,
-    overflow: 'hidden',
-  },
-  pickerStyle: {
-    marginTop: -64,
-  },
-  pickerItemStyle: {
-    alignSelf: 'center',
-    width: '100%',
-    fontSize: 16,
   },
 })
