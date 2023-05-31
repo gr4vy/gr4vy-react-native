@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
+import { getVersion, getBuildNumber } from 'react-native-device-info'
 import { Button } from '../components/Button'
 import { darkTheme } from '../utils/config'
 import { useConfig } from '../contexts/Config'
@@ -14,7 +15,10 @@ export const Settings = () => {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.info}>
+        <Text>
+          app version: {getVersion()}({getBuildNumber()})
+        </Text>
         <Text>gr4vyId: {config.gr4vyId}</Text>
       </View>
       <ScrollView style={styles.form}>
@@ -87,6 +91,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     padding: 16,
+  },
+  info: {
+    paddingVertical: 16,
+    marginBottom: 16,
+    borderBottomColor: '#1B4889',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   form: {
     marginVertical: 16,
