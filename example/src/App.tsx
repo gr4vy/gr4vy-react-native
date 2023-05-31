@@ -12,7 +12,11 @@ export default function App(): JSX.Element {
     <ConfigProvider>
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen
+            name="Home"
+            component={Home}
+            options={{ title: 'Checkout', headerTitle: 'Gr4vy Example App' }}
+          />
           <Tab.Screen name="Settings" component={Settings} />
         </Tab.Navigator>
       </NavigationContainer>
