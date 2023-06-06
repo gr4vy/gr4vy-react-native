@@ -19,12 +19,18 @@ export default function App(): JSX.Element {
               title: 'Checkout',
               headerTitle: 'Gr4vy Example App',
               tabBarActiveTintColor: '#1B4889',
+              tabBarIconStyle: { display: 'none' },
+              tabBarLabelPosition: 'beside-icon',
             }}
           />
           <Tab.Screen
             name="Settings"
             component={Settings}
-            options={{ tabBarActiveTintColor: '#1B4889' }}
+            options={{
+              tabBarActiveTintColor: '#1B4889',
+              tabBarIconStyle: { display: 'none' },
+              tabBarLabelPosition: 'beside-icon',
+            }}
           />
         </Tab.Navigator>
       </NavigationContainer>

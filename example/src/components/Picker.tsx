@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { Platform, StyleSheet, View } from 'react-native'
 import { PickerProps, Picker as RNPicker } from '@react-native-picker/picker'
 
 export const Picker = ({
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   style: {
-    marginTop: -64,
+    marginTop: Platform.OS === 'ios' ? -64 : 0,
   },
   itemStyle: {
     alignSelf: 'center',
