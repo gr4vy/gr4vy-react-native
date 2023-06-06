@@ -16,8 +16,41 @@
 default_platform(:android)
 
 platform :android do
+  desc "Bump Android version"
+  private_lane :bump_version do |options|
+    build = options[:build].to_i || nil
+    branch = git_branch()
+
+    latest_release = firebase_app_distribution_get_latest_release(
+      app: ENV["APP"]
+    )
+
+    current_build_number = latest_release[:buildVersion].to_i
+    build_number = build || current_build_number + 1
+    
+    if (build == current_build_number)
+      puts "Same build version number, skipping bump ..."
+      next
+    end
+    
+    increment_version_code(
+      gradle_file_path: "./app/build.gradle",
+      version_code: build_number
+    )
+
+    commit_android_version_bump(
+      message: "Bump example Android version to: " + build_number.to_s + " [skip ci]"
+    )
+
+    puts "Pushing changes to branch `" + branch + "` ..."
+    push_to_git_remote
+    puts "Done!"
+  end
+
   desc "Build and distribute beta"
   lane :beta do |options|
+    bump_version(build: options[:build])
+
     gradle(
       task: "clean assembleRelease"
     )

@@ -16,16 +16,50 @@
 default_platform(:ios)
 
 platform :ios do
+  desc "Bump iOS version"
+  private_lane :bump_version do |options|
+    build = options[:build].to_i || nil
+    branch = git_branch()
+
+    latest_release = firebase_app_distribution_get_latest_release(
+      app: ENV["APP"]
+    )
+
+    current_build_number = latest_release[:buildVersion].to_i
+    build_number = build || current_build_number + 1
+    
+    if (build == current_build_number)
+      puts "Same build version number, skipping bump ..."
+      next
+    end
+    
+    increment_build_number(
+      build_number: build_number,
+      xcodeproj: "./EmbedReactNativeExample.xcodeproj"
+    )
+
+    commit_version_bump(
+      message: "Bump example iOS version to: " + build_number.to_s + " [skip ci]",
+      xcodeproj: "./EmbedReactNativeExample.xcodeproj"
+    )
+
+    puts "Pushing changes to branch `" + branch + "` ..."
+    push_to_git_remote
+    puts "Done!"
+  end
+
   desc "Build and distribute beta"
   lane :beta do |options|
+    bump_version(build: options[:build])
+
     build_app(
       scheme: "EmbedReactNativeExample",
       export_method: "ad-hoc",
       export_options: {
-      provisioningProfiles: { 
-        ENV["BUNDLE_ID"] => ENV["PROVISIONING_PROFILE_NAME"],
+        provisioningProfiles: { 
+          ENV["BUNDLE_ID"] => ENV["PROVISIONING_PROFILE_NAME"],
+        }
       }
-    }
     )
 
     firebase_app_distribution(
