@@ -1,4 +1,6 @@
-import React from 'react'
+import type { Gr4vyConfig } from '@gr4vy/embed-react-native'
+
+import React, { useState } from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native'
 import { getVersion, getBuildNumber } from 'react-native-device-info'
 import { Button } from '../components/Button'
@@ -8,9 +10,10 @@ import { useConfig } from '../contexts/Config'
 
 export const Settings = () => {
   const { config, setConfig } = useConfig()
+  const [tmpConfig, setTmpConfig] = useState<Gr4vyConfig>(config)
 
   const save = () => {
-    setConfig(config)
+    setConfig(tmpConfig)
   }
 
   return (
@@ -25,9 +28,9 @@ export const Settings = () => {
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Locale</Text>
           <Picker
-            selectedValue={config?.locale}
+            selectedValue={tmpConfig?.locale}
             onValueChange={(value: string) =>
-              setConfig({ ...config, locale: value })
+              setTmpConfig({ ...tmpConfig, locale: value })
             }
           >
             <Picker.Item label="US" value="en-US" />
@@ -39,9 +42,9 @@ export const Settings = () => {
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Country</Text>
           <Picker
-            selectedValue={config?.country}
+            selectedValue={tmpConfig?.country}
             onValueChange={(value: string) =>
-              setConfig({ ...config, country: value })
+              setTmpConfig({ ...tmpConfig, country: value })
             }
           >
             <Picker.Item label="United States" value="US" />
@@ -54,9 +57,9 @@ export const Settings = () => {
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Currency</Text>
           <Picker
-            selectedValue={config?.currency}
+            selectedValue={tmpConfig?.currency}
             onValueChange={(value: string) =>
-              setConfig({ ...config, currency: value })
+              setTmpConfig({ ...tmpConfig, currency: value })
             }
           >
             <Picker.Item label="US Dollar" value="USD" />
@@ -68,10 +71,10 @@ export const Settings = () => {
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Theme</Text>
           <Picker
-            selectedValue={config?.theme ? 'dark' : 'light'}
+            selectedValue={tmpConfig?.theme ? 'dark' : 'light'}
             onValueChange={(value: string) =>
-              setConfig({
-                ...config,
+              setTmpConfig({
+                ...tmpConfig,
                 theme: value === 'dark' ? darkTheme : undefined,
               })
             }

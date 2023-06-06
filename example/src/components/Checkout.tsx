@@ -1,9 +1,9 @@
 import { FlatList, Text, View, StyleSheet } from 'react-native'
-import { products, shipping, subtotal, total } from '../constants/data'
-import { Item } from './Item'
 import React from 'react'
-import { formatCurrency } from '../utils/currency'
+import { products, shipping, subtotal, total } from '../constants/data'
 import { Button } from '../components/Button'
+import { formatCurrency } from '../utils/currency'
+import { Item } from './Item'
 
 interface CheckoutProps {
   onCheckout: () => void

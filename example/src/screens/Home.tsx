@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
-import { SafeAreaView, StatusBar } from 'react-native'
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native'
 import EmbedReactNative, {
   EmbedReactNativeEventEmitter,
   Gr4vyEvent,
 } from '@gr4vy/embed-react-native'
 import { Checkout } from '../components/Checkout'
-import { StyleSheet } from 'react-native'
 import { useConfig } from '../contexts/Config'
 
 const onEvent = (event: Gr4vyEvent) => {

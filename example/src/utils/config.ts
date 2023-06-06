@@ -18,11 +18,13 @@ const shipping = {
 cartItems.push(shipping)
 
 export const config: Gr4vyConfig = {
-  gr4vyId: `${GR4VY_ID}`,
-  token: `${TOKEN}`,
+  gr4vyId: `${GR4VY_ID || 'spider'}`,
+  token: `${TOKEN || ''}`,
+  buyerExternalIdentifier: 'user-001',
   amount: total,
-  currency: 'USD',
-  country: 'US',
+  currency: 'GBP',
+  country: 'GB',
+  store: 'ask',
   intent: 'capture',
   applePayMerchantId: 'merchant.com.gr4vy.demo',
   cartItems,
