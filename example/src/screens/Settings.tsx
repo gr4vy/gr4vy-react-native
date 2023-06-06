@@ -1,26 +1,36 @@
-import React from 'react'
+import type { Gr4vyConfig } from '@gr4vy/embed-react-native'
+
+import React, { useState } from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native'
-import { Picker } from '@react-native-picker/picker'
+import { getVersion, getBuildNumber } from 'react-native-device-info'
 import { Button } from '../components/Button'
+import { Picker } from '../components/Picker'
 import { darkTheme } from '../utils/config'
 import { useConfig } from '../contexts/Config'
 
 export const Settings = () => {
   const { config, setConfig } = useConfig()
+  const [tmpConfig, setTmpConfig] = useState<Gr4vyConfig>(config)
 
   const save = () => {
-    setConfig(config)
+    setConfig(tmpConfig)
   }
 
   return (
     <View style={styles.container}>
+      <View style={styles.info}>
+        <Text>
+          app version: {getVersion()}({getBuildNumber()})
+        </Text>
+        <Text>gr4vyId: {config.gr4vyId}</Text>
+      </View>
       <ScrollView style={styles.form}>
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Locale</Text>
           <Picker
-            selectedValue={config?.locale}
+            selectedValue={tmpConfig?.locale}
             onValueChange={(value: string) =>
-              setConfig({ ...config, locale: value })
+              setTmpConfig({ ...tmpConfig, locale: value })
             }
           >
             <Picker.Item label="US" value="en-US" />
@@ -32,9 +42,9 @@ export const Settings = () => {
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Country</Text>
           <Picker
-            selectedValue={config?.country}
+            selectedValue={tmpConfig?.country}
             onValueChange={(value: string) =>
-              setConfig({ ...config, country: value })
+              setTmpConfig({ ...tmpConfig, country: value })
             }
           >
             <Picker.Item label="United States" value="US" />
@@ -47,9 +57,9 @@ export const Settings = () => {
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Currency</Text>
           <Picker
-            selectedValue={config?.currency}
+            selectedValue={tmpConfig?.currency}
             onValueChange={(value: string) =>
-              setConfig({ ...config, currency: value })
+              setTmpConfig({ ...tmpConfig, currency: value })
             }
           >
             <Picker.Item label="US Dollar" value="USD" />
@@ -61,10 +71,10 @@ export const Settings = () => {
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Theme</Text>
           <Picker
-            selectedValue={config?.theme ? 'dark' : 'light'}
+            selectedValue={tmpConfig?.theme ? 'dark' : 'light'}
             onValueChange={(value: string) =>
-              setConfig({
-                ...config,
+              setTmpConfig({
+                ...tmpConfig,
                 theme: value === 'dark' ? darkTheme : undefined,
               })
             }
@@ -85,13 +95,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 16,
   },
+  info: {
+    paddingVertical: 16,
+    marginBottom: 16,
+    borderBottomColor: '#1B4889',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
   form: {
     marginVertical: 16,
   },
   inputGroup: {
     alignSelf: 'center',
     width: '100%',
-    maxWidth: '75%',
+    maxWidth: '70%',
     marginBottom: 16,
   },
   label: {

@@ -73,7 +73,7 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - gr4vy-embed-react-native (0.4.0):
+  - gr4vy-embed-react-native (1.0.0):
     - gr4vy-ios (= 1.6.1)
     - React-Core
   - gr4vy-ios (1.6.1)
@@ -81,6 +81,8 @@ PODS:
     - hermes-engine/Pre-built (= 0.71.4)
   - hermes-engine/Pre-built (0.71.4)
   - libevent (2.1.12)
+  - nodejs-mobile-react-native (0.8.1):
+    - React-Core
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -427,6 +429,8 @@ PODS:
     - React-Core
   - RNCPicker (2.4.10):
     - React-Core
+  - RNDeviceInfo (10.6.0):
+    - React-Core
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
@@ -465,6 +469,7 @@ DEPENDENCIES:
   - gr4vy-embed-react-native (from `../..`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - libevent (~> 2.1.12)
+  - nodejs-mobile-react-native (from `../node_modules/nodejs-mobile-react-native`)
   - OpenSSL-Universal (= 1.1.1100)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -498,6 +503,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -535,6 +541,8 @@ EXTERNAL SOURCES:
     :path: "../.."
   hermes-engine:
     :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
+  nodejs-mobile-react-native:
+    :path: "../node_modules/nodejs-mobile-react-native"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTRequired:
@@ -595,6 +603,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCPicker:
     :path: "../node_modules/@react-native-picker/picker"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -617,10 +627,11 @@ SPEC CHECKSUMS:
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  gr4vy-embed-react-native: e720e110dbb4551eb781ce516fa8eeb24be6f9ff
+  gr4vy-embed-react-native: fa2c871707b970da45a94af0611e1c0ddeb70929
   gr4vy-ios: e983133ec0e3beed759e3ee07aeca7bb480c8b10
   hermes-engine: a1f157c49ea579c28b0296bda8530e980c45bdb3
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
+  nodejs-mobile-react-native: e35e7ed7ecfca168f168983e9557f1c5278d864b
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: 5a024fdf458fa8c0d82fc262e76f982d4dcdecdd
@@ -652,6 +663,7 @@ SPEC CHECKSUMS:
   ReactCommon: b49a4b00ca6d181ff74b17c12b2d59ac4add0bde
   RNCAsyncStorage: b90b71f45b8b97be43bc4284e71a6af48ac9f547
   RNCPicker: 0bc2f0a29abcca7b7ed44a2d036aac9ab6d25700
+  RNDeviceInfo: 475a4c447168d0ad4c807e48ef5e0963a0f4eb1b
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0

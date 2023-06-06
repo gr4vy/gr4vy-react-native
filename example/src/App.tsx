@@ -12,8 +12,26 @@ export default function App(): JSX.Element {
     <ConfigProvider>
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Settings" component={Settings} />
+          <Tab.Screen
+            name="Home"
+            component={Home}
+            options={{
+              title: 'Checkout',
+              headerTitle: 'Gr4vy Example App',
+              tabBarActiveTintColor: '#1B4889',
+              tabBarIconStyle: { display: 'none' },
+              tabBarLabelPosition: 'beside-icon',
+            }}
+          />
+          <Tab.Screen
+            name="Settings"
+            component={Settings}
+            options={{
+              tabBarActiveTintColor: '#1B4889',
+              tabBarIconStyle: { display: 'none' },
+              tabBarLabelPosition: 'beside-icon',
+            }}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     </ConfigProvider>
