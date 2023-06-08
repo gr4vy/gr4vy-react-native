@@ -23,6 +23,7 @@ export const Settings = () => {
           app version: {getVersion()}({getBuildNumber()})
         </Text>
         <Text>gr4vyId: {config.gr4vyId}</Text>
+        <Text>environment: {config.environment}</Text>
       </View>
       <ScrollView style={styles.form}>
         <View style={styles.inputGroup}>

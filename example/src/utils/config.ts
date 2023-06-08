@@ -20,6 +20,7 @@ cartItems.push(shipping)
 export const config: Gr4vyConfig = {
   gr4vyId: `${GR4VY_ID || 'spider'}`,
   token: `${TOKEN || ''}`,
+  environment: 'sandbox',
   buyerExternalIdentifier: 'user-001',
   amount: total,
   currency: 'GBP',
