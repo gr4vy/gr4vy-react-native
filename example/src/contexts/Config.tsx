@@ -1,6 +1,6 @@
 import type { Gr4vyConfig } from '@gr4vy/embed-react-native'
 
-import { GR4VY_ID, PRIVATE_KEY } from '@env'
+import { GR4VY_ID, GR4VY_PRIVATE_KEY } from '@env'
 import React, {
   PropsWithChildren,
   createContext,
@@ -65,7 +65,7 @@ export const ConfigProvider = ({ children }: PropsWithChildren<{}>) => {
 
   useEffect(() => {
     nodejs.startWithArgs(
-      `main.js --gr4vyId=${GR4VY_ID} --privateKey=${PRIVATE_KEY}`
+      `main.js --gr4vyId=${GR4VY_ID} --privateKey=${GR4VY_PRIVATE_KEY}`
     )
     nodejs.channel.addListener('message', onNodeMessage, this)
 
