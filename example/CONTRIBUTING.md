@@ -10,7 +10,15 @@ We use [fastlane](https://fastlane.tools/) to orchestrate the build / release pr
 
 We use a specific version of Ruby to install the dependencies needed. We recommend using [rbenv](https://github.com/rbenv/rbenv) to manage multiple versions of Ruby on your system, but you can use whatever you want as long as reading the `.ruby-version` file is supported. Check what's the version defined in that file and install it by running `rbenv install x.x.x`, then, from inside the `example` folder, run `rbenv local` to pick that up and set it for your current shell. Lastly, install the Bundler by running `gem install bundler`.
 
-To release a beta, first make sure the required gems are installed by running `bundle install` inside either the `ios` or `android` folder, depending on which platform you're releasing for. You also need to be authenticated with Firebase, you can use the Firebase CLI for that: https://firebase.google.com/docs/cli#sign-in-test-cli. Create a `.env.preview` file based on `.env.example` and set accordingly (we use `spider` for `GR4VY_ID`). The final step is to run the `beta.sh` script:
+To release a beta, first make sure the required gems are installed by running `bundle install` inside either the `ios` or `android` folder, depending on which platform you're releasing for. You also need to be authenticated with Firebase, you can use the Firebase CLI for that: https://firebase.google.com/docs/cli#sign-in-test-cli.
+
+Go into the `example/ios/fastlane` and create a `.env` file, based on `.env.example` file you'll find there. You can find the value for `APP` in the Firebase console, under `[Project name] > Project settings > Your apps > App ID`. `GROUPS` is whatever was set up in `Release and monitor > App Distribution > Testers and Groups`. `BUNDLE_ID` is the value of `PRODUCT_BUNDLE_IDENTIFIER` from the example app `.xcodeproj` file or it can also be found on Xcode project workspace. `PROVISIONING_PROFILE_NAME` is the name of the provisioning profile used for the example app, which can be found in your Apple Developer account, under Profiles.
+
+Do the same in `example/android/fastlane`. In this case we just need to set `APP` and `GROUPS`.
+
+Back to the `example` folder, create a `.env.preview` file based on `.env.example` and set accordingly (we use `spider` for `GR4VY_ID`, the `GR4VY_PRIVATE_KEY` should be the same for both the `dev` and `spider` environments).
+
+The final step is to run the `beta.sh` script:
 
 ```sh
 ./beta.sh ios notes:"Release notes"
