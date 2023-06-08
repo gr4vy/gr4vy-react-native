@@ -32,7 +32,8 @@
     "prepack": "bob build",
     "release": "auto shipit",
     "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install && yarn example pods",
+    "example-nodejs": "yarn --cwd example/nodejs-assets/nodejs-project",
+    "bootstrap": "yarn example && yarn install && yarn example pods && yarn example-nodejs && yarn install",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build"
   },
   "keywords": [
