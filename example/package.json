@@ -9,8 +9,16 @@
     "pods": "pod-install --quiet"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.18.1",
+    "@react-native-picker/picker": "^2.4.10",
+    "@react-navigation/bottom-tabs": "^6.5.7",
+    "@react-navigation/native": "^6.1.6",
+    "nodejs-mobile-react-native": "Shopify/nodejs-mobile-react-native",
     "react": "18.2.0",
-    "react-native": "0.71.8"
+    "react-native": "0.71.8",
+    "react-native-device-info": "^10.6.0",
+    "react-native-safe-area-context": "^4.5.3",
+    "react-native-screens": "^3.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

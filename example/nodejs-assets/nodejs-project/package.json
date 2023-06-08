@@ -1,0 +1,12 @@
+{
+  "name": "EmbedReactNativeExample-node-project",
+  "version": "0.0.1",
+  "description": "Node.js part of the project",
+  "main": "main.js",
+  "author": "Gr4vy <code@gr4vy.com> (https://github.com/gr4vy)",
+  "license": "",
+  "dependencies": {
+    "@gr4vy/node": "^0.48.0",
+    "minimist": "^1.2.8"
+  }
+}

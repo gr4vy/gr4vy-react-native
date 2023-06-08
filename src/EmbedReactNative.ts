@@ -26,24 +26,26 @@ export type Gr4vyEvent = {
 
 export type Gr4vyConfig = {
   gr4vyId: string
-  environment?: string | null
+  environment?: string | undefined
   token: string
   amount: number
   currency: string
   country: string
-  buyerId?: string | null
-  externalIdentifier?: string | null
+  buyerId?: string | undefined
+  externalIdentifier?: string | undefined
   store?: 'ask' | boolean
   display?: 'all' | 'addOnly' | 'storedOnly' | 'supportsTokenization'
   intent?: 'authorize' | 'capture'
   metadata?: Record<string, string>
-  paymentSource?: 'installment' | 'recurring' | null
+  paymentSource?: 'installment' | 'recurring' | undefined
   applePayMerchantId?: string
-  cartItems?: Array<{
-    name: string
-    quantity: number
-    unitAmount: number
-  }> | null
+  cartItems?:
+    | Array<{
+        name: string
+        quantity: number
+        unitAmount: number
+      }>
+    | undefined
   theme?: {
     fonts?: {
       body?: string
