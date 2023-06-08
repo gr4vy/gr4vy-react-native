@@ -37,6 +37,7 @@ export const Settings = () => {
             <Picker.Item label="BR" value="pt-br" />
             <Picker.Item label="IT" value="it-it" />
             <Picker.Item label="ES" value="es-es" />
+            <Picker.Item label="FR" value="fr-fr" />
           </Picker>
         </View>
         <View style={styles.inputGroup}>
