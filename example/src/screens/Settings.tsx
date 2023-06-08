@@ -53,6 +53,7 @@ export const Settings = () => {
             <Picker.Item label="Brazil" value="BR" />
             <Picker.Item label="Italy" value="IT" />
             <Picker.Item label="Spain" value="ES" />
+            <Picker.Item label="France" value="FR" />
           </Picker>
         </View>
         <View style={styles.inputGroup}>
