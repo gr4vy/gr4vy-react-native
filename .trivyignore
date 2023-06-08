@@ -2,6 +2,10 @@
 
 # Please provide a comment with each vulnerability ID describing why it has been ignored.
 
+# fast-xml-parser (react-native)
+
+CVE-2023-34104
+
 # @sideway/formula (nodejs-mobile-react-native app)
 
 CVE-2023-25166
