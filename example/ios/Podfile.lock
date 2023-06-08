@@ -77,9 +77,9 @@ PODS:
     - gr4vy-ios (= 1.6.1)
     - React-Core
   - gr4vy-ios (1.6.1)
-  - hermes-engine (0.71.4):
-    - hermes-engine/Pre-built (= 0.71.4)
-  - hermes-engine/Pre-built (0.71.4)
+  - hermes-engine (0.71.8):
+    - hermes-engine/Pre-built (= 0.71.8)
+  - hermes-engine/Pre-built (0.71.8)
   - libevent (2.1.12)
   - nodejs-mobile-react-native (0.8.1):
     - React-Core
@@ -629,7 +629,7 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   gr4vy-embed-react-native: fa2c871707b970da45a94af0611e1c0ddeb70929
   gr4vy-ios: e983133ec0e3beed759e3ee07aeca7bb480c8b10
-  hermes-engine: a1f157c49ea579c28b0296bda8530e980c45bdb3
+  hermes-engine: 47986d26692ae75ee7a17ab049caee8864f855de
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   nodejs-mobile-react-native: e35e7ed7ecfca168f168983e9557f1c5278d864b
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
