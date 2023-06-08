@@ -33,10 +33,10 @@ export const Settings = () => {
               setTmpConfig({ ...tmpConfig, locale: value })
             }
           >
-            <Picker.Item label="US" value="en-US" />
-            <Picker.Item label="BR" value="pt-BR" />
-            <Picker.Item label="IT" value="it-IT" />
-            <Picker.Item label="ES" value="es-ES" />
+            <Picker.Item label="US" value="en-us" />
+            <Picker.Item label="BR" value="pt-br" />
+            <Picker.Item label="IT" value="it-it" />
+            <Picker.Item label="ES" value="es-es" />
           </Picker>
         </View>
         <View style={styles.inputGroup}>
