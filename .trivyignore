@@ -25,3 +25,27 @@ CVE-2021-42740
 # @babel/traverse (example - dev dep)
 
 CVE-2023-45133
+
+# ip (example - dev dep)
+
+CVE-2023-42282
+
+# react-devtools-core (example - dev dep)
+
+CVE-2023-5654
+
+# activesupport (example - Gem)
+
+CVE-2023-38037
+
+# semver (nodejs-mobile-react-native app)
+
+CVE-2022-25883
+
+# tough-cookie (nodejs-mobile-react-native app)
+
+CVE-2023-26136
+
+# word-wrap (nodejs-mobile-react-native app)
+
+CVE-2023-26115

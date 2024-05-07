@@ -4,15 +4,6 @@ description: Setup Node.js and install dependencies
 runs:
   using: composite
   steps:
-    # - name: Enable Corepack before setting up Node
-    #   shell: bash
-    #   run: |
-    #     npm install -g yarn@1.22.15
-    #     yarn --version
-    #     npm install -g corepack@0.24.0
-    #     corepack --version
-    #     corepack enable
-
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
