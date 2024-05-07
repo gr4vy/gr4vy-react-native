@@ -9,6 +9,7 @@ runs:
       run: |
         npm install -g yarn@1.22.15
         yarn --version
+        yarn set version 1.22.15
         npm install -g corepack@0.24.0
         corepack --version
         corepack enable
