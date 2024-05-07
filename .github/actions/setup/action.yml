@@ -32,5 +32,5 @@ runs:
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: |
         SKIP_YARN_COREPACK_CHECK=1 yarn install --cwd example --frozen-lockfile
-        yarn install --frozen-lockfile
+        SKIP_YARN_COREPACK_CHECK=1 yarn install --frozen-lockfile
       shell: bash
