@@ -6,7 +6,7 @@ runs:
   steps:
     - name: Enable Corepack before setting up Node
       shell: bash
-      run: corepack --version && corepack enable
+      run: npm install -g corepack@0.24.0 && corepack --version && corepack enable
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
