@@ -74,9 +74,9 @@ PODS:
   - fmt (6.2.1)
   - glog (0.3.5)
   - gr4vy-embed-react-native (1.0.0):
-    - gr4vy-ios (= 1.6.1)
+    - gr4vy-ios (= 2.1.1)
     - React-Core
-  - gr4vy-ios (1.6.1)
+  - gr4vy-ios (2.1.1)
   - hermes-engine (0.71.8):
     - hermes-engine/Pre-built (= 0.71.8)
   - hermes-engine/Pre-built (0.71.8)
@@ -627,8 +627,8 @@ SPEC CHECKSUMS:
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  gr4vy-embed-react-native: fa2c871707b970da45a94af0611e1c0ddeb70929
-  gr4vy-ios: e983133ec0e3beed759e3ee07aeca7bb480c8b10
+  gr4vy-embed-react-native: 5a312f524dc5c93822943679ac978120baeba295
+  gr4vy-ios: ae967d91a6451086f544b27867b4e910d04926df
   hermes-engine: 47986d26692ae75ee7a17ab049caee8864f855de
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   nodejs-mobile-react-native: e35e7ed7ecfca168f168983e9557f1c5278d864b
@@ -671,4 +671,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 29f6f795c7b34799d1b58851e1b434e6038c1c0b
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.15.2
