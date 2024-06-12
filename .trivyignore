@@ -49,3 +49,7 @@ CVE-2023-26136
 # word-wrap (nodejs-mobile-react-native app)
 
 CVE-2023-26115
+
+# rexml (react-native)
+
+CVE-2024-35176
