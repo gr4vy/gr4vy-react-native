@@ -1,3 +1,31 @@
+# v1.1.0 (Wed Jun 12 2024)
+
+#### 🚀 Enhancement
+
+- chore: upgrade react-native [#14](https://github.com/gr4vy/gr4vy-react-native/pull/14) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🐛 Bug Fix
+
+- Skip corepack check for release job [#30](https://github.com/gr4vy/gr4vy-react-native/pull/30) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: deps [#29](https://github.com/gr4vy/gr4vy-react-native/pull/29) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### ⚠️ Pushed to `main`
+
+- trigger GitHub actions ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🏠 Internal
+
+- fix: update insecure tar dependency [#26](https://github.com/gr4vy/gr4vy-react-native/pull/26) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- task: beta releases [#12](https://github.com/gr4vy/gr4vy-react-native/pull/12) ([@luca-gr4vy](https://github.com/luca-gr4vy) [@douglaseggleton](https://github.com/douglaseggleton))
+- task: example app updates [#11](https://github.com/gr4vy/gr4vy-react-native/pull/11) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 2
+
+- Douglas Eggleton ([@douglaseggleton](https://github.com/douglaseggleton))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # (Thu May 25 2023)
 
 

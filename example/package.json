@@ -28,6 +28,7 @@
     "metro-react-native-babel-preset": "0.73.9"
   },
   "resolutions": {
+    "braces": "^3.0.3",
     "tar": "^6.2.1"
   }
 }
