@@ -25,6 +25,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+
 @ReactModule(name = EmbedReactNativeModule.NAME)
 public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   public static final String NAME = "EmbedReactNative";
@@ -58,6 +62,23 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       if (item != null) {
         return item;
       }
+    }
+    return null;
+  }
+
+  public static Object getMapOptionalValue(ReadableMap map, String key) {
+    if (map.hasKey(key)) {
+      if (!map.isNull(key)) {
+        switch (map.getType(key)) {
+          case Number:
+            return map.getInt(key);
+          case String:
+            return map.getString(key);
+          default:
+            return null;
+        }
+      }
+      return null;
     }
     return null;
   }
@@ -121,6 +142,44 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       cartItemWritableMap.putString("name", cartItemMap.getString("name"));
       cartItemWritableMap.putInt("quantity", cartItemMap.getInt("quantity"));
       cartItemWritableMap.putInt("unitAmount", cartItemMap.getInt("unitAmount"));
+      // cartItemWritableMap.putInt("discountAmount", (Integer) getMapOptionalValue(cartItemMap, "discountAmount", 0));
+      // cartItemWritableMap.putInt("taxAmount", (Integer) getMapOptionalValue(cartItemMap, "taxAmount", 0));
+      // cartItemWritableMap.putString("externalIdentifier", (String) getMapOptionalValue(cartItemMap, "externalIdentifier", null));
+      // cartItemWritableMap.putString("sku", (String) getMapOptionalValue(cartItemMap, "sku", null));
+
+      List<String> optionalProps = new ArrayList<String>(Arrays.asList(
+        "discountAmount",
+        "taxAmount",
+        "externalIdentifier",
+        "sku",
+        "productUrl",
+        "imageUrl",
+        "productType"
+      ));
+      for (String prop : optionalProps) {
+        Object value = getMapOptionalValue(cartItemMap, prop);
+        if (value != null) {
+          switch (value.getClass().getSimpleName()) {
+            case "Integer":
+              cartItemWritableMap.putInt(prop, (Integer) value);
+              break;
+            case "String":
+              cartItemWritableMap.putString(prop, (String) value);
+              break;
+            default:
+              break;
+          }
+        }
+      }
+
+      // cartItemWritableMap.putString("productUrl", (String) getMapOptionalValue(cartItemMap, "productUrl", null));
+      // cartItemWritableMap.putString("imageUrl", (String) getMapOptionalValue(cartItemMap, "imageUrl", null));
+      // cartItemWritableMap.putString("productType", (String) getMapOptionalValue(cartItemMap, "productType", null));
+
+      ReadableArray emptyArray = Arguments.createArray();
+      ReadableArray categories = coalesce(cartItemMap.getArray("categories"), emptyArray);
+      cartItemWritableMap.putArray("categories", categories);
+
       cartItemsWritableArray.pushMap(cartItemWritableMap);
     }
     return cartItemsWritableArray;

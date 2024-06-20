@@ -44,6 +44,14 @@ export type Gr4vyConfig = {
         name: string
         quantity: number
         unitAmount: number
+        discountAmount?: number
+        taxAmount?: number
+        externalIdentifier?: string
+        sku?: string
+        productUrl?: string
+        imageUrl?: string
+        categories?: string[]
+        productType?: string
       }>
     | undefined
   theme?: {

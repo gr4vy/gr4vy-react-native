@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableArray;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -189,7 +190,33 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
         String name = cartItemJsonObject.getString("name");
         int quantity = cartItemJsonObject.getInt("quantity");
         int unitAmount = cartItemJsonObject.getInt("unitAmount");
-        CartItem cartItem = new CartItem(name, quantity, unitAmount, 0, 0, null, null, null, null, null, null); // TODO: pass new cartItems props
+        int discountAmount = cartItemJsonObject.getInt("discountAmount");
+        int taxAmount = cartItemJsonObject.getInt("taxAmount");
+        String externalIdentifier = cartItemJsonObject.getString("externalIdentifier");
+        String sku = cartItemJsonObject.getString("sku");
+        String productUrl = cartItemJsonObject.getString("productUrl");
+        String imageUrl = cartItemJsonObject.getString("imageUrl");
+        String productType = cartItemJsonObject.getString("productType");
+
+        JSONArray categoriesArray = cartItemJsonObject.getJSONArray("categories");
+        List<String> categories = new ArrayList<String>();
+        for (int j = 0; j < categoriesArray.length(); j++) {
+          categories.add(categoriesArray.getString(j));
+        }
+
+        CartItem cartItem = new CartItem(
+          name,
+          quantity,
+          unitAmount,
+          discountAmount,
+          taxAmount,
+          externalIdentifier,
+          sku,
+          productUrl,
+          imageUrl,
+          categories,
+          productType
+        );
         cartItemList.add(cartItem);
       }
     } catch (JSONException e) {
