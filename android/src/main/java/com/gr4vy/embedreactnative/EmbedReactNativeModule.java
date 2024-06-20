@@ -47,6 +47,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_REQUIRE_SECURITY_CODE = "EXTRA_REQUIRE_SECURITY_CODE";
   static final String EXTRA_SHIPPING_DETAILS_ID = "EXTRA_SHIPPING_DETAILS_ID";
   static final String EXTRA_MERCHANT_ACCOUNT_ID = "EXTRA_MERCHANT_ACCOUNT_ID";
+  static final String EXTRA_CONNECTION_OPTIONS = "EXTRA_CONNECTION_OPTIONS";
   static final String EXTRA_PAYMENT_SOURCE = "EXTRA_PAYMENT_SOURCE";
   static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
   static final String EXTRA_DEBUG_MODE = "EXTRA_DEBUG_MODE";
@@ -155,6 +156,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       Boolean requireSecurityCode = config.hasKey("requireSecurityCode") ? config.getBoolean("requireSecurityCode") : false;
       String shippingDetailsId = config.getString("shippingDetailsId");
       String merchantAccountid = config.getString("merchantAccountId");
+      ReadableMap connectionOptions = coalesce(config.getMap("connectionOptions"), emptyMap);
       String paymentSource = config.getString("paymentSource");
       ReadableArray cartItems = coalesce(config.getArray("cartItems"), emptyArray);
       Boolean debugMode = config.hasKey("debugMode") ? config.getBoolean("debugMode") : false;
@@ -182,12 +184,15 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       metadataWritableMap.merge(metadata);
       WritableNativeMap themeWritableMap = new WritableNativeMap();
       themeWritableMap.merge(theme);
+      WritableNativeMap connectionOptionsWritableMap = new WritableNativeMap();
+      connectionOptionsWritableMap.merge(connectionOptions);
       WritableNativeMap statementDescriptorWritableMap = new WritableNativeMap();
       statementDescriptorWritableMap.merge(statementDescriptor);
 
       // Convert WritableMap(s) to Bundle(s)
       Bundle metadataBundle = Arguments.toBundle(metadataWritableMap);
       Bundle themeBundle = Arguments.toBundle(themeWritableMap);
+      Bundle connectionOptionsBundle = Arguments.toBundle(connectionOptionsWritableMap);
       Bundle statementDescriptorBundle = Arguments.toBundle(statementDescriptorWritableMap);
 
       androidIntent.putExtra(EXTRA_GR4VY_ID, gr4vyId);
@@ -211,6 +216,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_REQUIRE_SECURITY_CODE, requireSecurityCode);
       androidIntent.putExtra(EXTRA_SHIPPING_DETAILS_ID, shippingDetailsId);
       androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
+      androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS, connectionOptionsBundle);
       androidIntent.putExtra(EXTRA_DEBUG_MODE, debugMode);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);

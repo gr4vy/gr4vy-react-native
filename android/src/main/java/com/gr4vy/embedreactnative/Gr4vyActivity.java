@@ -20,6 +20,7 @@ import com.gr4vy.android_sdk.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.coalesce;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_GR4VY_ID;
@@ -41,11 +42,10 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_STATEMENT_
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_REQUIRE_SECURITY_CODE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_SHIPPING_DETAILS_ID;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_MERCHANT_ACCOUNT_ID;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CONNECTION_OPTIONS;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_DEBUG_MODE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_PAYMENT_SOURCE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CART_ITEMS;
-
-import java.util.HashMap;
 
 public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandler {
   private Gr4vySDK gr4vySDK;
@@ -78,6 +78,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   Boolean requireSecurityCode;
   String shippingDetailsId;
   String merchantAccountId;
+  // Map<String, JsonElement> connectionOptions;
   Boolean debugMode;
 
   Boolean sdkLaunched = false;
@@ -188,7 +189,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
         String name = cartItemJsonObject.getString("name");
         int quantity = cartItemJsonObject.getInt("quantity");
         int unitAmount = cartItemJsonObject.getInt("unitAmount");
-        CartItem cartItem = new CartItem(name, quantity, unitAmount);
+        CartItem cartItem = new CartItem(name, quantity, unitAmount, 0, 0, null, null, null, null, null, null); // TODO: pass new cartItems props
         cartItemList.add(cartItem);
       }
     } catch (JSONException e) {
@@ -238,6 +239,10 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     }
     this.metadata = metadataHashMap;
 
+    // Convert connectionOptions to Map<String, JsonElement>
+    // ReadableMap connectionOptionsMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_CONNECTION_OPTIONS));
+    // this.connectionOptions = convertConnectionOptions(connectionOptionsMap);
+
     // Convert statementDescriptor to Gr4vyStatementDescriptor
     ReadableMap statementDescriptorMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_STATEMENT_DESCRIPTOR));
     this.statementDescriptor = convertStatementDescriptor(statementDescriptorMap);
@@ -284,6 +289,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             requireSecurityCode,
             shippingDetailsId,
             merchantAccountId,
+            null, // TODO: pass connectionOptions
             debugMode);
 
     sdkLaunched = true;
