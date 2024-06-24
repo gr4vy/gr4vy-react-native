@@ -74,6 +74,8 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
             return map.getInt(key);
           case String:
             return map.getString(key);
+          case Array:
+            return map.getArray(key);
           default:
             return null;
         }
@@ -142,10 +144,6 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       cartItemWritableMap.putString("name", cartItemMap.getString("name"));
       cartItemWritableMap.putInt("quantity", cartItemMap.getInt("quantity"));
       cartItemWritableMap.putInt("unitAmount", cartItemMap.getInt("unitAmount"));
-      // cartItemWritableMap.putInt("discountAmount", (Integer) getMapOptionalValue(cartItemMap, "discountAmount", 0));
-      // cartItemWritableMap.putInt("taxAmount", (Integer) getMapOptionalValue(cartItemMap, "taxAmount", 0));
-      // cartItemWritableMap.putString("externalIdentifier", (String) getMapOptionalValue(cartItemMap, "externalIdentifier", null));
-      // cartItemWritableMap.putString("sku", (String) getMapOptionalValue(cartItemMap, "sku", null));
 
       List<String> optionalProps = new ArrayList<String>(Arrays.asList(
         "discountAmount",
@@ -154,6 +152,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
         "sku",
         "productUrl",
         "imageUrl",
+        "categories",
         "productType"
       ));
       for (String prop : optionalProps) {
@@ -166,19 +165,14 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
             case "String":
               cartItemWritableMap.putString(prop, (String) value);
               break;
+            case "ReadableNativeArray":
+              cartItemWritableMap.putArray(prop, (ReadableArray) value);
             default:
               break;
           }
         }
       }
 
-      // cartItemWritableMap.putString("productUrl", (String) getMapOptionalValue(cartItemMap, "productUrl", null));
-      // cartItemWritableMap.putString("imageUrl", (String) getMapOptionalValue(cartItemMap, "imageUrl", null));
-      // cartItemWritableMap.putString("productType", (String) getMapOptionalValue(cartItemMap, "productType", null));
-
-      ReadableArray emptyArray = Arguments.createArray();
-      ReadableArray categories = coalesce(cartItemMap.getArray("categories"), emptyArray);
-      cartItemWritableMap.putArray("categories", categories);
 
       cartItemsWritableArray.pushMap(cartItemWritableMap);
     }

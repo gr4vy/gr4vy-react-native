@@ -84,6 +84,17 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
 
   Boolean sdkLaunched = false;
 
+  protected static Object getObjectOptionalValue(JSONObject object, String key) {
+    if (!object.isNull(key)) {
+      try {
+        return object.get(key);
+      } catch (JSONException e) {
+        return null;
+      }
+    }
+    return null;
+  }
+
   protected Gr4vyTheme buildTheme(ReadableMap theme) {
     if (theme == null) {
       return null;
@@ -188,20 +199,23 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       for (int i = 0; i < cartItemsJsonArray.length(); i++) {
         JSONObject cartItemJsonObject = cartItemsJsonArray.getJSONObject(i);
         String name = cartItemJsonObject.getString("name");
-        int quantity = cartItemJsonObject.getInt("quantity");
-        int unitAmount = cartItemJsonObject.getInt("unitAmount");
-        int discountAmount = cartItemJsonObject.getInt("discountAmount");
-        int taxAmount = cartItemJsonObject.getInt("taxAmount");
-        String externalIdentifier = cartItemJsonObject.getString("externalIdentifier");
-        String sku = cartItemJsonObject.getString("sku");
-        String productUrl = cartItemJsonObject.getString("productUrl");
-        String imageUrl = cartItemJsonObject.getString("imageUrl");
-        String productType = cartItemJsonObject.getString("productType");
+        Integer quantity = cartItemJsonObject.getInt("quantity");
+        Integer unitAmount = cartItemJsonObject.getInt("unitAmount");
+        Integer discountAmount = (Integer) getObjectOptionalValue(cartItemJsonObject, "discountAmount");
+        Integer taxAmount = (Integer) getObjectOptionalValue(cartItemJsonObject, "taxAmount");
+        String externalIdentifier = (String) getObjectOptionalValue(cartItemJsonObject, "externalIdentifier");
+        String sku = (String) getObjectOptionalValue(cartItemJsonObject, "sku");
+        String productUrl = (String) getObjectOptionalValue(cartItemJsonObject, "productUrl");
+        String imageUrl = (String) getObjectOptionalValue(cartItemJsonObject, "imageUrl");
+        String productType = (String) getObjectOptionalValue(cartItemJsonObject, "productType");
 
-        JSONArray categoriesArray = cartItemJsonObject.getJSONArray("categories");
-        List<String> categories = new ArrayList<String>();
-        for (int j = 0; j < categoriesArray.length(); j++) {
-          categories.add(categoriesArray.getString(j));
+        JSONArray categoriesArray = (JSONArray) getObjectOptionalValue(cartItemJsonObject, "categories");
+        List<String> categories = null;
+        if (categoriesArray != null) {
+          categories = new ArrayList<String>();
+          for (int j = 0; j < categoriesArray.length(); j++) {
+            categories.add(categoriesArray.getString(j));
+          }
         }
 
         CartItem cartItem = new CartItem(
