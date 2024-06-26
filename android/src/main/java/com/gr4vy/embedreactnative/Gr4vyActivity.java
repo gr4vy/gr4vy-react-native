@@ -43,7 +43,6 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_STATEMENT_
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_REQUIRE_SECURITY_CODE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_SHIPPING_DETAILS_ID;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_MERCHANT_ACCOUNT_ID;
-import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CONNECTION_OPTIONS;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_DEBUG_MODE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_PAYMENT_SOURCE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CART_ITEMS;

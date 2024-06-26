@@ -51,7 +51,6 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_REQUIRE_SECURITY_CODE = "EXTRA_REQUIRE_SECURITY_CODE";
   static final String EXTRA_SHIPPING_DETAILS_ID = "EXTRA_SHIPPING_DETAILS_ID";
   static final String EXTRA_MERCHANT_ACCOUNT_ID = "EXTRA_MERCHANT_ACCOUNT_ID";
-  static final String EXTRA_CONNECTION_OPTIONS = "EXTRA_CONNECTION_OPTIONS";
   static final String EXTRA_PAYMENT_SOURCE = "EXTRA_PAYMENT_SOURCE";
   static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
   static final String EXTRA_DEBUG_MODE = "EXTRA_DEBUG_MODE";
