@@ -29,6 +29,8 @@
   },
   "resolutions": {
     "braces": "^3.0.3",
-    "tar": "^6.2.1"
+    "tar": "^6.2.1",
+    "ws": "^7.5.10",
+    "react-native/ws": "^6.2.3"
   }
 }
