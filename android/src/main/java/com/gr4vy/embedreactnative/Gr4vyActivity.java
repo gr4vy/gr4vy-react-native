@@ -79,7 +79,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   Boolean requireSecurityCode;
   String shippingDetailsId;
   String merchantAccountId;
-  // Map<String, JsonElement> connectionOptions;
   Boolean debugMode;
 
   Boolean sdkLaunched = false;
@@ -279,10 +278,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       metadataHashMap.put(key, value);
     }
     this.metadata = metadataHashMap;
-
-    // Convert connectionOptions to Map<String, JsonElement>
-    // ReadableMap connectionOptionsMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_CONNECTION_OPTIONS));
-    // this.connectionOptions = convertConnectionOptions(connectionOptionsMap);
 
     // Convert statementDescriptor to Gr4vyStatementDescriptor
     ReadableMap statementDescriptorMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_STATEMENT_DESCRIPTOR));
