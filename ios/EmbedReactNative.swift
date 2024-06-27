@@ -333,7 +333,7 @@ class EmbedReactNative: NSObject {
                   ]
                 )
                 return
-              case .transactionCreated(let transactionID, let status, let paymentMethodID):
+              case .transactionCreated(let transactionID, let status, let paymentMethodID, let approvalUrl):
                 EmbedReactNativeEvents.emitter.sendEvent(
                   withName: "onEvent",
                   body: [
@@ -342,7 +342,8 @@ class EmbedReactNative: NSObject {
                       "success": true,
                       "transactionId": transactionID,
                       "status": status,
-                      "paymentMethodId": paymentMethodID as Any
+                      "paymentMethodId": paymentMethodID as Any,
+                      "approvalUrl": approvalUrl
                     ]
                   ]
                 )

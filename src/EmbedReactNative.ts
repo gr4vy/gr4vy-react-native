@@ -11,6 +11,7 @@ export interface Gr4vyTransactionResult {
   transactionId: string
   status: string
   paymentMethodId?: string
+  approvalUrl?: string
 }
 
 export interface Gr4vyPaymentMethod {
