@@ -181,8 +181,8 @@ class EmbedReactNative: NSObject {
             let unitAmount = dict["unitAmount"] as? Int else {
           return []
       }
-      let discountAmount = dict["discountAmount"] as? Int ?? 0
-      let taxAmount = dict["taxAmount"] as? Int ?? 0
+      let discountAmount = dict["discountAmount"] as? Int
+      let taxAmount = dict["taxAmount"] as? Int
       let externalIdentifier = dict["externalIdentifier"] as? String
       let sku = dict["sku"] as? String
       let productUrl = dict["productUrl"] as? String
