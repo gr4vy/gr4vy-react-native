@@ -1,3 +1,16 @@
+# v1.2.0 (Mon Jul 01 2024)
+
+#### 🚀 Enhancement
+
+- task: add support for cart items [#32](https://github.com/gr4vy/gr4vy-react-native/pull/32) ([@douglaseggleton](https://github.com/douglaseggleton) [@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 2
+
+- Douglas Eggleton ([@douglaseggleton](https://github.com/douglaseggleton))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v1.1.0 (Wed Jun 12 2024)
 
 #### 🚀 Enhancement
