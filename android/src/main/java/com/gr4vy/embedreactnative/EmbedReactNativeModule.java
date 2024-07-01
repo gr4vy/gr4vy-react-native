@@ -25,9 +25,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @ReactModule(name = EmbedReactNativeModule.NAME)
 public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   public static final String NAME = "EmbedReactNative";
@@ -64,23 +61,22 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     return null;
   }
 
-  public static Object getMapOptionalValue(ReadableMap map, String key) {
-    if (map.hasKey(key)) {
-      if (!map.isNull(key)) {
-        switch (map.getType(key)) {
+  public static void setOptionalValue(ReadableMap source, WritableMap target, String key) {
+    if (source.hasKey(key)) {
+      if (!source.isNull(key)) {
+        switch (source.getType(key)) {
           case Number:
-            return map.getInt(key);
+            target.putInt(key, source.getInt(key));
+            break;
           case String:
-            return map.getString(key);
+            target.putString(key, source.getString(key));
+            break;
           case Array:
-            return map.getArray(key);
-          default:
-            return null;
+            target.putArray(key, source.getArray(key));
+            break;
         }
       }
-      return null;
     }
-    return null;
   }
 
   public EmbedReactNativeModule(ReactApplicationContext context) {
@@ -154,21 +150,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
         "productType"
       };
       for (String prop : optionalProps) {
-        Object value = getMapOptionalValue(cartItemMap, prop);
-        if (value != null) {
-          switch (value.getClass().getSimpleName()) {
-            case "Integer":
-              cartItemWritableMap.putInt(prop, (Integer) value);
-              break;
-            case "String":
-              cartItemWritableMap.putString(prop, (String) value);
-              break;
-            case "ReadableNativeArray":
-              cartItemWritableMap.putArray(prop, (ReadableArray) value);
-            default:
-              break;
-          }
-        }
+        setOptionalValue(cartItemMap, cartItemWritableMap, prop);
       }
 
 
