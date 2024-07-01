@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -144,7 +143,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       cartItemWritableMap.putInt("quantity", cartItemMap.getInt("quantity"));
       cartItemWritableMap.putInt("unitAmount", cartItemMap.getInt("unitAmount"));
 
-      List<String> optionalProps = new ArrayList<String>(Arrays.asList(
+      String[] optionalProps = new String[] {
         "discountAmount",
         "taxAmount",
         "externalIdentifier",
@@ -153,7 +152,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
         "imageUrl",
         "categories",
         "productType"
-      ));
+      };
       for (String prop : optionalProps) {
         Object value = getMapOptionalValue(cartItemMap, prop);
         if (value != null) {
