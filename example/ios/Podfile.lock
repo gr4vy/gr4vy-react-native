@@ -73,7 +73,7 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - gr4vy-embed-react-native (1.1.0):
+  - gr4vy-embed-react-native (1.2.0):
     - gr4vy-ios (= 2.2.1)
     - React-Core
   - gr4vy-ios (2.2.1)
@@ -627,7 +627,7 @@ SPEC CHECKSUMS:
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  gr4vy-embed-react-native: 04bd89611a599568cada061b531d0e08439bde22
+  gr4vy-embed-react-native: 6931c33fa74abdfaa652e2c7c820b8abbd1df338
   gr4vy-ios: 9553ba573977441f837de5df83f855582d813401
   hermes-engine: 47986d26692ae75ee7a17ab049caee8864f855de
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
