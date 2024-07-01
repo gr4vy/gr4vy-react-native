@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableArray;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,6 +21,7 @@ import com.gr4vy.android_sdk.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.coalesce;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_GR4VY_ID;
@@ -44,8 +46,6 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_MERCHANT_A
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_DEBUG_MODE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_PAYMENT_SOURCE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CART_ITEMS;
-
-import java.util.HashMap;
 
 public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandler {
   private Gr4vySDK gr4vySDK;
@@ -186,9 +186,38 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       for (int i = 0; i < cartItemsJsonArray.length(); i++) {
         JSONObject cartItemJsonObject = cartItemsJsonArray.getJSONObject(i);
         String name = cartItemJsonObject.getString("name");
-        int quantity = cartItemJsonObject.getInt("quantity");
-        int unitAmount = cartItemJsonObject.getInt("unitAmount");
-        CartItem cartItem = new CartItem(name, quantity, unitAmount);
+        Integer quantity = cartItemJsonObject.getInt("quantity");
+        Integer unitAmount = cartItemJsonObject.getInt("unitAmount");
+        Integer discountAmount = (Integer) cartItemJsonObject.opt("discountAmount");
+        Integer taxAmount = (Integer) cartItemJsonObject.opt("taxAmount");
+        String externalIdentifier = (String) cartItemJsonObject.opt("externalIdentifier");
+        String sku = (String) cartItemJsonObject.opt("sku");
+        String productUrl = (String) cartItemJsonObject.opt("productUrl");
+        String imageUrl = (String) cartItemJsonObject.opt("imageUrl");
+        String productType = (String) cartItemJsonObject.opt("productType");
+
+        JSONArray categoriesArray = (JSONArray) cartItemJsonObject.opt("categories");
+        List<String> categories = null;
+        if (categoriesArray != null) {
+          categories = new ArrayList<String>();
+          for (int j = 0; j < categoriesArray.length(); j++) {
+            categories.add(categoriesArray.getString(j));
+          }
+        }
+
+        CartItem cartItem = new CartItem(
+          name,
+          quantity,
+          unitAmount,
+          discountAmount,
+          taxAmount,
+          externalIdentifier,
+          sku,
+          productUrl,
+          imageUrl,
+          categories,
+          productType
+        );
         cartItemList.add(cartItem);
       }
     } catch (JSONException e) {
@@ -284,6 +313,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             requireSecurityCode,
             shippingDetailsId,
             merchantAccountId,
+            null, // TODO: pass connectionOptions
             debugMode);
 
     sdkLaunched = true;

@@ -61,6 +61,24 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     return null;
   }
 
+  public static void setOptionalValue(ReadableMap source, WritableMap target, String key) {
+    if (source.hasKey(key)) {
+      if (!source.isNull(key)) {
+        switch (source.getType(key)) {
+          case Number:
+            target.putInt(key, source.getInt(key));
+            break;
+          case String:
+            target.putString(key, source.getString(key));
+            break;
+          case Array:
+            target.putArray(key, source.getArray(key));
+            break;
+        }
+      }
+    }
+  }
+
   public EmbedReactNativeModule(ReactApplicationContext context) {
     super(context);
 
@@ -120,6 +138,22 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       cartItemWritableMap.putString("name", cartItemMap.getString("name"));
       cartItemWritableMap.putInt("quantity", cartItemMap.getInt("quantity"));
       cartItemWritableMap.putInt("unitAmount", cartItemMap.getInt("unitAmount"));
+
+      String[] optionalProps = new String[] {
+        "discountAmount",
+        "taxAmount",
+        "externalIdentifier",
+        "sku",
+        "productUrl",
+        "imageUrl",
+        "categories",
+        "productType"
+      };
+      for (String prop : optionalProps) {
+        setOptionalValue(cartItemMap, cartItemWritableMap, prop);
+      }
+
+
       cartItemsWritableArray.pushMap(cartItemWritableMap);
     }
     return cartItemsWritableArray;
