@@ -95,6 +95,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
               String status = data.getStringExtra(Gr4vyActivity.EXTRA_STATUS);
               String transactionId = data.getStringExtra(Gr4vyActivity.EXTRA_TRANSACTION_ID);
               String paymentMethodId = data.getStringExtra(Gr4vyActivity.EXTRA_PAYMENT_METHOD_ID);
+              String approvalUrl = data.getStringExtra(Gr4vyActivity.EXTRA_APPROVAL_URL);
 
               WritableMap result = Arguments.createMap();
               result.putString("name", event);
@@ -104,6 +105,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
               resultData.putString("status", status);
               resultData.putString("transactionId", transactionId);
               resultData.putString("paymentMethodId", paymentMethodId);
+              resultData.putString("approvalUrl", approvalUrl);
 
               result.putMap("data", resultData);
 

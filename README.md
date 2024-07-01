@@ -146,7 +146,8 @@ Returns data about a successfully created transaction.
     "success": true,
     "transactionId": "...",
     "status": "capture_succeeded",
-    "paymentMethodId": "..."
+    "paymentMethodId": "...",
+    "approvalUrl": "https://example.com"
   }
 }
 ```
