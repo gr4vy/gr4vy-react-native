@@ -1,3 +1,15 @@
+# v1.3.0 (Mon Jul 01 2024)
+
+#### 🚀 Enhancement
+
+- chore: upgrade android sdk [#33](https://github.com/gr4vy/gr4vy-react-native/pull/33) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v1.2.0 (Mon Jul 01 2024)
 
 #### 🚀 Enhancement
