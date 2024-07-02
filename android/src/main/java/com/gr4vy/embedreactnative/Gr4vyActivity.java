@@ -56,6 +56,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   static final String EXTRA_STATUS = "EXTRA_STATUS";
   static final String EXTRA_TRANSACTION_ID = "EXTRA_TRANSACTION_ID";
   static final String EXTRA_PAYMENT_METHOD_ID = "EXTRA_PAYMENT_METHOD_ID";
+  static final String EXTRA_APPROVAL_URL = "EXTRA_APPROVAL_URL";
 
   String gr4vyId;
   String token;
@@ -353,12 +354,14 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       Log.d("Gr4vy", "status: " + ((Gr4vyResult.TransactionCreated) gr4vyResult).getStatus());
       Log.d("Gr4vy", "transactionId: " + ((Gr4vyResult.TransactionCreated) gr4vyResult).getTransactionId());
       Log.d("Gr4vy", "paymentMethodId: " + ((Gr4vyResult.TransactionCreated) gr4vyResult).getPaymentMethodId());
+      Log.d("Gr4vy", "approvalUrl: " + ((Gr4vyResult.TransactionCreated) gr4vyResult).getApprovalUrl());
 
       data.putExtra(EXTRA_EVENT, "transactionCreated");
       data.putExtra(EXTRA_SUCCESS, true);
       data.putExtra(EXTRA_STATUS, ((Gr4vyResult.TransactionCreated) gr4vyResult).getStatus());
       data.putExtra(EXTRA_TRANSACTION_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getTransactionId());
       data.putExtra(EXTRA_PAYMENT_METHOD_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getPaymentMethodId());
+      data.putExtra(EXTRA_APPROVAL_URL, ((Gr4vyResult.TransactionCreated) gr4vyResult).getApprovalUrl());
 
       setResult(RESULT_OK, data);
     }
