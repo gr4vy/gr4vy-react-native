@@ -1,3 +1,19 @@
+# v1.4.0 (Tue Jul 02 2024)
+
+#### 🚀 Enhancement
+
+- task: pass approvalUrl to Android SDK [#34](https://github.com/gr4vy/gr4vy-react-native/pull/34) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### ⚠️ Pushed to `main`
+
+- Update example app Podfile.lock with latest sdk version ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v1.3.0 (Mon Jul 01 2024)
 
 #### 🚀 Enhancement
