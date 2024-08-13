@@ -1,3 +1,15 @@
+# v1.5.0 (Tue Aug 13 2024)
+
+#### 🚀 Enhancement
+
+- task: add support for `connectionOptions` [#37](https://github.com/gr4vy/gr4vy-react-native/pull/37) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v1.4.0 (Tue Jul 02 2024)
 
 #### 🚀 Enhancement
