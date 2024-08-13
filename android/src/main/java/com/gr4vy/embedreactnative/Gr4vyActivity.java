@@ -46,6 +46,7 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_MERCHANT_A
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_DEBUG_MODE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_PAYMENT_SOURCE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CART_ITEMS;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CONNECTION_OPTIONS_STRING;
 
 public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandler {
   private Gr4vySDK gr4vySDK;
@@ -79,6 +80,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   Boolean requireSecurityCode;
   String shippingDetailsId;
   String merchantAccountId;
+  String connectionOptionsString;
   Boolean debugMode;
 
   Boolean sdkLaunched = false;
@@ -250,6 +252,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     this.shippingDetailsId = intent.getStringExtra(EXTRA_SHIPPING_DETAILS_ID);
     this.merchantAccountId = intent.getStringExtra(EXTRA_MERCHANT_ACCOUNT_ID);
     this.locale = intent.getStringExtra(EXTRA_LOCALE);
+    this.connectionOptionsString = intent.getStringExtra(EXTRA_CONNECTION_OPTIONS_STRING);
     this.debugMode = intent.getExtras().getBoolean(EXTRA_DEBUG_MODE);
 
     // Convert the cartItems JSON string to List<CartItem>
@@ -314,7 +317,8 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             requireSecurityCode,
             shippingDetailsId,
             merchantAccountId,
-            null, // TODO: pass connectionOptions
+            null,
+            connectionOptionsString,
             debugMode);
 
     sdkLaunched = true;

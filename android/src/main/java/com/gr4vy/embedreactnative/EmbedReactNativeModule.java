@@ -25,6 +25,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @ReactModule(name = EmbedReactNativeModule.NAME)
 public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   public static final String NAME = "EmbedReactNative";
@@ -49,6 +52,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_MERCHANT_ACCOUNT_ID = "EXTRA_MERCHANT_ACCOUNT_ID";
   static final String EXTRA_PAYMENT_SOURCE = "EXTRA_PAYMENT_SOURCE";
   static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
+  static final String EXTRA_CONNECTION_OPTIONS_STRING = "EXTRA_CONNECTION_OPTIONS_STRING";
   static final String EXTRA_DEBUG_MODE = "EXTRA_DEBUG_MODE";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
 
@@ -161,6 +165,19 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     return cartItemsWritableArray;
   }
 
+  private static String convertMapToJsonString(ReadableMap map) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    try {
+      String jsonString = objectMapper.writeValueAsString(map.toHashMap());
+      return jsonString;
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+    }
+
+    return null;
+  }
+
   @Override
   @NonNull
   public String getName() {
@@ -193,6 +210,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       String merchantAccountid = config.getString("merchantAccountId");
       String paymentSource = config.getString("paymentSource");
       ReadableArray cartItems = coalesce(config.getArray("cartItems"), emptyArray);
+      ReadableMap connectionOptions = coalesce(config.getMap("connectionOptions"), emptyMap);
       Boolean debugMode = config.hasKey("debugMode") ? config.getBoolean("debugMode") : false;
 
       ReactApplicationContext context = getReactApplicationContext();
@@ -247,6 +265,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_REQUIRE_SECURITY_CODE, requireSecurityCode);
       androidIntent.putExtra(EXTRA_SHIPPING_DETAILS_ID, shippingDetailsId);
       androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
+      androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS_STRING, convertMapToJsonString(connectionOptions));
       androidIntent.putExtra(EXTRA_DEBUG_MODE, debugMode);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
