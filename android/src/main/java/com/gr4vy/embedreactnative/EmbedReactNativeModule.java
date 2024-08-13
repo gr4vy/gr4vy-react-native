@@ -10,6 +10,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
@@ -24,6 +25,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import org.json.JSONObject;
+import org.json.JSONException;
 
 @ReactModule(name = EmbedReactNativeModule.NAME)
 public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
@@ -49,6 +53,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_MERCHANT_ACCOUNT_ID = "EXTRA_MERCHANT_ACCOUNT_ID";
   static final String EXTRA_PAYMENT_SOURCE = "EXTRA_PAYMENT_SOURCE";
   static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
+  static final String EXTRA_CONNECTION_OPTIONS_STRING = "EXTRA_CONNECTION_OPTIONS_STRING";
   static final String EXTRA_DEBUG_MODE = "EXTRA_DEBUG_MODE";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
 
@@ -161,6 +166,39 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     return cartItemsWritableArray;
   }
 
+  private static JSONObject convertMapToJsonObject(ReadableMap map) {
+    JSONObject jsonObject = new JSONObject();
+    ReadableMapKeySetIterator iterator = map.keySetIterator();
+
+    while (iterator.hasNextKey()) {
+      String key = iterator.nextKey();
+
+      try {
+        switch (map.getType(key)) {
+          case Null:
+            jsonObject.put(key, null);
+            break;
+          case Boolean:
+            jsonObject.put(key, map.getBoolean(key));
+            break;
+          case Number:
+            jsonObject.put(key, map.getDouble(key));
+            break;
+          case String:
+            jsonObject.put(key, map.getString(key));
+            break;
+          case Map:
+            jsonObject.put(key, convertMapToJsonObject(map.getMap(key)));
+            break;
+        }
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
+    }
+
+    return jsonObject;
+  }
+
   @Override
   @NonNull
   public String getName() {
@@ -193,6 +231,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       String merchantAccountid = config.getString("merchantAccountId");
       String paymentSource = config.getString("paymentSource");
       ReadableArray cartItems = coalesce(config.getArray("cartItems"), emptyArray);
+      ReadableMap connectionOptions = coalesce(config.getMap("connectionOptions"), emptyMap);
       Boolean debugMode = config.hasKey("debugMode") ? config.getBoolean("debugMode") : false;
 
       ReactApplicationContext context = getReactApplicationContext();
@@ -247,6 +286,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_REQUIRE_SECURITY_CODE, requireSecurityCode);
       androidIntent.putExtra(EXTRA_SHIPPING_DETAILS_ID, shippingDetailsId);
       androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
+      androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS_STRING, convertMapToJsonObject(connectionOptions).toString());
       androidIntent.putExtra(EXTRA_DEBUG_MODE, debugMode);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
