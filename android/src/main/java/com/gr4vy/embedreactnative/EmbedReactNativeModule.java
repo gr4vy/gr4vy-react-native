@@ -29,6 +29,9 @@ import android.util.Log;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @ReactModule(name = EmbedReactNativeModule.NAME)
 public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   public static final String NAME = "EmbedReactNative";
@@ -166,37 +169,17 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
     return cartItemsWritableArray;
   }
 
-  private static JSONObject convertMapToJsonObject(ReadableMap map) {
-    JSONObject jsonObject = new JSONObject();
-    ReadableMapKeySetIterator iterator = map.keySetIterator();
+  private static String convertMapToJsonString(ReadableMap map) {
+    ObjectMapper objectMapper = new ObjectMapper();
 
-    while (iterator.hasNextKey()) {
-      String key = iterator.nextKey();
-
-      try {
-        switch (map.getType(key)) {
-          case Null:
-            jsonObject.put(key, null);
-            break;
-          case Boolean:
-            jsonObject.put(key, map.getBoolean(key));
-            break;
-          case Number:
-            jsonObject.put(key, map.getDouble(key));
-            break;
-          case String:
-            jsonObject.put(key, map.getString(key));
-            break;
-          case Map:
-            jsonObject.put(key, convertMapToJsonObject(map.getMap(key)));
-            break;
-        }
-      } catch (JSONException e) {
-        e.printStackTrace();
-      }
+    try {
+      String jsonString = objectMapper.writeValueAsString(map.toHashMap());
+      return jsonString;
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
     }
 
-    return jsonObject;
+    return null;
   }
 
   @Override
@@ -286,7 +269,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_REQUIRE_SECURITY_CODE, requireSecurityCode);
       androidIntent.putExtra(EXTRA_SHIPPING_DETAILS_ID, shippingDetailsId);
       androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
-      androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS_STRING, convertMapToJsonObject(connectionOptions).toString());
+      androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS_STRING, convertMapToJsonString(connectionOptions));
       androidIntent.putExtra(EXTRA_DEBUG_MODE, debugMode);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
