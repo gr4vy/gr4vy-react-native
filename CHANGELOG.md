@@ -1,3 +1,15 @@
+# v1.5.1 (Wed Aug 14 2024)
+
+#### 🐛 Bug Fix
+
+- chore: update docs with connection options [#39](https://github.com/gr4vy/gr4vy-react-native/pull/39) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v1.5.0 (Tue Aug 13 2024)
 
 #### 🚀 Enhancement
