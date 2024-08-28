@@ -25,6 +25,30 @@ export type Gr4vyEvent = {
   data: Gr4vyError | Gr4vyTransactionResult
 }
 
+export type Gr4vyBillingDetails = {
+  firstName?: string
+  lastName?: string
+  emailAddress?: string
+  phoneNumber?: string
+  address?: {
+    houseNumberOrName?: string
+    line1?: string
+    line2?: string
+    organization?: string
+    city?: string
+    postalCode?: string
+    country?: string
+    state?: string
+    stateCode?: string
+  }
+  taxId?: {
+    value?: string
+    kind?: string
+  }
+}
+
+export type Gr4vyShippingDetails = Omit<Gr4vyBillingDetails, 'taxId'>
+
 export type Gr4vyConfig = {
   gr4vyId: string
   environment?: string | undefined
@@ -108,6 +132,12 @@ export type Gr4vyConfig = {
   shippingDetailsId?: string
   merchantAccountId?: string
   connectionOptions?: Record<string, unknown>
+  buyer?: {
+    displayName?: string | null
+    externalIdentifier?: string | null
+    billingDetails?: Gr4vyBillingDetails
+    shippingDetails?: Gr4vyShippingDetails
+  }
   debugMode?: boolean
 }
 
