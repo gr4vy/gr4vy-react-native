@@ -250,137 +250,39 @@ class EmbedReactNative: NSObject {
     }
   }
 
-//    func convertDictToStruct<T: Decodable>(_ dictionary: Any?, type: T.Type) -> T? {
-//        // Ensure the dictionary is of the correct type
-//        guard let unwrappedDictionary = dictionary as? [String: Any?] else {
-////            print("Error: The input is not a valid dictionary")
-//            return nil
-//        }
-//
-//        // Create a new dictionary with non-nil values only
-//        var nonNilDictionary = [String: Any]()
-//        for (key, value) in dictionary {
-//            if let unwrappedValue = value {
-//                nonNilDictionary[key] = unwrappedValue
-//            }
-//        }
-//
-//        do {
-//            // Convert dictionary to JSON data
-//            let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: [])
-//
-//            // Decode the JSON data into the desired struct type
-//            let result = try JSONDecoder().decode(T.self, from: jsonData)
-//
-//            return result
-//        } catch {
-//            print("Error: \(error)")
-//            return nil
-//        }
-//    }
+  func decode<T: Codable>(from dict: [String: Any?], to type: T.Type) -> T? {
+      func sanitize(dict: [String: Any?]) -> [String: Any] {
+          var result = [String: Any]()
 
-    func decode<T: Codable>(from dict: [String: Any?], to type: T.Type) -> T? {
-        func sanitize(dict: [String: Any?]) -> [String: Any] {
-            var result = [String: Any]()
+          for (key, value) in dict {
+              if let dictValue = value as? [String: Any?] {
+                  result[key] = sanitize(dict: dictValue)
+              } else if let nonNilValue = value {
+                  result[key] = nonNilValue
+              }
+          }
 
-            for (key, value) in dict {
-                if let dictValue = value as? [String: Any?] {
-                    result[key] = sanitize(dict: dictValue)
-                } else if let nonNilValue = value {
-                    result[key] = nonNilValue
-                }
-            }
+          return result
+      }
 
-            return result
-        }
+      let sanitizedDict = sanitize(dict: dict) // dictionary without nil values
 
-        let sanitizedDict = sanitize(dict: dict)
-
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: sanitizedDict, options: []) else {
-            return nil
-        }
-
-        let decoder = JSONDecoder()
-        do {
-            let result = try decoder.decode(T.self, from: jsonData)
-            return result
-        } catch {
-            return nil
-        }
-    }
-
-//  func extractStringFromDict(from dict: [String: Any?]?, forKey key: String, defaultValue: String? = nil) -> String? {
-//    return (dict?[key] as? String?) ?? nil
-//  }
-//
-//  func extractDictFromDict(from dict: [String: Any?]?, forKey key: String) -> [String: Any]? {
-//    return (dict?[key] as? [String: Any]?) ?? nil
-//  }
+      do {
+          let jsonData = try JSONSerialization.data(withJSONObject: sanitizedDict, options: [])
+          let result = try JSONDecoder().decode(T.self, from: jsonData)
+          return result
+      } catch {
+          return nil
+      }
+  }
 
   func convertBuyer(_ source: [String: Any?]?) -> Gr4vyBuyer? {
     guard let dict = source,
           let buyer = decode(from: dict, to: Gr4vyBuyer.self) else {
-        return nil
+      return nil
     }
 
     return buyer
-
-//    let billingDetails = extractDictFromDict(from: buyer, forKey: "billingDetails")
-//    let billingDetailsAddress = extractDictFromDict(from: billingDetails, forKey: "address")
-//    let billingDetailsTaxId = extractDictFromDict(from: billingDetails, forKey: "taxId")
-
-//    let shippingDetails = extractDictFromDict(from: buyer, forKey: "shippingDetails")
-//    let shippingDetailsAddress = extractDictFromDict(from: shippingDetails, forKey: "address")
-
-//      if let taxId = convertDictToStruct(billingDetails["taxId"], type: Gr4vyTaxId.self) {
-//          print(taxId)
-//      } else {
-//          print("Failed to convert dictionary to Gr4vyTaxId struct")
-//      }
-
-//      if let myBuyer = decode(from: buyer, to: Gr4vyBuyer.self) {
-//          return myBuyer
-//      } else {
-//          return nil
-//      }
-
-//    return Gr4vyBuyer(
-//      displayName: extractStringFromDict(from: buyer, forKey: "displayName"),
-//      externalIdentifier: extractStringFromDict(from: buyer, forKey: "externalIdentifier"),
-//      billingDetails: Gr4vyBillingDetails(
-//        firstName: extractStringFromDict(from: billingDetails, forKey: "firstName"),
-//        lastName: extractStringFromDict(from: billingDetails, forKey: "lastName"),
-//        emailAddress: extractStringFromDict(from: billingDetails, forKey: "emailAddress"),
-//        phoneNumber: extractStringFromDict(from: billingDetails, forKey: "phoneNumber"),
-//        address: Gr4vyAddress(
-//            houseNumberOrName: extractStringFromDict(from: billingDetails, forKey: "houseNumberOrName"),
-//            line1: extractStringFromDict(from: billingDetails, forKey: "line1"),
-//            line2: extractStringFromDict(from: billingDetails, forKey: "line2"),
-//            organization: extractStringFromDict(from: billingDetails, forKey: "organization"),
-//            postalCode: extractStringFromDict(from: billingDetails, forKey: "postalCode"),
-//            country: extractStringFromDict(from: billingDetails, forKey: "country"),
-//            state: extractStringFromDict(from: billingDetails, forKey: "state"),
-//            stateCode: extractStringFromDict(from: billingDetails, forKey: "stateCode")
-//        ),
-//        taxId: Gr4vyTaxId()
-//      ),
-//      shippingDetails: Gr4vyShippingDetails(
-//        firstName: extractStringFromDict(from: shippingDetails, forKey: "firstName"),
-//        lastName: extractStringFromDict(from: shippingDetails, forKey: "lastName"),
-//        emailAddress: extractStringFromDict(from: shippingDetails, forKey: "emailAddress"),
-//        phoneNumber: extractStringFromDict(from: shippingDetails, forKey: "phoneNumber"),
-//        address: Gr4vyAddress(
-//            houseNumberOrName: extractStringFromDict(from: shippingDetails, forKey: "houseNumberOrName"),
-//            line1: extractStringFromDict(from: shippingDetails, forKey: "line1"),
-//            line2: extractStringFromDict(from: shippingDetails, forKey: "line2"),
-//            organization: extractStringFromDict(from: shippingDetails, forKey: "organization"),
-//            postalCode: extractStringFromDict(from: shippingDetails, forKey: "postalCode"),
-//            country: extractStringFromDict(from: shippingDetails, forKey: "country"),
-//            state: extractStringFromDict(from: shippingDetails, forKey: "state"),
-//            stateCode: extractStringFromDict(from: shippingDetails, forKey: "stateCode")
-//        )
-//      )
-//    )
   }
 
   @objc
