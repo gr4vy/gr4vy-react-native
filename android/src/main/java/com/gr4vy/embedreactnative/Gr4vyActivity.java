@@ -262,26 +262,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     }
 
     return buyer;
-
-  //   ReadableMap emptyMap = Arguments.createMap();
-
-  //   String displayName = (String) buyer.opt("displayName");
-  //   String externalIdentifier = (String) buyer.opt("externalIdentifier");
-
-  //   ReadableMap billingDetails = coalesce(buyer.getMap("billingDetails"), emptyMap);
-  //   String firstName = (String) billingDetails.opt("firstName");
-  //   String lastName = (String) billingDetails.opt("lastName");
-  //   String emailAddress = (String) billingDetails.opt("emailAddress");
-  //   String phoneNumber = (String) billingDetails.opt("phoneNumber");
-
-  //   // ReadableMap billingDetailsAddress = coalesce(billingDetails.getMap("address"), emptyMap);
-
-  //   return Gr4vyBuyer(
-  //     displayName,
-  //     externalIdentifier,
-  //     null,
-  //     null
-  //   );
   }
 
   @Override
