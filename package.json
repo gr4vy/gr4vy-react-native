@@ -71,9 +71,7 @@
   },
   "resolutions": {
     "@types/react": "18.2.8",
-    "braces": "^3.0.3",
-    "elliptic": "^6.5.7",
-    "micromatch": "^4.0.8"
+    "braces": "^3.0.3"
   },
   "peerDependencies": {
     "react": "*",
