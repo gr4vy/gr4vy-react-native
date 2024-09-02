@@ -251,24 +251,8 @@ class EmbedReactNative: NSObject {
   }
 
   func decode<T: Codable>(from dict: [String: Any?], to type: T.Type) -> T? {
-      func sanitize(dict: [String: Any?]) -> [String: Any] {
-          var result = [String: Any]()
-
-          for (key, value) in dict {
-              if let dictValue = value as? [String: Any?] {
-                  result[key] = sanitize(dict: dictValue)
-              } else if let nonNilValue = value {
-                  result[key] = nonNilValue
-              }
-          }
-
-          return result
-      }
-
-      let sanitizedDict = sanitize(dict: dict) // dictionary without nil values
-
       do {
-          let jsonData = try JSONSerialization.data(withJSONObject: sanitizedDict, options: [])
+          let jsonData = try JSONSerialization.data(withJSONObject: dict, options: [])
           let result = try JSONDecoder().decode(T.self, from: jsonData)
           return result
       } catch {
