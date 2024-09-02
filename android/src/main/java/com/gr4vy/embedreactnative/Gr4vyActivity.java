@@ -257,10 +257,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
 
     Gr4vyBuyer buyer = decode(source, Gr4vyBuyer.class);
 
-    if (buyer == null) {
-      return null;
-    }
-
     return buyer;
   }
 
