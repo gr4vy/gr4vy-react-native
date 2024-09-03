@@ -56,7 +56,18 @@ CVE-2024-35176
 CVE-2024-39908
 CVE-2024-41123
 CVE-2024-41946
+CVE-2024-43398
 
 # fast-xml-parser (react-native)
 
 CVE-2024-41818
+
+# micromatch (react-native)
+
+CVE-2024-4067
+
+# elliptic (react-native)
+
+CVE-2024-42459
+CVE-2024-42460
+CVE-2024-42461

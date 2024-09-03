@@ -30,6 +30,7 @@ class EmbedReactNative: NSObject {
                  shippingDetailsId: String?,
                  merchantAccountId: String?,
                  connectionOptions: String?,
+                 buyer: Gr4vyBuyer?,
                  debugMode: Bool = false,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
     var paymentSourceConverted: Gr4vyPaymentSource?
@@ -61,6 +62,7 @@ class EmbedReactNative: NSObject {
                               shippingDetailsId: shippingDetailsId,
                               merchantAccountId: merchantAccountId,
                               connectionOptionsString: connectionOptions,
+                              buyer: buyer,
                               debugMode: debugMode) else {
         completion(nil)
         return
@@ -248,6 +250,25 @@ class EmbedReactNative: NSObject {
     }
   }
 
+  func decode<T: Codable>(from dict: [String: Any?], to type: T.Type) -> T? {
+      do {
+          let jsonData = try JSONSerialization.data(withJSONObject: dict, options: [])
+          let result = try JSONDecoder().decode(T.self, from: jsonData)
+          return result
+      } catch {
+          return nil
+      }
+  }
+
+  func convertBuyer(_ source: [String: Any?]?) -> Gr4vyBuyer? {
+    guard let dict = source,
+          let buyer = decode(from: dict, to: Gr4vyBuyer.self) else {
+      return nil
+    }
+
+    return buyer
+  }
+
   @objc
   func constantsToExport() -> [AnyHashable : Any]! {
     return [
@@ -283,6 +304,7 @@ class EmbedReactNative: NSObject {
           let shippingDetailsId = config["shippingDetailsId"] as? String?,
           let merchantAccountId = config["merchantAccountId"] as? String?,
           let connectionOptions = config["connectionOptions"] as? [String: [String: String?]?]?,
+          let buyer = config["buyer"] as? [String: Any?]?,
           let debugMode = config["debugMode"] as? Bool?
     else {
         EmbedReactNativeEvents.emitter.sendEvent(
@@ -320,6 +342,7 @@ class EmbedReactNative: NSObject {
              shippingDetailsId: shippingDetailsId,
              merchantAccountId: merchantAccountId,
              connectionOptions: convertObjectToJsonString(connectionOptions),
+             buyer: convertBuyer(buyer),
              debugMode: debugMode ?? false) { (gr4vy) in
       if gr4vy == nil {
         EmbedReactNativeEvents.emitter.sendEvent(

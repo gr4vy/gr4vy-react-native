@@ -53,6 +53,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_PAYMENT_SOURCE = "EXTRA_PAYMENT_SOURCE";
   static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
   static final String EXTRA_CONNECTION_OPTIONS_STRING = "EXTRA_CONNECTION_OPTIONS_STRING";
+  static final String EXTRA_BUYER = "EXTRA_BUYER";
   static final String EXTRA_DEBUG_MODE = "EXTRA_DEBUG_MODE";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
 
@@ -211,6 +212,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       String paymentSource = config.getString("paymentSource");
       ReadableArray cartItems = coalesce(config.getArray("cartItems"), emptyArray);
       ReadableMap connectionOptions = coalesce(config.getMap("connectionOptions"), emptyMap);
+      ReadableMap buyer = coalesce(config.getMap("buyer"), emptyMap);
       Boolean debugMode = config.hasKey("debugMode") ? config.getBoolean("debugMode") : false;
 
       ReactApplicationContext context = getReactApplicationContext();
@@ -238,11 +240,14 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       themeWritableMap.merge(theme);
       WritableNativeMap statementDescriptorWritableMap = new WritableNativeMap();
       statementDescriptorWritableMap.merge(statementDescriptor);
+      WritableNativeMap buyerWritableMap = new WritableNativeMap();
+      buyerWritableMap.merge(buyer);
 
       // Convert WritableMap(s) to Bundle(s)
       Bundle metadataBundle = Arguments.toBundle(metadataWritableMap);
       Bundle themeBundle = Arguments.toBundle(themeWritableMap);
       Bundle statementDescriptorBundle = Arguments.toBundle(statementDescriptorWritableMap);
+      Bundle buyerBundle = Arguments.toBundle(buyerWritableMap);
 
       androidIntent.putExtra(EXTRA_GR4VY_ID, gr4vyId);
       androidIntent.putExtra(EXTRA_TOKEN, token);
@@ -266,6 +271,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_SHIPPING_DETAILS_ID, shippingDetailsId);
       androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
       androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS_STRING, convertMapToJsonString(connectionOptions));
+      androidIntent.putExtra(EXTRA_BUYER, buyerBundle);
       androidIntent.putExtra(EXTRA_DEBUG_MODE, debugMode);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);

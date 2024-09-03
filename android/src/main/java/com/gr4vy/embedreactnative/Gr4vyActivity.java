@@ -12,6 +12,10 @@ import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableArray;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -47,6 +51,7 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_DEBUG_MODE
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_PAYMENT_SOURCE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CART_ITEMS;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CONNECTION_OPTIONS_STRING;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_BUYER;
 
 public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandler {
   private Gr4vySDK gr4vySDK;
@@ -81,9 +86,24 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   String shippingDetailsId;
   String merchantAccountId;
   String connectionOptionsString;
+  Gr4vyBuyer buyer;
   Boolean debugMode;
 
   Boolean sdkLaunched = false;
+
+  protected static ObjectMapper objectMapper = new ObjectMapper()
+      .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+      .setSerializationInclusion(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL);
+
+  protected static <T> T decode(ReadableMap map, Class<T> type) {
+    try {
+      String jsonString = objectMapper.writeValueAsString(map.toHashMap());
+      return objectMapper.readValue(jsonString, type);
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 
   protected Gr4vyTheme buildTheme(ReadableMap theme) {
     if (theme == null) {
@@ -230,6 +250,16 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     return cartItemList;
   }
 
+  protected Gr4vyBuyer convertBuyer(ReadableMap source) {
+    if (source == null) {
+      return null;
+    }
+
+    Gr4vyBuyer buyer = decode(source, Gr4vyBuyer.class);
+
+    return buyer;
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -275,6 +305,10 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     ReadableMap statementDescriptorMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_STATEMENT_DESCRIPTOR));
     this.statementDescriptor = convertStatementDescriptor(statementDescriptorMap);
 
+    // Convert buyer to Gr4vyBuyer
+    ReadableMap buyerMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_BUYER));
+    this.buyer = convertBuyer(buyerMap);
+
     // Set paymentSource according to its type requirements
     String paymentSourceString = intent.getStringExtra(EXTRA_PAYMENT_SOURCE);
     this.paymentSource =
@@ -319,6 +353,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             merchantAccountId,
             null,
             connectionOptionsString,
+            buyer,
             debugMode);
 
     sdkLaunched = true;
