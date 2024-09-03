@@ -1,3 +1,21 @@
+# v1.6.0 (Tue Sep 03 2024)
+
+#### 🚀 Enhancement
+
+- task: add support for buyer option [#41](https://github.com/gr4vy/gr4vy-react-native/pull/41) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🐛 Bug Fix
+
+- deps: upgrade insecure dependencies TA-8358 [#42](https://github.com/gr4vy/gr4vy-react-native/pull/42) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@douglaseggleton](https://github.com/douglaseggleton))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Douglas Eggleton ([@douglaseggleton](https://github.com/douglaseggleton))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v1.5.1 (Wed Aug 14 2024)
 
 #### 🐛 Bug Fix
