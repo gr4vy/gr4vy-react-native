@@ -10,6 +10,11 @@ import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableArray;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,6 +25,7 @@ import com.gr4vy.android_sdk.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.coalesce;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_GR4VY_ID;
@@ -44,8 +50,8 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_MERCHANT_A
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_DEBUG_MODE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_PAYMENT_SOURCE;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CART_ITEMS;
-
-import java.util.HashMap;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CONNECTION_OPTIONS_STRING;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_BUYER;
 
 public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandler {
   private Gr4vySDK gr4vySDK;
@@ -56,6 +62,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   static final String EXTRA_STATUS = "EXTRA_STATUS";
   static final String EXTRA_TRANSACTION_ID = "EXTRA_TRANSACTION_ID";
   static final String EXTRA_PAYMENT_METHOD_ID = "EXTRA_PAYMENT_METHOD_ID";
+  static final String EXTRA_APPROVAL_URL = "EXTRA_APPROVAL_URL";
 
   String gr4vyId;
   String token;
@@ -78,9 +85,25 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   Boolean requireSecurityCode;
   String shippingDetailsId;
   String merchantAccountId;
+  String connectionOptionsString;
+  Gr4vyBuyer buyer;
   Boolean debugMode;
 
   Boolean sdkLaunched = false;
+
+  protected static ObjectMapper objectMapper = new ObjectMapper()
+      .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+      .setSerializationInclusion(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL);
+
+  protected static <T> T decode(ReadableMap map, Class<T> type) {
+    try {
+      String jsonString = objectMapper.writeValueAsString(map.toHashMap());
+      return objectMapper.readValue(jsonString, type);
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 
   protected Gr4vyTheme buildTheme(ReadableMap theme) {
     if (theme == null) {
@@ -186,9 +209,38 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       for (int i = 0; i < cartItemsJsonArray.length(); i++) {
         JSONObject cartItemJsonObject = cartItemsJsonArray.getJSONObject(i);
         String name = cartItemJsonObject.getString("name");
-        int quantity = cartItemJsonObject.getInt("quantity");
-        int unitAmount = cartItemJsonObject.getInt("unitAmount");
-        CartItem cartItem = new CartItem(name, quantity, unitAmount);
+        Integer quantity = cartItemJsonObject.getInt("quantity");
+        Integer unitAmount = cartItemJsonObject.getInt("unitAmount");
+        Integer discountAmount = (Integer) cartItemJsonObject.opt("discountAmount");
+        Integer taxAmount = (Integer) cartItemJsonObject.opt("taxAmount");
+        String externalIdentifier = (String) cartItemJsonObject.opt("externalIdentifier");
+        String sku = (String) cartItemJsonObject.opt("sku");
+        String productUrl = (String) cartItemJsonObject.opt("productUrl");
+        String imageUrl = (String) cartItemJsonObject.opt("imageUrl");
+        String productType = (String) cartItemJsonObject.opt("productType");
+
+        JSONArray categoriesArray = (JSONArray) cartItemJsonObject.opt("categories");
+        List<String> categories = null;
+        if (categoriesArray != null) {
+          categories = new ArrayList<String>();
+          for (int j = 0; j < categoriesArray.length(); j++) {
+            categories.add(categoriesArray.getString(j));
+          }
+        }
+
+        CartItem cartItem = new CartItem(
+          name,
+          quantity,
+          unitAmount,
+          discountAmount,
+          taxAmount,
+          externalIdentifier,
+          sku,
+          productUrl,
+          imageUrl,
+          categories,
+          productType
+        );
         cartItemList.add(cartItem);
       }
     } catch (JSONException e) {
@@ -196,6 +248,16 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       return null;
     }
     return cartItemList;
+  }
+
+  protected Gr4vyBuyer convertBuyer(ReadableMap source) {
+    if (source == null) {
+      return null;
+    }
+
+    Gr4vyBuyer buyer = decode(source, Gr4vyBuyer.class);
+
+    return buyer;
   }
 
   @Override
@@ -220,6 +282,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     this.shippingDetailsId = intent.getStringExtra(EXTRA_SHIPPING_DETAILS_ID);
     this.merchantAccountId = intent.getStringExtra(EXTRA_MERCHANT_ACCOUNT_ID);
     this.locale = intent.getStringExtra(EXTRA_LOCALE);
+    this.connectionOptionsString = intent.getStringExtra(EXTRA_CONNECTION_OPTIONS_STRING);
     this.debugMode = intent.getExtras().getBoolean(EXTRA_DEBUG_MODE);
 
     // Convert the cartItems JSON string to List<CartItem>
@@ -241,6 +304,10 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     // Convert statementDescriptor to Gr4vyStatementDescriptor
     ReadableMap statementDescriptorMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_STATEMENT_DESCRIPTOR));
     this.statementDescriptor = convertStatementDescriptor(statementDescriptorMap);
+
+    // Convert buyer to Gr4vyBuyer
+    ReadableMap buyerMap = Arguments.fromBundle(intent.getBundleExtra(EXTRA_BUYER));
+    this.buyer = convertBuyer(buyerMap);
 
     // Set paymentSource according to its type requirements
     String paymentSourceString = intent.getStringExtra(EXTRA_PAYMENT_SOURCE);
@@ -284,6 +351,9 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             requireSecurityCode,
             shippingDetailsId,
             merchantAccountId,
+            null,
+            connectionOptionsString,
+            buyer,
             debugMode);
 
     sdkLaunched = true;
@@ -323,12 +393,14 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       Log.d("Gr4vy", "status: " + ((Gr4vyResult.TransactionCreated) gr4vyResult).getStatus());
       Log.d("Gr4vy", "transactionId: " + ((Gr4vyResult.TransactionCreated) gr4vyResult).getTransactionId());
       Log.d("Gr4vy", "paymentMethodId: " + ((Gr4vyResult.TransactionCreated) gr4vyResult).getPaymentMethodId());
+      Log.d("Gr4vy", "approvalUrl: " + ((Gr4vyResult.TransactionCreated) gr4vyResult).getApprovalUrl());
 
       data.putExtra(EXTRA_EVENT, "transactionCreated");
       data.putExtra(EXTRA_SUCCESS, true);
       data.putExtra(EXTRA_STATUS, ((Gr4vyResult.TransactionCreated) gr4vyResult).getStatus());
       data.putExtra(EXTRA_TRANSACTION_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getTransactionId());
       data.putExtra(EXTRA_PAYMENT_METHOD_ID, ((Gr4vyResult.TransactionCreated) gr4vyResult).getPaymentMethodId());
+      data.putExtra(EXTRA_APPROVAL_URL, ((Gr4vyResult.TransactionCreated) gr4vyResult).getApprovalUrl());
 
       setResult(RESULT_OK, data);
     }

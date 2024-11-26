@@ -26,5 +26,12 @@
     "@babel/runtime": "^7.20.0",
     "babel-plugin-module-resolver": "^5.0.0",
     "metro-react-native-babel-preset": "0.73.9"
+  },
+  "resolutions": {
+    "braces": "^3.0.3",
+    "serve-static": "^1.16.0",
+    "tar": "^6.2.1",
+    "ws": "^7.5.10",
+    "react-native/ws": "^6.2.3"
   }
 }
