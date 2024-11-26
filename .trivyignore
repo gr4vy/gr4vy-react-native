@@ -21,3 +21,53 @@ CVE-2022-46175
 # shell-quote (nodejs-mobile-react-native app)
 
 CVE-2021-42740
+
+# @babel/traverse (example - dev dep)
+
+CVE-2023-45133
+
+# ip (example - dev dep)
+
+CVE-2023-42282
+
+# react-devtools-core (example - dev dep)
+
+CVE-2023-5654
+
+# activesupport (example - Gem)
+
+CVE-2023-38037
+
+# semver (nodejs-mobile-react-native app)
+
+CVE-2022-25883
+
+# tough-cookie (nodejs-mobile-react-native app)
+
+CVE-2023-26136
+
+# word-wrap (nodejs-mobile-react-native app)
+
+CVE-2023-26115
+
+# rexml (react-native)
+
+CVE-2024-35176
+CVE-2024-39908
+CVE-2024-41123
+CVE-2024-41946
+CVE-2024-43398
+
+# fast-xml-parser (react-native)
+
+CVE-2024-41818
+
+# micromatch (react-native)
+
+CVE-2024-4067
+
+# elliptic (react-native)
+
+CVE-2024-42459
+CVE-2024-42460
+CVE-2024-42461

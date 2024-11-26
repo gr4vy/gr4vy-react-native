@@ -25,6 +25,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @ReactModule(name = EmbedReactNativeModule.NAME)
 public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   public static final String NAME = "EmbedReactNative";
@@ -49,6 +52,8 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_MERCHANT_ACCOUNT_ID = "EXTRA_MERCHANT_ACCOUNT_ID";
   static final String EXTRA_PAYMENT_SOURCE = "EXTRA_PAYMENT_SOURCE";
   static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
+  static final String EXTRA_CONNECTION_OPTIONS_STRING = "EXTRA_CONNECTION_OPTIONS_STRING";
+  static final String EXTRA_BUYER = "EXTRA_BUYER";
   static final String EXTRA_DEBUG_MODE = "EXTRA_DEBUG_MODE";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
 
@@ -59,6 +64,24 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       }
     }
     return null;
+  }
+
+  public static void setOptionalValue(ReadableMap source, WritableMap target, String key) {
+    if (source.hasKey(key)) {
+      if (!source.isNull(key)) {
+        switch (source.getType(key)) {
+          case Number:
+            target.putInt(key, source.getInt(key));
+            break;
+          case String:
+            target.putString(key, source.getString(key));
+            break;
+          case Array:
+            target.putArray(key, source.getArray(key));
+            break;
+        }
+      }
+    }
   }
 
   public EmbedReactNativeModule(ReactApplicationContext context) {
@@ -77,6 +100,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
               String status = data.getStringExtra(Gr4vyActivity.EXTRA_STATUS);
               String transactionId = data.getStringExtra(Gr4vyActivity.EXTRA_TRANSACTION_ID);
               String paymentMethodId = data.getStringExtra(Gr4vyActivity.EXTRA_PAYMENT_METHOD_ID);
+              String approvalUrl = data.getStringExtra(Gr4vyActivity.EXTRA_APPROVAL_URL);
 
               WritableMap result = Arguments.createMap();
               result.putString("name", event);
@@ -86,6 +110,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
               resultData.putString("status", status);
               resultData.putString("transactionId", transactionId);
               resultData.putString("paymentMethodId", paymentMethodId);
+              resultData.putString("approvalUrl", approvalUrl);
 
               result.putMap("data", resultData);
 
@@ -120,9 +145,38 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       cartItemWritableMap.putString("name", cartItemMap.getString("name"));
       cartItemWritableMap.putInt("quantity", cartItemMap.getInt("quantity"));
       cartItemWritableMap.putInt("unitAmount", cartItemMap.getInt("unitAmount"));
+
+      String[] optionalProps = new String[] {
+        "discountAmount",
+        "taxAmount",
+        "externalIdentifier",
+        "sku",
+        "productUrl",
+        "imageUrl",
+        "categories",
+        "productType"
+      };
+      for (String prop : optionalProps) {
+        setOptionalValue(cartItemMap, cartItemWritableMap, prop);
+      }
+
+
       cartItemsWritableArray.pushMap(cartItemWritableMap);
     }
     return cartItemsWritableArray;
+  }
+
+  private static String convertMapToJsonString(ReadableMap map) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    try {
+      String jsonString = objectMapper.writeValueAsString(map.toHashMap());
+      return jsonString;
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+    }
+
+    return null;
   }
 
   @Override
@@ -157,6 +211,8 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       String merchantAccountid = config.getString("merchantAccountId");
       String paymentSource = config.getString("paymentSource");
       ReadableArray cartItems = coalesce(config.getArray("cartItems"), emptyArray);
+      ReadableMap connectionOptions = coalesce(config.getMap("connectionOptions"), emptyMap);
+      ReadableMap buyer = coalesce(config.getMap("buyer"), emptyMap);
       Boolean debugMode = config.hasKey("debugMode") ? config.getBoolean("debugMode") : false;
 
       ReactApplicationContext context = getReactApplicationContext();
@@ -184,11 +240,14 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       themeWritableMap.merge(theme);
       WritableNativeMap statementDescriptorWritableMap = new WritableNativeMap();
       statementDescriptorWritableMap.merge(statementDescriptor);
+      WritableNativeMap buyerWritableMap = new WritableNativeMap();
+      buyerWritableMap.merge(buyer);
 
       // Convert WritableMap(s) to Bundle(s)
       Bundle metadataBundle = Arguments.toBundle(metadataWritableMap);
       Bundle themeBundle = Arguments.toBundle(themeWritableMap);
       Bundle statementDescriptorBundle = Arguments.toBundle(statementDescriptorWritableMap);
+      Bundle buyerBundle = Arguments.toBundle(buyerWritableMap);
 
       androidIntent.putExtra(EXTRA_GR4VY_ID, gr4vyId);
       androidIntent.putExtra(EXTRA_TOKEN, token);
@@ -211,6 +270,8 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_REQUIRE_SECURITY_CODE, requireSecurityCode);
       androidIntent.putExtra(EXTRA_SHIPPING_DETAILS_ID, shippingDetailsId);
       androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
+      androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS_STRING, convertMapToJsonString(connectionOptions));
+      androidIntent.putExtra(EXTRA_BUYER, buyerBundle);
       androidIntent.putExtra(EXTRA_DEBUG_MODE, debugMode);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);

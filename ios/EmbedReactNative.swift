@@ -29,6 +29,8 @@ class EmbedReactNative: NSObject {
                  requireSecurityCode: Bool?,
                  shippingDetailsId: String?,
                  merchantAccountId: String?,
+                 connectionOptions: String?,
+                 buyer: Gr4vyBuyer?,
                  debugMode: Bool = false,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
     var paymentSourceConverted: Gr4vyPaymentSource?
@@ -36,7 +38,7 @@ class EmbedReactNative: NSObject {
         paymentSourceConverted = Gr4vyPaymentSource(rawValue: paymentSource!)
     }
 
-    DispatchQueue.main.async(execute: {  
+    DispatchQueue.main.async(execute: {
       guard let gr4vy = Gr4vy(gr4vyId: gr4vyId,
                               token: token,
                               amount: amount,
@@ -59,6 +61,8 @@ class EmbedReactNative: NSObject {
                               requireSecurityCode: requireSecurityCode,
                               shippingDetailsId: shippingDetailsId,
                               merchantAccountId: merchantAccountId,
+                              connectionOptionsString: connectionOptions,
+                              buyer: buyer,
                               debugMode: debugMode) else {
         completion(nil)
         return
@@ -67,7 +71,7 @@ class EmbedReactNative: NSObject {
       completion(gr4vy)
     })
   }
-    
+
   func buildTheme(_ source: [String: [String: String?]?]?) -> Gr4vyTheme? {
     guard let theme = source,
           let fonts = theme["fonts"] ?? [:],
@@ -148,7 +152,7 @@ class EmbedReactNative: NSObject {
       )
     )
   }
-    
+
   func convertStatementDescriptor(_ source: [String: String?]?) -> Gr4vyStatementDescriptor? {
     guard let statementDescriptor = source,
           let name = statementDescriptor["name"] ?? "",
@@ -158,7 +162,7 @@ class EmbedReactNative: NSObject {
           let url = statementDescriptor["url"] ?? "" else {
         return nil
     }
-      
+
     return Gr4vyStatementDescriptor(
         name: name,
         description: description,
@@ -167,7 +171,7 @@ class EmbedReactNative: NSObject {
         url: url
     )
   }
-    
+
   func convertCartItems(_ cartItems: NSArray?) -> [Gr4vyCartItem] {
     guard let cartItems = cartItems else {
       return []
@@ -181,17 +185,39 @@ class EmbedReactNative: NSObject {
             let unitAmount = dict["unitAmount"] as? Int else {
           return []
       }
-      result.append(Gr4vyCartItem(name: name, quantity: quantity, unitAmount: unitAmount))
+      let discountAmount = dict["discountAmount"] as? Int
+      let taxAmount = dict["taxAmount"] as? Int
+      let externalIdentifier = dict["externalIdentifier"] as? String
+      let sku = dict["sku"] as? String
+      let productUrl = dict["productUrl"] as? String
+      let imageUrl = dict["imageUrl"] as? String
+      let categories = dict["categories"] as? [String]
+      let productType = dict["productType"] as? String
+      result.append(
+        Gr4vyCartItem(
+          name: name,
+          quantity: quantity,
+          unitAmount: unitAmount,
+          discountAmount: discountAmount,
+          taxAmount: taxAmount,
+          externalIdentifier: externalIdentifier,
+          sku: sku,
+          productUrl: productUrl,
+          imageUrl: imageUrl,
+          categories: categories,
+          productType: productType
+        )
+      )
     }
 
     return result
   }
-    
+
   func convertStore(_ store: Any?) -> Gr4vyStore? {
     guard let storeValue = store else {
       return nil
     }
-      
+
     if let storeBool = storeValue as? Bool {
       return storeBool ? .true : .false
     } else if let storeString = store as? String {
@@ -202,10 +228,47 @@ class EmbedReactNative: NSObject {
           return nil
       }
     }
-    
+
     return nil
   }
-  
+
+  func convertObjectToJsonString(_ obj: [String: [String: String?]?]?) -> String? {
+    guard let obj = obj else {
+      return nil
+    }
+
+    do {
+      let jsonData = try JSONSerialization.data(withJSONObject: obj, options: [])
+
+      if let jsonString = String(data: jsonData, encoding: .utf8) {
+        return jsonString
+      } else {
+        return nil
+      }
+    } catch {
+      return nil
+    }
+  }
+
+  func decode<T: Codable>(from dict: [String: Any?], to type: T.Type) -> T? {
+      do {
+          let jsonData = try JSONSerialization.data(withJSONObject: dict, options: [])
+          let result = try JSONDecoder().decode(T.self, from: jsonData)
+          return result
+      } catch {
+          return nil
+      }
+  }
+
+  func convertBuyer(_ source: [String: Any?]?) -> Gr4vyBuyer? {
+    guard let dict = source,
+          let buyer = decode(from: dict, to: Gr4vyBuyer.self) else {
+      return nil
+    }
+
+    return buyer
+  }
+
   @objc
   func constantsToExport() -> [AnyHashable : Any]! {
     return [
@@ -214,7 +277,7 @@ class EmbedReactNative: NSObject {
       GR4VY_ERROR: GR4VY_ERROR
     ]
   }
-  
+
   @objc
   func showPaymentSheet(_ config: [String: Any])
   {
@@ -240,6 +303,8 @@ class EmbedReactNative: NSObject {
           let requireSecurityCode = config["requireSecurityCode"] as? Bool?,
           let shippingDetailsId = config["shippingDetailsId"] as? String?,
           let merchantAccountId = config["merchantAccountId"] as? String?,
+          let connectionOptions = config["connectionOptions"] as? [String: [String: String?]?]?,
+          let buyer = config["buyer"] as? [String: Any?]?,
           let debugMode = config["debugMode"] as? Bool?
     else {
         EmbedReactNativeEvents.emitter.sendEvent(
@@ -253,7 +318,7 @@ class EmbedReactNative: NSObject {
         )
         return
     }
-      
+
     gr4vyInit(gr4vyId: gr4vyId,
              token: token,
              amount: Int(amount),
@@ -276,6 +341,8 @@ class EmbedReactNative: NSObject {
              requireSecurityCode: requireSecurityCode,
              shippingDetailsId: shippingDetailsId,
              merchantAccountId: merchantAccountId,
+             connectionOptions: convertObjectToJsonString(connectionOptions),
+             buyer: convertBuyer(buyer),
              debugMode: debugMode ?? false) { (gr4vy) in
       if gr4vy == nil {
         EmbedReactNativeEvents.emitter.sendEvent(
@@ -291,11 +358,11 @@ class EmbedReactNative: NSObject {
 
       DispatchQueue.main.async(execute: {
           let presentingViewController = RCTPresentedViewController()
-        
+
           gr4vy!.launch(
             presentingViewController: presentingViewController!,
             onEvent: { event in
-              
+
               switch event {
               case .transactionFailed(let transactionID, let status, let paymentMethodID):
                 EmbedReactNativeEvents.emitter.sendEvent(
@@ -311,7 +378,7 @@ class EmbedReactNative: NSObject {
                   ]
                 )
                 return
-              case .transactionCreated(let transactionID, let status, let paymentMethodID):
+              case .transactionCreated(let transactionID, let status, let paymentMethodID, let approvalUrl):
                 EmbedReactNativeEvents.emitter.sendEvent(
                   withName: "onEvent",
                   body: [
@@ -320,7 +387,8 @@ class EmbedReactNative: NSObject {
                       "success": true,
                       "transactionId": transactionID,
                       "status": status,
-                      "paymentMethodId": paymentMethodID as Any
+                      "paymentMethodId": paymentMethodID as Any,
+                      "approvalUrl": approvalUrl
                     ]
                   ]
                 )
@@ -352,7 +420,7 @@ class EmbedReactNative: NSObject {
       })
     }
   }
-  
+
   @objc
   static func requiresMainQueueSetup() -> Bool {
     return true
