@@ -7,6 +7,8 @@
   "license": "",
   "dependencies": {
     "@gr4vy/node": "^0.48.0",
+    "cross-spawn": "^7.0.6",
+    "elliptic": "^6.6.1",
     "minimist": "^1.2.8"
   }
 }
