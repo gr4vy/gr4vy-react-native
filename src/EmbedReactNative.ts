@@ -60,7 +60,7 @@ export type Gr4vyConfig = {
   externalIdentifier?: string | undefined
   store?: 'ask' | boolean
   display?: 'all' | 'addOnly' | 'storedOnly' | 'supportsTokenization'
-  intent?: 'authorize' | 'capture'
+  intent?: 'authorize' | 'preferAuthorize' | 'capture'
   metadata?: Record<string, string>
   paymentSource?: 'installment' | 'recurring' | undefined
   applePayMerchantId?: string
