@@ -1,3 +1,25 @@
+# v1.6.1 (Tue Dec 03 2024)
+
+#### 🐛 Bug Fix
+
+- refactor: add preferAuthorize intent to the README [#53](https://github.com/gr4vy/gr4vy-react-native/pull/53) ([@brunodesde1987](https://github.com/brunodesde1987))
+- task: fix example app xcode 15 [#52](https://github.com/gr4vy/gr4vy-react-native/pull/52) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- trivy-db repository (again) [#47](https://github.com/gr4vy/gr4vy-react-native/pull/47) ([@andrewmackett](https://github.com/andrewmackett))
+- trivy-db repository [#45](https://github.com/gr4vy/gr4vy-react-native/pull/45) ([@andrewmackett](https://github.com/andrewmackett) [@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🏠 Internal
+
+- fix: send vulnerabilities [#46](https://github.com/gr4vy/gr4vy-react-native/pull/46) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: fast-xml-parser vulnerability [#43](https://github.com/gr4vy/gr4vy-react-native/pull/43) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 3
+
+- Andrew Mackett ([@andrewmackett](https://github.com/andrewmackett))
+- Bruno Carvalho ([@brunodesde1987](https://github.com/brunodesde1987))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v1.6.0 (Tue Sep 03 2024)
 
 #### 🚀 Enhancement
