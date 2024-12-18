@@ -6,7 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator 'iPhone 14 Pro'",
     "start": "react-native start",
-    "pods": "pod-install --quiet"
+    "pods": "pod-install --quiet",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.1.0",
@@ -24,11 +25,17 @@
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.2",
     "@babel/runtime": "^7.25.2",
-    "@react-native/babel-preset": "^0.76.5",
-    "babel-plugin-module-resolver": "^5.0.2"
+    "@react-native-community/cli": "15.0.1",
+    "@react-native-community/cli-platform-android": "15.0.1",
+    "@react-native-community/cli-platform-ios": "15.0.1",
+    "@react-native/babel-preset": "0.76.5",
+    "@react-native/eslint-config": "0.76.5",
+    "@react-native/metro-config": "0.76.5",
+    "@react-native/typescript-config": "0.76.5",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "patch-package": "^8.0.0"
   },
   "resolutions": {
-    "@babel/traverse": "^7.26.4",
     "semver": "^7.6.3",
     "tar": "^6.2.1",
     "tough-cookie": "^4.1.3"
