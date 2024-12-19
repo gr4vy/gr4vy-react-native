@@ -1,0 +1,53 @@
+diff --git a/node_modules/nodejs-mobile-react-native/android/.project b/node_modules/nodejs-mobile-react-native/android/.project
+new file mode 100644
+index 0000000..2a4646b
+--- /dev/null
++++ b/node_modules/nodejs-mobile-react-native/android/.project
+@@ -0,0 +1,28 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<projectDescription>
++	<name>nodejs-mobile-react-native</name>
++	<comment>Project nodejs-mobile-react-native created by Buildship.</comment>
++	<projects>
++	</projects>
++	<buildSpec>
++		<buildCommand>
++			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++	</buildSpec>
++	<natures>
++		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
++	</natures>
++	<filteredResources>
++		<filter>
++			<id>1734529915568</id>
++			<name></name>
++			<type>30</type>
++			<matcher>
++				<id>org.eclipse.core.resources.regexFilterMatcher</id>
++				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
++			</matcher>
++		</filter>
++	</filteredResources>
++</projectDescription>
+diff --git a/node_modules/nodejs-mobile-react-native/android/build.gradle b/node_modules/nodejs-mobile-react-native/android/build.gradle
+index a80f197..18d938a 100644
+--- a/node_modules/nodejs-mobile-react-native/android/build.gradle
++++ b/node_modules/nodejs-mobile-react-native/android/build.gradle
+@@ -2,10 +2,13 @@
+ buildscript {
+     repositories {
+         jcenter()
++        google()
++        mavenCentral()
++        gradlePluginPortal()
+     }
+ 
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:2.2.3'
++        classpath 'com.android.tools.build:gradle:7.3.1'
+     }
+ }
+ 
