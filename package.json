@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.9.3",
+    "@react-native/eslint-config": "0.76.5",
     "@types/react": "^18.2.8",
     "auto": "^11.3.0",
     "del-cli": "^6.0.0",
