@@ -8,5 +8,8 @@
   "dependencies": {
     "@gr4vy/node": "^0.64.1",
     "minimist": "^1.2.8"
+  },
+  "overrides": {
+    "elliptic": "^6.6.0"
   }
 }
