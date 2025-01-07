@@ -1,3 +1,136 @@
+# v1.6.1 (Tue Dec 03 2024)
+
+#### 🐛 Bug Fix
+
+- refactor: add preferAuthorize intent to the README [#53](https://github.com/gr4vy/gr4vy-react-native/pull/53) ([@brunodesde1987](https://github.com/brunodesde1987))
+- task: fix example app xcode 15 [#52](https://github.com/gr4vy/gr4vy-react-native/pull/52) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- trivy-db repository (again) [#47](https://github.com/gr4vy/gr4vy-react-native/pull/47) ([@andrewmackett](https://github.com/andrewmackett))
+- trivy-db repository [#45](https://github.com/gr4vy/gr4vy-react-native/pull/45) ([@andrewmackett](https://github.com/andrewmackett) [@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🏠 Internal
+
+- fix: send vulnerabilities [#46](https://github.com/gr4vy/gr4vy-react-native/pull/46) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: fast-xml-parser vulnerability [#43](https://github.com/gr4vy/gr4vy-react-native/pull/43) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 3
+
+- Andrew Mackett ([@andrewmackett](https://github.com/andrewmackett))
+- Bruno Carvalho ([@brunodesde1987](https://github.com/brunodesde1987))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
+# v1.6.0 (Tue Sep 03 2024)
+
+#### 🚀 Enhancement
+
+- task: add support for buyer option [#41](https://github.com/gr4vy/gr4vy-react-native/pull/41) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🐛 Bug Fix
+
+- deps: upgrade insecure dependencies TA-8358 [#42](https://github.com/gr4vy/gr4vy-react-native/pull/42) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@douglaseggleton](https://github.com/douglaseggleton))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Douglas Eggleton ([@douglaseggleton](https://github.com/douglaseggleton))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
+# v1.5.1 (Wed Aug 14 2024)
+
+#### 🐛 Bug Fix
+
+- chore: update docs with connection options [#39](https://github.com/gr4vy/gr4vy-react-native/pull/39) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
+# v1.5.0 (Tue Aug 13 2024)
+
+#### 🚀 Enhancement
+
+- task: add support for `connectionOptions` [#37](https://github.com/gr4vy/gr4vy-react-native/pull/37) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
+# v1.4.0 (Tue Jul 02 2024)
+
+#### 🚀 Enhancement
+
+- task: pass approvalUrl to Android SDK [#34](https://github.com/gr4vy/gr4vy-react-native/pull/34) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### ⚠️ Pushed to `main`
+
+- Update example app Podfile.lock with latest sdk version ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
+# v1.3.0 (Mon Jul 01 2024)
+
+#### 🚀 Enhancement
+
+- chore: upgrade android sdk [#33](https://github.com/gr4vy/gr4vy-react-native/pull/33) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
+# v1.2.0 (Mon Jul 01 2024)
+
+#### 🚀 Enhancement
+
+- task: add support for cart items [#32](https://github.com/gr4vy/gr4vy-react-native/pull/32) ([@douglaseggleton](https://github.com/douglaseggleton) [@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 2
+
+- Douglas Eggleton ([@douglaseggleton](https://github.com/douglaseggleton))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
+# v1.1.0 (Wed Jun 12 2024)
+
+#### 🚀 Enhancement
+
+- chore: upgrade react-native [#14](https://github.com/gr4vy/gr4vy-react-native/pull/14) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🐛 Bug Fix
+
+- Skip corepack check for release job [#30](https://github.com/gr4vy/gr4vy-react-native/pull/30) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: deps [#29](https://github.com/gr4vy/gr4vy-react-native/pull/29) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### ⚠️ Pushed to `main`
+
+- trigger GitHub actions ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🏠 Internal
+
+- fix: update insecure tar dependency [#26](https://github.com/gr4vy/gr4vy-react-native/pull/26) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- task: beta releases [#12](https://github.com/gr4vy/gr4vy-react-native/pull/12) ([@luca-gr4vy](https://github.com/luca-gr4vy) [@douglaseggleton](https://github.com/douglaseggleton))
+- task: example app updates [#11](https://github.com/gr4vy/gr4vy-react-native/pull/11) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 2
+
+- Douglas Eggleton ([@douglaseggleton](https://github.com/douglaseggleton))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # (Thu May 25 2023)
 
 

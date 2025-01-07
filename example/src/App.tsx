@@ -7,7 +7,7 @@ import { ConfigProvider } from './contexts/Config'
 
 const Tab = createBottomTabNavigator()
 
-export default function App(): JSX.Element {
+export default function App(): React.JSX.Element {
   return (
     <ConfigProvider>
       <NavigationContainer>

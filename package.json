@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/embed-react-native",
-  "version": "1.0.0",
+  "version": "1.6.1",
   "description": "Embed Gr4vy in your React Native app to store card details, authorize payments, and capture a transaction.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -52,32 +52,27 @@
     "access": "public"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.2.2",
-    "@react-native-community/eslint-config": "^3.0.2",
+    "@evilmartians/lefthook": "^1.9.3",
+    "@react-native/eslint-config": "0.76.5",
     "@types/react": "^18.2.8",
-    "@types/react-native": "^0.72.2",
-    "auto": "^10.43.0",
-    "del-cli": "^5.0.0",
-    "eslint": "^8.4.1",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "pod-install": "^0.1.0",
-    "prettier": "^2.0.5",
-    "react": "^18.2.0",
-    "react-native": "0.71.8",
-    "react-native-builder-bob": "^0.20.0",
-    "react-native-dotenv": "^3.4.8",
-    "typescript": "^4.5.2"
-  },
-  "resolutions": {
-    "@types/react": "18.2.8"
+    "auto": "^11.3.0",
+    "del-cli": "^6.0.0",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "pod-install": "^0.3.2",
+    "prettier": "^2.8.8",
+    "react": "^18.3.1",
+    "react-native": "0.76.5",
+    "react-native-builder-bob": "^0.35.2",
+    "react-native-dotenv": "^3.4.10",
+    "typescript": "^5.0.4"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
   },
   "engines": {
-    "node": ">= 16.0.0"
-  },
-  "packageManager": "^yarn@1.22.15"
+    "node": ">= 18"
+  }
 }

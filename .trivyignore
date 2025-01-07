@@ -2,22 +2,6 @@
 
 # Please provide a comment with each vulnerability ID describing why it has been ignored.
 
-# fast-xml-parser (react-native)
+# tough-cookie (nodejs-mobile-react-native app)
 
-CVE-2023-34104
-
-# @sideway/formula (nodejs-mobile-react-native app)
-
-CVE-2023-25166
-
-# decode-uri-component (nodejs-mobile-react-native app)
-
-CVE-2022-38900
-
-# json5 (nodejs-mobile-react-native app)
-
-CVE-2022-46175
-
-# shell-quote (nodejs-mobile-react-native app)
-
-CVE-2021-42740
+CVE-2023-26136
