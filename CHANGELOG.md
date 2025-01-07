@@ -1,3 +1,15 @@
+# v2.0.0 (Tue Jan 07 2025)
+
+#### 💥 Breaking Change
+
+- task: upgrade React Native to v0.76.5 [#55](https://github.com/gr4vy/gr4vy-react-native/pull/55) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v1.6.1 (Tue Dec 03 2024)
 
 #### 🐛 Bug Fix
