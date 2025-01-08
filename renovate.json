@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>gr4vy/renovate-config:javascript"],
+  "additionalReviewers": ["luca-gr4vy"],
+  "ignorePaths": [".github/**", ".vscode/**"],
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "labels": ["dependencies", "internal"],
+      "automerge": false,
+      "semanticCommitScope": "dev-deps"
+    },
+    {
+      "matchPackagePatterns": ["@types"],
+      "groupName": "types"
+    }
+  ]
+}
