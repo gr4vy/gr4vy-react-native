@@ -11,8 +11,8 @@
       "semanticCommitScope": "dev-deps"
     },
     {
-      "matchPackagePatterns": ["@types"],
-      "groupName": "types"
+      "groupName": "types",
+      "matchPackageNames": ["/@types/"]
     }
   ]
 }
