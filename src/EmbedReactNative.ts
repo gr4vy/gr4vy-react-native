@@ -58,7 +58,7 @@ export type Gr4vyConfig = {
   country: string
   buyerId?: string | undefined
   externalIdentifier?: string | undefined
-  store?: 'ask' | boolean
+  store?: 'ask' | 'preselect' | boolean
   display?: 'all' | 'addOnly' | 'storedOnly' | 'supportsTokenization'
   intent?: 'authorize' | 'preferAuthorize' | 'capture'
   metadata?: Record<string, string>
