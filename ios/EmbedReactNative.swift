@@ -224,6 +224,8 @@ class EmbedReactNative: NSObject {
       switch storeString {
         case "ask":
           return .ask
+        case "preselect":
+          return .preselect
         default:
           return nil
       }
