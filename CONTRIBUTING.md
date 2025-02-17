@@ -30,6 +30,55 @@ To run the example app on iOS:
 yarn example ios
 ```
 
+To see the actual payment options on checkout, the [embed-ui](https://github.com/gr4vy/embed-ui) app needs to be running. By default, `embed.sandbox.spider.gr4vy.app` will be used, but you can set the `GR4VY_ID` environment variable to something else to use a different instance. To use your local running instance of `embed-ui`, set `GR4VY_ID` to `dev` and use our internal [dev HTTPS proxy](https://github.com/gr4vy/dev-https-proxy). Make sure the generated certificates are installed on your simulator by following these instructions https://github.com/gr4vy/dev-https-proxy?tab=readme-ov-file#installing-certificates-on-ios-simulator.
+
+You can install the certificates the same way when running the app on your device (vs simulator), although in that case you'll also need to update your hosts file to use your computer's IP address instead of `127.0.0.1`. Then, on your device, make sure to use a manual DNS set to that specific IP. This way your device will use the host's IP to resolve `embed.sandbox.dev.gr4vy.app`.
+
+### Using a local unreleased version of `gr4vy-ios` or `gr4vy-android`
+
+If you want to use a local unreleased version of `gr4vy-ios` or `gr4vy-android` while testing with the example app, follow these steps:
+
+<details>
+<summary>iOS</summary>
+
+1. Clone the `gr4vy-ios` repository locally
+2. In the `example/ios/Podfile` file, add `pod 'gr4vy-ios', :path => '/path/to/gr4vy-ios'` to the very end.
+3. Run `yarn` again to install the local pod.
+
+</details>
+
+<details>
+<summary>Android</summary>
+
+https://stackoverflow.com/questions/61806859/linking-an-android-library-that-is-on-local-machine/68887793#68887793
+
+1. Build `aar` by running `./gradlew assembleRelease` from inside the `gr4vy-android` local project
+2. In Android Studio, in the example app project, go to: File > Project Structure > Dependencies.
+3. In: Modules > app > Declared Dependencies, click '+' and select 'Jar Dependency'. (Even though you are trying to use an .aar file, you still select 'Jar Dependency').
+4. In the 'Add Jar/Aar Dependency' popup dialog
+   a. in step 1 enter the path to your .aar file on your local drive, and
+   b. in step 2 select 'implementation'
+
+If everything worked out, your `build.gradle` should have a line in the dependencies that looks like:
+
+```
+dependencies {
+    ...
+    implementation files('../../../MyFolder/MyLibraryFile.aar')
+}
+```
+
+or just add it directly in `build.gradle`:
+
+```
+dependencies {
+    ...
+    implementation files('/path/to/gr4vy-android/GravySDK/build/outputs/aar/GravySDK-release.aar')
+}
+```
+
+</details>
+
 Make sure your code passes TypeScript and ESLint. Run the following to verify:
 
 ```sh
