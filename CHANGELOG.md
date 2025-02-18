@@ -1,3 +1,22 @@
+# v2.0.1 (Tue Feb 18 2025)
+
+#### 🐛 Bug Fix
+
+- chore: add the preselect store option to readme [#68](https://github.com/gr4vy/gr4vy-react-native/pull/68) ([@brunodesde1987](https://github.com/brunodesde1987) [@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🔩 Dependency Updates
+
+- chore(config): migrate renovate config [#57](https://github.com/gr4vy/gr4vy-react-native/pull/57) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore: Configure Renovate [#23](https://github.com/gr4vy/gr4vy-react-native/pull/23) ([@renovate[bot]](https://github.com/renovate[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 3
+
+- [@renovate[bot]](https://github.com/renovate[bot])
+- Bruno Carvalho ([@brunodesde1987](https://github.com/brunodesde1987))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.0.0 (Tue Jan 07 2025)
 
 #### 💥 Breaking Change
