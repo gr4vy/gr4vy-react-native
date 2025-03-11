@@ -193,6 +193,7 @@ class EmbedReactNative: NSObject {
       let imageUrl = dict["imageUrl"] as? String
       let categories = dict["categories"] as? [String]
       let productType = dict["productType"] as? String
+      let sellerCountry = dict["sellerCountry"] as? String
       result.append(
         Gr4vyCartItem(
           name: name,
@@ -205,7 +206,8 @@ class EmbedReactNative: NSObject {
           productUrl: productUrl,
           imageUrl: imageUrl,
           categories: categories,
-          productType: productType
+          productType: productType,
+          sellerCountry: sellerCountry
         )
       )
     }
