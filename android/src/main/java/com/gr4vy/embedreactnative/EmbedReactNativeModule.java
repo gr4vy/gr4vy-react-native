@@ -154,7 +154,8 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
         "productUrl",
         "imageUrl",
         "categories",
-        "productType"
+        "productType",
+        "sellerCountry"
       };
       for (String prop : optionalProps) {
         setOptionalValue(cartItemMap, cartItemWritableMap, prop);

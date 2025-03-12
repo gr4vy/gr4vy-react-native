@@ -5,3 +5,7 @@
 # tough-cookie (nodejs-mobile-react-native app)
 
 CVE-2023-26136
+
+
+# App is crashing on upgrade of @babel\helpers to 7.26.10 version
+CVE-2025-27789

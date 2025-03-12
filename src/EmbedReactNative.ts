@@ -77,6 +77,7 @@ export type Gr4vyConfig = {
         imageUrl?: string
         categories?: string[]
         productType?: string
+        sellerCountry?: string
       }>
     | undefined
   theme?: {

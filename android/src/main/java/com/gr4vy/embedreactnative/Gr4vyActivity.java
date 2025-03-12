@@ -218,6 +218,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
         String productUrl = (String) cartItemJsonObject.opt("productUrl");
         String imageUrl = (String) cartItemJsonObject.opt("imageUrl");
         String productType = (String) cartItemJsonObject.opt("productType");
+        String sellerCountry = (String) cartItemJsonObject.opt("sellerCountry");
 
         JSONArray categoriesArray = (JSONArray) cartItemJsonObject.opt("categories");
         List<String> categories = null;
@@ -239,7 +240,8 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
           productUrl,
           imageUrl,
           categories,
-          productType
+          productType,
+          sellerCountry
         );
         cartItemList.add(cartItem);
       }
