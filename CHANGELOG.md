@@ -1,3 +1,17 @@
+# v2.0.2 (Wed Mar 12 2025)
+
+#### 🐛 Bug Fix
+
+- chore(country-items): Update cart item model to include seller country [TA-10214] [#72](https://github.com/gr4vy/gr4vy-react-native/pull/72) ([@FedericoGelsi](https://github.com/FedericoGelsi))
+- chore: update docs [#69](https://github.com/gr4vy/gr4vy-react-native/pull/69) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 2
+
+- Federico Gelsi ([@FedericoGelsi](https://github.com/FedericoGelsi))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.0.1 (Tue Feb 18 2025)
 
 #### 🐛 Bug Fix
