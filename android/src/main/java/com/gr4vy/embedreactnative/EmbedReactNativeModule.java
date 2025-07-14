@@ -30,6 +30,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 @ReactModule(name = EmbedReactNativeModule.NAME)
 public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
+  public static ReactApplicationContext reactContext;
   public static final String NAME = "EmbedReactNative";
   static final String EXTRA_GR4VY_ID = "EXTRA_GR4VY_ID";
   static final String EXTRA_TOKEN = "EXTRA_TOKEN";
@@ -86,6 +87,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
 
   public EmbedReactNativeModule(ReactApplicationContext context) {
     super(context);
+    reactContext = context;
 
     ActivityEventListener activityEventListener = new BaseActivityEventListener() {
       @Override

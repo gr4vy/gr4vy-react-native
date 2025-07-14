@@ -420,6 +420,19 @@ class EmbedReactNative: NSObject {
                   ]
                 )
                 return
+              case .cardDetailsChanged(let bin, let cardType, let scheme):
+                EmbedReactNativeEvents.emitter.sendEvent(
+                  withName: "onEvent",
+                  body: [
+                    "name": "cardDetailsChanged",
+                    "data": [
+                      "bin": bin,
+                      "cardType": cardType,
+                      "scheme": scheme
+                    ]
+                  ]
+                )
+                return
               }
             })
       })

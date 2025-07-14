@@ -20,9 +20,19 @@ export interface Gr4vyPaymentMethod {
   mode: string
 }
 
+export interface Gr4vyCardDetailsChanged {
+  bin: string
+  cardType?: string
+  scheme: string
+}
+
 export type Gr4vyEvent = {
-  name: 'transactionCreated' | 'transactionFailed' | 'generalError'
-  data: Gr4vyError | Gr4vyTransactionResult
+  name:
+    | 'transactionCreated'
+    | 'transactionFailed'
+    | 'generalError'
+    | 'cardDetailsChanged'
+  data: Gr4vyError | Gr4vyTransactionResult | Gr4vyCardDetailsChanged
 }
 
 export type Gr4vyBillingDetails = {
