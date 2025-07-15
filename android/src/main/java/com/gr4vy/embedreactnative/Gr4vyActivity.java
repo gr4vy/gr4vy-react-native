@@ -11,6 +11,7 @@ import android.util.Log;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.WritableMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -366,6 +367,24 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     Log.d("Gr4vy", "onGr4vyEvent");
     Intent data = new Intent();
 
+    // for live events, emit immediately without closing the activity
+    if (gr4vyEvent instanceof Gr4vyEvent.CardDetailsChanged) {
+      WritableMap result = Arguments.createMap();
+      result.putString("name", "cardDetailsChanged");
+
+      WritableMap resultData = Arguments.createMap();
+      resultData.putString("bin", ((Gr4vyEvent.CardDetailsChanged) gr4vyEvent).getBin());
+      resultData.putString("cardType", ((Gr4vyEvent.CardDetailsChanged) gr4vyEvent).getCardType());
+      resultData.putString("scheme", ((Gr4vyEvent.CardDetailsChanged) gr4vyEvent).getScheme());
+      
+      result.putMap("data", resultData);
+
+      EmbedReactNativeEvents.sendEvent(EmbedReactNativeModule.reactContext, "onEvent", result);
+
+      return;
+    }
+
+    // for others, set the result and close the activity as usual
     if (gr4vyEvent instanceof Gr4vyEvent.TransactionFailed) {
       Log.d("Gr4vy", "Gr4vyEvent.TransactionFailed");
 

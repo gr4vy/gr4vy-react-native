@@ -170,6 +170,18 @@ Returns data about a failed transaction.
 }
 ```
 
+#### `cardDetailsChanged`
+
+Returned when the card BIN changes in the form. It contains information on the inputted card, such as the BIN, card type and scheme.
+
+```json
+{
+  "bin": "42424242",
+  "scheme": "visa",
+  "cardType": "debit"
+}
+```
+
 ## Apple Pay
 
 To enable Apple Pay in your iOS project, in addition to passing the `applePayMerchantId` configuration option to the `showPaymentSheet` function, you'll also need to enable Apple Pay within the Signing & Capabilities Xcode project settings and set the Apple Pay Merchant IDs. Please ensure your provisioning profiles and signing certificates are updated to contain this valid Apple Merchant ID. The SDK will do various checks to ensure the device is capable of Apple Pay and will be enabled if both the device and merchant IDs are valid.

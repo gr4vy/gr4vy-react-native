@@ -368,7 +368,7 @@ class EmbedReactNative: NSObject {
             onEvent: { event in
 
               switch event {
-              case .transactionFailed(let transactionID, let status, let paymentMethodID):
+              case .transactionFailed(let transactionID, let status, let paymentMethodID, let responseCode):
                 EmbedReactNativeEvents.emitter.sendEvent(
                   withName: "onEvent",
                   body: [
@@ -377,7 +377,8 @@ class EmbedReactNative: NSObject {
                       "success": false,
                       "transactionId": transactionID,
                       "status": status,
-                      "paymentMethodId": paymentMethodID as Any
+                      "paymentMethodId": paymentMethodID as Any,
+                      "responseCode": responseCode
                     ]
                   ]
                 )
@@ -415,6 +416,19 @@ class EmbedReactNative: NSObject {
                     "name": "cancelled",
                     "data": [
                       "message" : "User cancelled"
+                    ]
+                  ]
+                )
+                return
+              case .cardDetailsChanged(let bin, let cardType, let scheme):
+                EmbedReactNativeEvents.emitter.sendEvent(
+                  withName: "onEvent",
+                  body: [
+                    "name": "cardDetailsChanged",
+                    "data": [
+                      "bin": bin,
+                      "cardType": cardType,
+                      "scheme": scheme
                     ]
                   ]
                 )
