@@ -1,3 +1,15 @@
+# v2.1.0 (Tue Jul 15 2025)
+
+#### 🚀 Enhancement
+
+- task: upgrade React Native SDK [#77](https://github.com/gr4vy/gr4vy-react-native/pull/77) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 1
+
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.0.2 (Wed Mar 12 2025)
 
 #### 🐛 Bug Fix
