@@ -5,7 +5,7 @@ PODS:
   - FBLazyVector (0.76.9)
   - fmt (11.0.2)
   - glog (0.3.5)
-  - gr4vy-embed-react-native (2.0.2):
+  - gr4vy-embed-react-native (2.1.0):
     - gr4vy-ios (= 2.7.0)
     - RCT-Folly
     - RCTRequired
@@ -1961,7 +1961,7 @@ SPEC CHECKSUMS:
   FBLazyVector: 7605ea4810e0e10ae4815292433c09bf4324ba45
   fmt: 01b82d4ca6470831d1cc0852a1af644be019e8f6
   glog: 08b301085f15bcbb6ff8632a8ebaf239aae04e6a
-  gr4vy-embed-react-native: 567cf576a0981579bfcab998738a40045eee591d
+  gr4vy-embed-react-native: 5f78bdd0be649813073ca17cf7bf4aba1bc32d49
   gr4vy-ios: dda109622c08c12c7f5947098ec0a2e96d010e00
   hermes-engine: 06a9c6900587420b90accc394199527c64259db4
   nodejs-mobile-react-native: e35e7ed7ecfca168f168983e9557f1c5278d864b
