@@ -74,5 +74,9 @@
   },
   "engines": {
     "node": ">= 18"
+  },
+  "resolutions": {
+    "brace-expansion@1.x": "1.1.12",
+    "brace-expansion@2.x": "2.0.2"
   }
 }
