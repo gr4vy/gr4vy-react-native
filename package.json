@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.9.3",
-    "@react-native/eslint-config": "0.76.9",
+    "@react-native/eslint-config": "0.77.3",
     "@types/react": "^18.2.8",
     "auto": "^11.3.0",
     "del-cli": "^6.0.0",
@@ -63,7 +63,7 @@
     "pod-install": "^0.3.2",
     "prettier": "^2.8.8",
     "react": "^18.3.1",
-    "react-native": "0.76.9",
+    "react-native": "0.77.3",
     "react-native-builder-bob": "^0.35.2",
     "react-native-dotenv": "^3.4.10",
     "typescript": "^5.0.4"
