@@ -57,7 +57,7 @@
     "@types/react": "^19.2.7",
     "auto": "^11.3.0",
     "del-cli": "^6.0.0",
-    "eslint": "^8.19.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-prettier": "^4.2.1",
     "pod-install": "^0.3.2",
