@@ -1,3 +1,28 @@
+# v2.1.1 (Tue Dec 16 2025)
+
+#### 🐛 Bug Fix
+
+- task: use npm 11 in CI for trusted publishing [#96](https://github.com/gr4vy/gr4vy-react-native/pull/96) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- task: replace classic npm token with OIDC [#95](https://github.com/gr4vy/gr4vy-react-native/pull/95) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: update `connectionOptions` type cast to accept any value in the nested dictionary [#94](https://github.com/gr4vy/gr4vy-react-native/pull/94) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- Bump @react-native-community/cli from 18.0.0 to 18.0.1 in /example [#91](https://github.com/gr4vy/gr4vy-react-native/pull/91) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- task: fix js-yaml vulnerabilities [#93](https://github.com/gr4vy/gr4vy-react-native/pull/93) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- task: upgrade react native [#90](https://github.com/gr4vy/gr4vy-react-native/pull/90) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix(vuln): brace-expansion TA-13699 [#83](https://github.com/gr4vy/gr4vy-react-native/pull/83) ([@GiordanoArman](https://github.com/GiordanoArman))
+- task(fix): on headers vulnerability TA-13696 [#82](https://github.com/gr4vy/gr4vy-react-native/pull/82) ([@GiordanoArman](https://github.com/GiordanoArman))
+
+#### 🏠 Internal
+
+- fix: form-data vulnerability [#78](https://github.com/gr4vy/gr4vy-react-native/pull/78) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- GiordanoArman ([@GiordanoArman](https://github.com/GiordanoArman))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.1.0 (Tue Jul 15 2025)
 
 #### 🚀 Enhancement
