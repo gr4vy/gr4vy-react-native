@@ -236,7 +236,7 @@ class EmbedReactNative: NSObject {
     return nil
   }
 
-  func convertObjectToJsonString(_ obj: [String: [String: String?]?]?) -> String? {
+  func convertObjectToJsonString(_ obj: [String: [String: Any]?]?) -> String? {
     guard let obj = obj else {
       return nil
     }
@@ -307,7 +307,7 @@ class EmbedReactNative: NSObject {
           let requireSecurityCode = config["requireSecurityCode"] as? Bool?,
           let shippingDetailsId = config["shippingDetailsId"] as? String?,
           let merchantAccountId = config["merchantAccountId"] as? String?,
-          let connectionOptions = config["connectionOptions"] as? [String: [String: String?]?]?,
+          let connectionOptions = config["connectionOptions"] as? [String: [String: Any]?]?,
           let buyer = config["buyer"] as? [String: Any?]?,
           let debugMode = config["debugMode"] as? Bool?
     else {
