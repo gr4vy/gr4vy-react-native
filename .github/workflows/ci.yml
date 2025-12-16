@@ -49,6 +49,9 @@ jobs:
   release:
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci') && github.repository_owner == 'gr4vy' && github.ref == 'refs/heads/main'"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     env:
       SKIP_YARN_COREPACK_CHECK: '1'
 
@@ -71,7 +74,6 @@ jobs:
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           yarn prepack
           yarn release
