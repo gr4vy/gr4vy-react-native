@@ -30,7 +30,7 @@
     "@react-native-community/cli-platform-ios": "18.0.0",
     "@react-native/babel-preset": "0.79.7",
     "@react-native/eslint-config": "0.79.7",
-    "@react-native/metro-config": "0.79.7",
+    "@react-native/metro-config": "0.83.0",
     "@react-native/typescript-config": "0.79.7",
     "babel-plugin-module-resolver": "^5.0.2",
     "patch-package": "^8.0.0"
