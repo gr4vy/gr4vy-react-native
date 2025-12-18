@@ -10,7 +10,7 @@
     "minimist": "^1.2.8"
   },
   "overrides": {
-    "elliptic": "^6.6.0",
+    "elliptic": "^6.6.1",
     "form-data": "2.5.5",
     "jws": "^3.2.3"
   }
