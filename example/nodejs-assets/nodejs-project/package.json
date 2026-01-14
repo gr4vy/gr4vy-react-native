@@ -6,7 +6,7 @@
   "author": "Gr4vy <code@gr4vy.com> (https://github.com/gr4vy)",
   "license": "",
   "dependencies": {
-    "@gr4vy/node": "^0.64.1",
+    "@gr4vy/node": "^0.65.0",
     "minimist": "^1.2.8"
   },
   "overrides": {
