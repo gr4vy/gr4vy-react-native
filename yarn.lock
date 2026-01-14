@@ -6123,10 +6123,10 @@ pkg-up@^3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-pod-install@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.npmjs.org/pod-install/-/pod-install-0.3.2.tgz#6747bfec6cf5f3107f8a228bc154611b39fa04bc"
-  integrity sha512-oDP1/4FoUYkiSf38EZ7VWmDvZF/UvQBglzS1Z63TMc8CADb66acYfUhl36pI5vbY7p4jdTAyIuedZKWp6AoB3w==
+pod-install@^0.3.10:
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/pod-install/-/pod-install-0.3.10.tgz#a5b66b6de21e23f7a073d45aa08b25fe27076d3d"
+  integrity sha512-eQRYCQFxcJe1kyd8G3F++yF56XbTj9fyAUJvc7FVIOv0IH+7f/r7h7qBnkfUYnRI1mMhWja6M5hlEyZ7lZT8og==
 
 possible-typed-array-names@^1.0.0:
   version "1.0.0"
