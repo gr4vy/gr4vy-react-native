@@ -6,5 +6,5 @@ plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
 eval_gemfile(plugins_path) if File.exist?(plugins_path)
 
 # Fix vulnerabilities
-gem 'rexml', '>= 3.3.9'
+gem 'rexml', '>= 3.4.4'
 gem 'aws-sdk-s3', '>= 1.208.0'
