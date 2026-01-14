@@ -11,5 +11,8 @@ CVE-2025-27789
 # brace-expansion (dev dependency)
 CVE-2025-5889
 
+# aws-sdk-s3
+CVE-2025-14762
+
 # image-size
 GHSA-m5qc-5hw7-8vg7
