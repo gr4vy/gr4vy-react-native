@@ -7,4 +7,4 @@ eval_gemfile(plugins_path) if File.exist?(plugins_path)
 
 # Fix vulnerabilities
 gem 'rexml', '>= 3.3.9'
-gem 'aws-sdk-s3', '>= 1.208.0'
+gem 'aws-sdk-s3', '>= 1.212.0'
