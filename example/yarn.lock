@@ -1745,16 +1745,6 @@
     fast-glob "^3.3.2"
     fast-xml-parser "^4.4.1"
 
-"@react-native-community/cli-config-apple@18.0.0":
-  version "18.0.0"
-  resolved "https://registry.npmjs.org/@react-native-community/cli-config-apple/-/cli-config-apple-18.0.0.tgz#ab7ea261e51e3ebe0bacce93bfa010fadd3e2ac2"
-  integrity sha512-6edjTt3mlNMFBuB/Xd6u0O7GEkhJiKvQgmcoBH18FsNy5cpiHDwQsG8EWM5cHeINp1gMK845qq9fFsTko6gqyQ==
-  dependencies:
-    "@react-native-community/cli-tools" "18.0.0"
-    chalk "^4.1.2"
-    execa "^5.0.0"
-    fast-glob "^3.3.2"
-
 "@react-native-community/cli-config-apple@18.0.1":
   version "18.0.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-config-apple/-/cli-config-apple-18.0.1.tgz#2ec00756d01cc0746f2a4c0eb505dfdb2797e09f"
@@ -1820,17 +1810,6 @@
     execa "^5.0.0"
     logkitty "^0.7.1"
 
-"@react-native-community/cli-platform-apple@18.0.0":
-  version "18.0.0"
-  resolved "https://registry.npmjs.org/@react-native-community/cli-platform-apple/-/cli-platform-apple-18.0.0.tgz#044b5a57ec81960f5bdbcf44f18f2fe7931fa5f7"
-  integrity sha512-zD18gdP5Wr8BSLJ79xtHuPYcg2Vi/nL+WsGsPm7TZjzR5ZU2WbY/tZ+qTGVTQYhQaah+92sU+Dam7gStMrF/fA==
-  dependencies:
-    "@react-native-community/cli-config-apple" "18.0.0"
-    "@react-native-community/cli-tools" "18.0.0"
-    chalk "^4.1.2"
-    execa "^5.0.0"
-    fast-xml-parser "^4.4.1"
-
 "@react-native-community/cli-platform-apple@18.0.1":
   version "18.0.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-platform-apple/-/cli-platform-apple-18.0.1.tgz#8565ce05ae0fa287e64b4460b61c913e96b3ee93"
@@ -1841,13 +1820,6 @@
     chalk "^4.1.2"
     execa "^5.0.0"
     fast-xml-parser "^4.4.1"
-
-"@react-native-community/cli-platform-ios@18.0.0":
-  version "18.0.0"
-  resolved "https://registry.npmjs.org/@react-native-community/cli-platform-ios/-/cli-platform-ios-18.0.0.tgz#75ccaddf974d5e3ca65a9d7ace0b4cafe7df4a44"
-  integrity sha512-05Nvkkre/4Gao1TYqyP1wGet8td1dAH0CLJKqLNl9Te6ihnrQ8/8OhjIna5xw0iEFr9An8VdLfaPu1Dgv2qAnQ==
-  dependencies:
-    "@react-native-community/cli-platform-apple" "18.0.0"
 
 "@react-native-community/cli-platform-ios@18.0.1":
   version "18.0.1"
