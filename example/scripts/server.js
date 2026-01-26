@@ -1,3 +1,4 @@
+/* eslint-disable no-undef,no-shadow */
 const Gr4vy = require('@gr4vy/sdk')
 const { getEmbedToken } = Gr4vy
 const http = require('node:http')
