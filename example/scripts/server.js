@@ -33,7 +33,6 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'POST' && req.url === '/token') {
     return parseBody(req, res, async (req, res) => {
       try {
-        console.log(privateKey, process.env.GR4VY_ID, req.body)
         const token = await getEmbedToken({
           privateKey,
           embedParams: {
