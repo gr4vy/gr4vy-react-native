@@ -69,3 +69,20 @@ export const darkTheme: Gr4vyConfig['theme'] = {
     focusRing: '0 0 0 2px #ffffff, 0 0 0 4px #4844ff',
   },
 }
+
+export const fetchEmbedToken = async (settings: any) => {
+  const res = await fetch(`http://localhost:9010/token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(settings),
+  })
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch Embed token: ${res.status}`)
+  }
+
+  const data = await res.json()
+  return data.token
+}
