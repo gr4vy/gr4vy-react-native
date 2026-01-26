@@ -216,6 +216,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       ReadableArray cartItems = coalesce(config.getArray("cartItems"), emptyArray);
       ReadableMap connectionOptions = coalesce(config.getMap("connectionOptions"), emptyMap);
       ReadableMap buyer = coalesce(config.getMap("buyer"), emptyMap);
+      Int installmentCount = config.hasKey("installmentCount") ? config.getInt("installmentCount") : false;
       Boolean debugMode = config.hasKey("debugMode") ? config.getBoolean("debugMode") : false;
 
       ReactApplicationContext context = getReactApplicationContext();
@@ -275,6 +276,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
       androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS_STRING, convertMapToJsonString(connectionOptions));
       androidIntent.putExtra(EXTRA_BUYER, buyerBundle);
+      androidIntent.putExtra(EXTRA_INSTALLMENT_COUNT, installmentCount);
       androidIntent.putExtra(EXTRA_DEBUG_MODE, debugMode);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);

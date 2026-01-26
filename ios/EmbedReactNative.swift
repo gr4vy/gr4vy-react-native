@@ -32,6 +32,7 @@ class EmbedReactNative: NSObject {
                  connectionOptions: String?,
                  buyer: Gr4vyBuyer?,
                  debugMode: Bool = false,
+                 installmentCount: Int?,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
     var paymentSourceConverted: Gr4vyPaymentSource?
     if paymentSource != nil {
@@ -63,7 +64,8 @@ class EmbedReactNative: NSObject {
                               merchantAccountId: merchantAccountId,
                               connectionOptionsString: connectionOptions,
                               buyer: buyer,
-                              debugMode: debugMode) else {
+                              debugMode: debugMode,
+                              installmentCount: installmentCount) else {
         completion(nil)
         return
       }
@@ -310,6 +312,7 @@ class EmbedReactNative: NSObject {
           let connectionOptions = config["connectionOptions"] as? [String: [String: Any]?]?,
           let buyer = config["buyer"] as? [String: Any?]?,
           let debugMode = config["debugMode"] as? Bool?
+          let installmentCount = config["installmentCount"] as? Int?
     else {
         EmbedReactNativeEvents.emitter.sendEvent(
           withName: "onEvent",
@@ -347,7 +350,8 @@ class EmbedReactNative: NSObject {
              merchantAccountId: merchantAccountId,
              connectionOptions: convertObjectToJsonString(connectionOptions),
              buyer: convertBuyer(buyer),
-             debugMode: debugMode ?? false) { (gr4vy) in
+             debugMode: debugMode ?? false,
+             installmentCount: Int(installmentCount)) { (gr4vy) in
       if gr4vy == nil {
         EmbedReactNativeEvents.emitter.sendEvent(
           withName: "onEvent",
