@@ -2,14 +2,14 @@
 
 # Please provide a comment with each vulnerability ID describing why it has been ignored.
 
-# tough-cookie (nodejs-mobile-react-native app)
-CVE-2023-26136
-
 # App is crashing on upgrade of @babel\helpers to 7.26.10 version
+
 CVE-2025-27789
 
 # brace-expansion (dev dependency)
+
 CVE-2025-5889
 
 # image-size
+
 GHSA-m5qc-5hw7-8vg7
