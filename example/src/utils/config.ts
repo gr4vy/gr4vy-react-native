@@ -71,10 +71,12 @@ export const darkTheme: Gr4vyConfig['theme'] = {
 }
 
 const devServerPort = process.env.PORT || 9010
-export const devServerUrl = `http://localhost:${devServerPort}`
+export const devServerUrl = `http://${
+  Platform.OS === 'android' ? '10.0.2.2' : 'localhost'
+}:${devServerPort}`
 
 export const fetchEmbedToken = async (settings: any) => {
-  const res = await fetch(devServerUrl, {
+  const res = await fetch(`${devServerUrl}/token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
