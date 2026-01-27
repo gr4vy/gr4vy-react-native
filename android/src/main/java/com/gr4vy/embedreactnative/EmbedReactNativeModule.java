@@ -55,6 +55,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_CART_ITEMS = "EXTRA_CART_ITEMS";
   static final String EXTRA_CONNECTION_OPTIONS_STRING = "EXTRA_CONNECTION_OPTIONS_STRING";
   static final String EXTRA_BUYER = "EXTRA_BUYER";
+  static final String EXTRA_INSTALLMENT_COUNT = "EXTRA_INSTALLMENT_COUNT";
   static final String EXTRA_DEBUG_MODE = "EXTRA_DEBUG_MODE";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
 
@@ -216,7 +217,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       ReadableArray cartItems = coalesce(config.getArray("cartItems"), emptyArray);
       ReadableMap connectionOptions = coalesce(config.getMap("connectionOptions"), emptyMap);
       ReadableMap buyer = coalesce(config.getMap("buyer"), emptyMap);
-      Int installmentCount = config.hasKey("installmentCount") ? config.getInt("installmentCount") : false;
+      Integer installmentCount = config.hasKey("installmentCount") ? config.getInt("installmentCount") : null;
       Boolean debugMode = config.hasKey("debugMode") ? config.getBoolean("debugMode") : false;
 
       ReactApplicationContext context = getReactApplicationContext();
@@ -276,8 +277,11 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
       androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS_STRING, convertMapToJsonString(connectionOptions));
       androidIntent.putExtra(EXTRA_BUYER, buyerBundle);
-      androidIntent.putExtra(EXTRA_INSTALLMENT_COUNT, installmentCount);
       androidIntent.putExtra(EXTRA_DEBUG_MODE, debugMode);
+
+      if (installmentCount != null) {
+        androidIntent.putExtra(EXTRA_INSTALLMENT_COUNT, installmentCount);
+      }
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
     }

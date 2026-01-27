@@ -311,7 +311,7 @@ class EmbedReactNative: NSObject {
           let merchantAccountId = config["merchantAccountId"] as? String?,
           let connectionOptions = config["connectionOptions"] as? [String: [String: Any]?]?,
           let buyer = config["buyer"] as? [String: Any?]?,
-          let debugMode = config["debugMode"] as? Bool?
+          let debugMode = config["debugMode"] as? Bool?,
           let installmentCount = config["installmentCount"] as? Int?
     else {
         EmbedReactNativeEvents.emitter.sendEvent(
@@ -351,7 +351,7 @@ class EmbedReactNative: NSObject {
              connectionOptions: convertObjectToJsonString(connectionOptions),
              buyer: convertBuyer(buyer),
              debugMode: debugMode ?? false,
-             installmentCount: Int(installmentCount)) { (gr4vy) in
+             installmentCount: installmentCount) { (gr4vy) in
       if gr4vy == nil {
         EmbedReactNativeEvents.emitter.sendEvent(
           withName: "onEvent",
