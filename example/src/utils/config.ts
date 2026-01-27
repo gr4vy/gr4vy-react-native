@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import type { Gr4vyConfig } from '@gr4vy/embed-react-native'
 
 import { GR4VY_ID, TOKEN } from '@env'
