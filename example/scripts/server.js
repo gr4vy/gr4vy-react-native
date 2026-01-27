@@ -7,6 +7,8 @@ require('dotenv').config({
   path: require('path').join(__dirname, '..', '.env'),
 })
 
+const port = process.env.PORT || 9010
+
 const privateKey = Buffer.from(
   process.env.GR4VY_PRIVATE_KEY,
   'base64'
@@ -58,6 +60,6 @@ const server = http.createServer(async (req, res) => {
   }
 })
 
-server.listen(9010, () => {
-  console.log('Dev server listening on http://localhost:9010')
+server.listen(port, () => {
+  console.log(`Dev server listening on http://localhost:${port}`)
 })
