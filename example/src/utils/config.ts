@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import type { Gr4vyConfig } from '@gr4vy/embed-react-native'
 
 import { GR4VY_ID, TOKEN } from '@env'
@@ -68,4 +69,26 @@ export const darkTheme: Gr4vyConfig['theme'] = {
   shadows: {
     focusRing: '0 0 0 2px #ffffff, 0 0 0 4px #4844ff',
   },
+}
+
+const devServerPort = process.env.PORT || 9010
+export const devServerUrl = `http://${
+  Platform.OS === 'android' ? '10.0.2.2' : 'localhost'
+}:${devServerPort}`
+
+export const fetchEmbedToken = async (settings: any) => {
+  const res = await fetch(`${devServerUrl}/token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(settings),
+  })
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch Embed token: ${res.status}`)
+  }
+
+  const data = await res.json()
+  return data.token
 }

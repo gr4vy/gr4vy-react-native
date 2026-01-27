@@ -17,8 +17,6 @@ PODS:
   - hermes-engine (0.79.7):
     - hermes-engine/Pre-built (= 0.79.7)
   - hermes-engine/Pre-built (0.79.7)
-  - nodejs-mobile-react-native (0.8.1):
-    - React-Core
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1854,7 +1852,6 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - gr4vy-embed-react-native (from `../..`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
-  - nodejs-mobile-react-native (from `../node_modules/nodejs-mobile-react-native`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTDeprecation (from `../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
@@ -1950,8 +1947,6 @@ EXTERNAL SOURCES:
   hermes-engine:
     :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
     :tag: hermes-2025-06-04-RNv0.79.3-7f9a871eefeb2c3852365ee80f0b6733ec12ac3b
-  nodejs-mobile-react-native:
-    :path: "../node_modules/nodejs-mobile-react-native"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTDeprecation:
@@ -2099,7 +2094,6 @@ SPEC CHECKSUMS:
   gr4vy-embed-react-native: 848e7d3c51ff614a1a1489ac1ac9ab6b5e71b0b4
   gr4vy-ios: 1c4071dacf7a36c8c260d345c6a0c789386e7c6d
   hermes-engine: 13c84524b3b6e884b2cf3b3b1e002ffd147d88a3
-  nodejs-mobile-react-native: e35e7ed7ecfca168f168983e9557f1c5278d864b
   RCT-Folly: 36fe2295e44b10d831836cc0d1daec5f8abcf809
   RCTDeprecation: b9b1716eec53aaeaa859aa45e27de7b615cff732
   RCTRequired: 862acb469086f601f81aab298e00c2a13d572099
