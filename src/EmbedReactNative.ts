@@ -149,6 +149,7 @@ export type Gr4vyConfig = {
     billingDetails?: Gr4vyBillingDetails
     shippingDetails?: Gr4vyShippingDetails
   }
+  installmentCount?: number
   debugMode?: boolean
 }
 

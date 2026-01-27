@@ -53,6 +53,7 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_PAYMENT_SO
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CART_ITEMS;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CONNECTION_OPTIONS_STRING;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_BUYER;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_INSTALLMENT_COUNT;
 
 public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandler {
   private Gr4vySDK gr4vySDK;
@@ -88,6 +89,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   String merchantAccountId;
   String connectionOptionsString;
   Gr4vyBuyer buyer;
+  Integer installmentCount;
   Boolean debugMode;
 
   Boolean sdkLaunched = false;
@@ -286,6 +288,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     this.merchantAccountId = intent.getStringExtra(EXTRA_MERCHANT_ACCOUNT_ID);
     this.locale = intent.getStringExtra(EXTRA_LOCALE);
     this.connectionOptionsString = intent.getStringExtra(EXTRA_CONNECTION_OPTIONS_STRING);
+    this.installmentCount = intent.hasExtra(EXTRA_INSTALLMENT_COUNT) ? intent.getIntExtra(EXTRA_INSTALLMENT_COUNT, 0) : null;
     this.debugMode = intent.getExtras().getBoolean(EXTRA_DEBUG_MODE);
 
     // Convert the cartItems JSON string to List<CartItem>
@@ -357,7 +360,8 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             null,
             connectionOptionsString,
             buyer,
-            debugMode);
+            debugMode,
+            installmentCount);
 
     sdkLaunched = true;
   }
@@ -376,7 +380,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       resultData.putString("bin", ((Gr4vyEvent.CardDetailsChanged) gr4vyEvent).getBin());
       resultData.putString("cardType", ((Gr4vyEvent.CardDetailsChanged) gr4vyEvent).getCardType());
       resultData.putString("scheme", ((Gr4vyEvent.CardDetailsChanged) gr4vyEvent).getScheme());
-      
+
       result.putMap("data", resultData);
 
       EmbedReactNativeEvents.sendEvent(EmbedReactNativeModule.reactContext, "onEvent", result);

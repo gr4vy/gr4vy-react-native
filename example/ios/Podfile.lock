@@ -6,14 +6,14 @@ PODS:
   - fmt (11.0.2)
   - glog (0.3.5)
   - gr4vy-embed-react-native (2.1.1):
-    - gr4vy-ios (= 2.7.0)
+    - gr4vy-ios (= 2.8.0)
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
     - React-Codegen
     - React-Core
     - ReactCommon/turbomodule/core
-  - gr4vy-ios (2.7.0)
+  - gr4vy-ios (2.8.0)
   - hermes-engine (0.79.7):
     - hermes-engine/Pre-built (= 0.79.7)
   - hermes-engine/Pre-built (0.79.7)
@@ -2091,8 +2091,8 @@ SPEC CHECKSUMS:
   FBLazyVector: b60fe06f0f15b7d7408f169442176e69e8eeacde
   fmt: 01b82d4ca6470831d1cc0852a1af644be019e8f6
   glog: 08b301085f15bcbb6ff8632a8ebaf239aae04e6a
-  gr4vy-embed-react-native: e8a834482a9f04b575cf96551ffc8f6599b503d4
-  gr4vy-ios: dda109622c08c12c7f5947098ec0a2e96d010e00
+  gr4vy-embed-react-native: 848e7d3c51ff614a1a1489ac1ac9ab6b5e71b0b4
+  gr4vy-ios: 1c4071dacf7a36c8c260d345c6a0c789386e7c6d
   hermes-engine: 13c84524b3b6e884b2cf3b3b1e002ffd147d88a3
   RCT-Folly: 36fe2295e44b10d831836cc0d1daec5f8abcf809
   RCTDeprecation: b9b1716eec53aaeaa859aa45e27de7b615cff732
