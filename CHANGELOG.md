@@ -1,3 +1,31 @@
+# v2.2.0 (Tue Jan 27 2026)
+
+#### 🚀 Enhancement
+
+- task: bump iOS / Android SDKs [#121](https://github.com/gr4vy/gr4vy-react-native/pull/121) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(deps): update dependency @react-native-picker/picker to ^2.11.4 [#110](https://github.com/gr4vy/gr4vy-react-native/pull/110) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency @gr4vy/node to ^0.65.0 [#105](https://github.com/gr4vy/gr4vy-react-native/pull/105) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency @react-native-async-storage/async-storage to ^2.2.0 [#71](https://github.com/gr4vy/gr4vy-react-native/pull/71) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### 🏠 Internal
+
+- task: replace nodejs process with simple local server returning the token [#120](https://github.com/gr4vy/gr4vy-react-native/pull/120) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: tar vulnerability [#112](https://github.com/gr4vy/gr4vy-react-native/pull/112) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency react-native-dotenv to ^3.4.11 [#104](https://github.com/gr4vy/gr4vy-react-native/pull/104) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency pod-install to ^0.3.10 [#102](https://github.com/gr4vy/gr4vy-react-native/pull/102) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency patch-package to ^8.0.1 [#101](https://github.com/gr4vy/gr4vy-react-native/pull/101) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency auto to ^11.3.6 [#100](https://github.com/gr4vy/gr4vy-react-native/pull/100) ([@renovate[bot]](https://github.com/renovate[bot]))
+- fix: aws-sdk-s3 vulnerability [#107](https://github.com/gr4vy/gr4vy-react-native/pull/107) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: qs vulnerability [#106](https://github.com/gr4vy/gr4vy-react-native/pull/106) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update babel monorepo [#61](https://github.com/gr4vy/gr4vy-react-native/pull/61) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### Authors: 2
+
+- [@renovate[bot]](https://github.com/renovate[bot])
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.1.1 (Tue Dec 16 2025)
 
 #### 🐛 Bug Fix
