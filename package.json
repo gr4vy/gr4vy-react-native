@@ -63,7 +63,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "pod-install": "^0.3.10",
     "prettier": "^2.8.8",
-    "react": "^19.0.0",
+    "react": "^19.2.4",
     "react-native": "0.79.7",
     "react-native-builder-bob": "^0.35.2",
     "react-native-dotenv": "^3.4.11",
