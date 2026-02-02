@@ -1,3 +1,24 @@
+# v2.2.1 (Mon Feb 02 2026)
+
+#### 🐛 Bug Fix
+
+- chore: bump android version [#127](https://github.com/gr4vy/gr4vy-react-native/pull/127) ([@gryevns](https://github.com/gryevns))
+- build(deps): bump lodash from 4.17.21 to 4.17.23 in /example [#114](https://github.com/gr4vy/gr4vy-react-native/pull/114) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- build(deps): bump lodash from 4.17.21 to 4.17.23 [#113](https://github.com/gr4vy/gr4vy-react-native/pull/113) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### 🏠 Internal
+
+- chore(dev-deps): update dependency @types/react to ^19.2.9 [#116](https://github.com/gr4vy/gr4vy-react-native/pull/116) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### Authors: 4
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@renovate[bot]](https://github.com/renovate[bot])
+- Gary Evans ([@gryevns](https://github.com/gryevns))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.2.0 (Tue Jan 27 2026)
 
 #### 🚀 Enhancement
