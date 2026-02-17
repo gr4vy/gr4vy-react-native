@@ -1491,10 +1491,10 @@
   resolved "https://registry.npmjs.org/@eslint-community/regexpp/-/regexpp-4.12.1.tgz#cfc6cffe39df390a3841cde2abccf92eaa7ae0e0"
   integrity sha512-CCZCDJuduB9OUkFkY2IgppNZMi2lBQgD2qzwXkEia16cge2pijY/aXi96CJMquDMn3nJdlPV1A5KrJEXwfLNzQ==
 
-"@gr4vy/sdk@^1.9.16":
-  version "1.9.16"
-  resolved "https://registry.npmjs.org/@gr4vy/sdk/-/sdk-1.9.16.tgz#086f601d0fe4f33027ab17af276bc303b7a24352"
-  integrity sha512-hAPsCnT8JjRkJV4KJLaB1c6+/OnLV0eSCwQSIcDvdQFGkQ99NqRXDSu7ed+vHqsNePoY9WEY38NOukilV5nl3A==
+"@gr4vy/sdk@^1.10.6":
+  version "1.10.6"
+  resolved "https://registry.yarnpkg.com/@gr4vy/sdk/-/sdk-1.10.6.tgz#d714fc72e05c93c195aa8346d4e5e9c1b6780961"
+  integrity sha512-37k5QEisAdavyXl7AFqgR35bu8McAqmvoUImLj2Wzw8V+QFc3+lo637keiBUA3mNpjJdU5ae4aSXlPp7f1PzUA==
   dependencies:
     "@trust/keyto" "^1.0.1"
     jsonwebtoken "^9.0.3"
