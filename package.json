@@ -52,7 +52,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.9.3",
+    "@evilmartians/lefthook": "^1.13.6",
     "@react-native/babel-preset": "0.79.7",
     "@react-native/eslint-config": "0.79.7",
     "@types/react": "^19.2.9",
