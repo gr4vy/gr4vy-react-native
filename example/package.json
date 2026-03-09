@@ -24,7 +24,7 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.0",
     "@babel/runtime": "^7.28.6",
-    "@gr4vy/sdk": "^1.10.12",
+    "@gr4vy/sdk": "^1.10.16",
     "@react-native-community/cli": "18.0.1",
     "@react-native-community/cli-platform-android": "18.0.0",
     "@react-native-community/cli-platform-ios": "18.0.0",
