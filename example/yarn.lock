@@ -1603,10 +1603,10 @@
   resolved "https://registry.npmjs.org/@eslint-community/regexpp/-/regexpp-4.12.1.tgz#cfc6cffe39df390a3841cde2abccf92eaa7ae0e0"
   integrity sha512-CCZCDJuduB9OUkFkY2IgppNZMi2lBQgD2qzwXkEia16cge2pijY/aXi96CJMquDMn3nJdlPV1A5KrJEXwfLNzQ==
 
-"@gr4vy/sdk@^1.10.16":
-  version "1.10.16"
-  resolved "https://registry.yarnpkg.com/@gr4vy/sdk/-/sdk-1.10.16.tgz#2d1a427538f7f7ffe4fc9b4d3a6856950db9b9b8"
-  integrity sha512-BjD1+T6mf4RYBdW7IcE0bxKm5lsMgCPrYNc7zIHAp+L6kmPm9FqW6jA5b8cy95E1dB2NbFNfHKLg5+vI4IivVA==
+"@gr4vy/sdk@^1.10.18":
+  version "1.10.18"
+  resolved "https://registry.yarnpkg.com/@gr4vy/sdk/-/sdk-1.10.18.tgz#d5ea21b7a6c03380d4bfd57ca2f9dd7616ce9296"
+  integrity sha512-WHavne9mZo+T/dHPoQYT+cA0nR5Il3FHVxZvZJaiJyPBuvOM6cigfo8uvW9TBL9ulEnMft15vFUKQOMtuoJweA==
   dependencies:
     "@trust/keyto" "^1.0.1"
     jsonwebtoken "^9.0.3"
