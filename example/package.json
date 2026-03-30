@@ -15,7 +15,7 @@
     "@react-navigation/bottom-tabs": "^7.15.6",
     "@react-navigation/native": "^7.1.34",
     "react": "19.0.0",
-    "react-native": "0.79.7",
+    "react-native": "0.84.1",
     "react-native-device-info": "^14.1.1",
     "react-native-safe-area-context": "^5.7.0",
     "react-native-screens": "^4.24.0"
