@@ -9,7 +9,18 @@ CVE-2025-27789
 # brace-expansion (dev dependency)
 
 CVE-2025-5889
+CVE-2026-33750
 
 # image-size
 
 GHSA-m5qc-5hw7-8vg7
+
+# addressable (denial of service risk, but does not apply to our case)
+
+CVE-2026-35611
+
+# activesupport (denial of service risks, but does not apply to our case)
+
+CVE-2026-33169
+CVE-2026-33170
+CVE-2026-33176
