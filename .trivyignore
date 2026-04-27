@@ -9,6 +9,13 @@ CVE-2025-27789
 # brace-expansion (dev dependency)
 
 CVE-2025-5889
+CVE-2026-33750
+
+# activesupport (they are all denial of service vulnerabilities that do not apply to our case https://github.com/gr4vy/gr4vy-react-native/actions/runs/24998947756/job/73203426007?pr=191)
+
+CVE-2026-33169
+CVE-2026-33170
+CVE-2026-33176
 
 # image-size
 
