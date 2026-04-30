@@ -10,7 +10,7 @@ runs:
         node-version-file: .nvmrc
 
     - name: Upgrade npm for trusted publishing (needs npm >= 11.5.1)
-      run: npm install -g npm@^11.5.1
+      run: npm install -g npm@11.13.0
       shell: bash
 
     - name: Cache dependencies
