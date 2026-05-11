@@ -36,7 +36,7 @@ target 'EmbedReactNativeExample' do
       # :ccache_enabled => true
     )
 
-    # Fix for Xcode 26.4 build error
+    # Fix for Xcode 26.4 build error / RN 0.83.4
     # https://stackoverflow.com/a/79921410/830199
     installer.pods_project.targets.each do |target|
       if target.name == 'fmt'
@@ -46,7 +46,7 @@ target 'EmbedReactNativeExample' do
       end
     end
 
-    # Fix 'folly/coro/Coroutine.h' file not found (Xcode 26)
+    # Fix 'folly/coro/Coroutine.h' file not found (Xcode 26)  / RN 0.83.4
     # https://github.com/facebook/folly/issues/2297#issuecomment-2442923702
     Dir.glob(installer.sandbox.root + "RCT-Folly/folly/Portability.h") do |file|
       system("chmod +w #{file}")
