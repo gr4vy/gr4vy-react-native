@@ -33,7 +33,7 @@
     "@react-native/metro-config": "0.83.4",
     "@react-native/typescript-config": "0.83.4",
     "babel-plugin-module-resolver": "^5.0.3",
-    "dotenv": "^17.3.1"
+    "dotenv": "^17.4.2"
   },
   "resolutions": {
     "on-headers": "^1.1.0",
