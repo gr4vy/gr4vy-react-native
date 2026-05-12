@@ -67,7 +67,7 @@
     "react-native": "0.83.4",
     "react-native-builder-bob": "^0.41.0",
     "react-native-dotenv": "^3.4.11",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "react": "*",
