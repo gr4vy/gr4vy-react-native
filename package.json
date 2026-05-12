@@ -53,8 +53,8 @@
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.13.6",
-    "@react-native/babel-preset": "0.79.7",
-    "@react-native/eslint-config": "0.79.7",
+    "@react-native/babel-preset": "0.83.4",
+    "@react-native/eslint-config": "0.83.4",
     "@types/react": "^19.2.9",
     "auto": "^11.3.6",
     "del-cli": "^6.0.0",
@@ -63,18 +63,18 @@
     "eslint-plugin-prettier": "^4.2.1",
     "pod-install": "^0.3.10",
     "prettier": "^2.8.8",
-    "react": "^19.0.0",
-    "react-native": "0.79.7",
-    "react-native-builder-bob": "^0.35.2",
+    "react": "^19.2.0",
+    "react-native": "0.83.4",
+    "react-native-builder-bob": "^0.41.0",
     "react-native-dotenv": "^3.4.11",
-    "typescript": "^5.0.4"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20"
   },
   "resolutions": {
     "picomatch": "^2.3.2"

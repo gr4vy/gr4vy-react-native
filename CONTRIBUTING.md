@@ -164,6 +164,24 @@ When you're sending a pull request:
 - Follow the pull request template when opening a pull request.
 - For pull requests that change the API or implementation, discuss with maintainers first by opening an issue.
 
+### Project upgrades
+
+Start by checking https://react-native-community.github.io/upgrade-helper/ for the canonical diff between versions. Most of the changes will need to be applied to the example app under `example/`, but occasionally you might have to upgrade dependencies in the root which are needed to build the npm package. To build the npm package, we use [react-native-builder-bob](https://github.com/callstack/react-native-builder-bob) which version must be compatible with the metro version (can be checked in their docs / changelog).
+
+You'd often bump into issues when building the project with a new version of Xcode. React Native ships before new Xcode versions exist, so expect C++ build issues (Folly, fmt, Hermes) with bleeding-edge Xcode, for which there are usually workarounds while waiting for the RN team to fix.
+
+It's also important to clean the project when testing upgrades. These are useful clean commands that can be ran from the root:
+
+- `yarn clean`, deletes the android/ios build folders
+- `rm -rf  Pods`, if you have issues with stale pods. They will be regenerated when running `yarn` from the root
+- `rm -rf ~/Library/Developer/Xcode/DerivedData/EmbedReactNativeExample-*`, clears Xcode's derived data for the example app
+
+Also, after major Node.js upgrades, make sure `example/ios/.xcode.env` points to the correct node version. If `$(command -v node)` doesn't work, you can override with a `.xcode.env.local` and use an absolute path:
+
+`export NODE_BINARY=~/.nvm/versions/node/v22.22.1/bin/node`
+
+To test the upgrades, as usual, first run `yarn example start` and `yarn example ios` / `yarn example android`. Refer to the Embed guide on Confluence for details.
+
 ### SDK upgrades
 
 From time to time a new version of the iOS and/or the Android SDKs will be published. To upgrade the version used by this library, do the following:
