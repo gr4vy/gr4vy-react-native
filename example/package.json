@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-env": "^7.29.5",
     "@babel/runtime": "^7.29.2",
     "@gr4vy/sdk": "^2.0.33",
     "@react-native-community/cli": "20.0.0",
