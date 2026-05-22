@@ -28,6 +28,8 @@ import android.util.Log;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import java.util.ArrayList;
+
 @ReactModule(name = EmbedReactNativeModule.NAME)
 public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   public static ReactApplicationContext reactContext;
@@ -57,6 +59,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_BUYER = "EXTRA_BUYER";
   static final String EXTRA_INSTALLMENT_COUNT = "EXTRA_INSTALLMENT_COUNT";
   static final String EXTRA_DEBUG_MODE = "EXTRA_DEBUG_MODE";
+  static final String EXTRA_EXCLUDED_METHODS = "EXTRA_EXCLUDED_METHODS";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
 
   public static <T> T coalesce(T... items) {
@@ -220,6 +223,15 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       Integer installmentCount = config.hasKey("installmentCount") ? config.getInt("installmentCount") : null;
       Boolean debugMode = config.hasKey("debugMode") ? config.getBoolean("debugMode") : false;
 
+      ArrayList<String> excludedMethods = null;
+      if (config.hasKey("excludedMethods") && !config.isNull("excludedMethods")) {
+        ReadableArray rawArr = config.getArray("excludedMethods");
+        excludedMethods = new ArrayList<>();
+        for (int i = 0; i < rawArr.size(); i++) {
+          excludedMethods.add(rawArr.getString(i));
+        }
+      }
+
       ReactApplicationContext context = getReactApplicationContext();
       Intent androidIntent = new Intent(context, Gr4vyActivity.class);
 
@@ -282,6 +294,8 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       if (installmentCount != null) {
         androidIntent.putExtra(EXTRA_INSTALLMENT_COUNT, installmentCount);
       }
+
+      androidIntent.putStringArrayListExtra(EXTRA_EXCLUDED_METHODS, excludedMethods);
 
       context.startActivityForResult(androidIntent, GR4VY_PAYMENT_SHEET_REQUEST, null);
     }
