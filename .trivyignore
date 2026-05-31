@@ -19,3 +19,11 @@ CVE-2026-33176
 # image-size
 
 GHSA-m5qc-5hw7-8vg7
+# jwt 2.8.2 — CVE-2026-45363 (ruby-jwt empty-key HMAC bypass).
+# Transitive dev-only dependency of fastlane (2.222.0) in example/ios and
+# example/android, which pins jwt < 3; the fix lands in 3.2.0, so it cannot be
+# bumped without a fastlane major upgrade. The example app's Ruby tooling is not
+# part of the published @gr4vy/embed-react-native package, so this is not
+# reachable by SDK consumers.
+
+CVE-2026-45363
