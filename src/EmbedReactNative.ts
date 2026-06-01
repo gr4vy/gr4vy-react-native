@@ -150,6 +150,7 @@ export type Gr4vyConfig = {
     shippingDetails?: Gr4vyShippingDetails
   }
   installmentCount?: number
+  excludedMethods?: string[]
   debugMode?: boolean
 }
 
