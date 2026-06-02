@@ -1,3 +1,78 @@
+# v2.3.0 (Tue Jun 02 2026)
+
+#### 🚀 Enhancement
+
+- chore: trigger v2.3.0 release [#209](https://github.com/gr4vy/gr4vy-react-native/pull/209) ([@cbetta](https://github.com/cbetta))
+- chore(deps): update react-navigation monorepo [#205](https://github.com/gr4vy/gr4vy-react-native/pull/205) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency @react-navigation/bottom-tabs to ^7.16.1 [#197](https://github.com/gr4vy/gr4vy-react-native/pull/197) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update react-navigation monorepo [#170](https://github.com/gr4vy/gr4vy-react-native/pull/170) ([@renovate[bot]](https://github.com/renovate[bot]))
+- task: upgrade react native [#195](https://github.com/gr4vy/gr4vy-react-native/pull/195) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- build(deps): bump addressable from 2.8.7 to 2.9.0 in /example [#177](https://github.com/gr4vy/gr4vy-react-native/pull/177) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- build(deps): bump lodash from 4.17.23 to 4.18.1 in /example [#180](https://github.com/gr4vy/gr4vy-react-native/pull/180) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- build(deps): bump lodash from 4.17.23 to 4.18.1 [#179](https://github.com/gr4vy/gr4vy-react-native/pull/179) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- build(deps): bump flatted from 3.3.2 to 3.4.2 [#158](https://github.com/gr4vy/gr4vy-react-native/pull/158) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(deps): update react-navigation monorepo [#159](https://github.com/gr4vy/gr4vy-react-native/pull/159) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update react-navigation monorepo [#151](https://github.com/gr4vy/gr4vy-react-native/pull/151) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency react-native-screens to ^4.24.0 [#143](https://github.com/gr4vy/gr4vy-react-native/pull/143) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update react-navigation monorepo [#138](https://github.com/gr4vy/gr4vy-react-native/pull/138) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency react-native-safe-area-context to ^5.7.0 [#142](https://github.com/gr4vy/gr4vy-react-native/pull/142) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency react-native-device-info to ^14.1.1 [#129](https://github.com/gr4vy/gr4vy-react-native/pull/129) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### 🐛 Bug Fix
+
+- fix: restore npm 11 upgrade step for trusted publishing [#210](https://github.com/gr4vy/gr4vy-react-native/pull/210) ([@brunodesde1987](https://github.com/brunodesde1987))
+- fix: bump fastlane to 2.235.0 to resolve jwt CVE-2026-45363 [#204](https://github.com/gr4vy/gr4vy-react-native/pull/204) ([@cbetta](https://github.com/cbetta) [@PieroGr4vy](https://github.com/PieroGr4vy))
+- chore: uuid vulnerability [#191](https://github.com/gr4vy/gr4vy-react-native/pull/191) ([@GiordanoArman](https://github.com/GiordanoArman) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore: remove unsafe npx references [#192](https://github.com/gr4vy/gr4vy-react-native/pull/192) ([@gryevns](https://github.com/gryevns))
+- fix: fast-xml-parser 4.5.4 vulnerability [#189](https://github.com/gr4vy/gr4vy-react-native/pull/189) ([@luca-gr4vy](https://github.com/luca-gr4vy) [@gryevns](https://github.com/gryevns))
+- fix: addressable vulnerabilities in example android/ios [#190](https://github.com/gr4vy/gr4vy-react-native/pull/190) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: picomatch example [#188](https://github.com/gr4vy/gr4vy-react-native/pull/188) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fixed picomatch vulnerability, TA-16386 [#187](https://github.com/gr4vy/gr4vy-react-native/pull/187) ([@GiordanoArman](https://github.com/GiordanoArman))
+- chore: add dependabot cooldown and update actions [#184](https://github.com/gr4vy/gr4vy-react-native/pull/184) ([@gryevns](https://github.com/gryevns))
+- chore: pin GitHub actions to specific commit SHA [#166](https://github.com/gr4vy/gr4vy-react-native/pull/166) ([@andrewmackett](https://github.com/andrewmackett))
+- Trivy supply chain attack [#165](https://github.com/gr4vy/gr4vy-react-native/pull/165) ([@andrewmackett](https://github.com/andrewmackett))
+- fix: fast-xml-parser example app vulnerability [#147](https://github.com/gr4vy/gr4vy-react-native/pull/147) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: minimatch v8 and v9 [#146](https://github.com/gr4vy/gr4vy-react-native/pull/146) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: `minimatch` dep vulnerabilities [#145](https://github.com/gr4vy/gr4vy-react-native/pull/145) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- build(deps): bump qs from 6.14.1 to 6.14.2 in /example [#132](https://github.com/gr4vy/gr4vy-react-native/pull/132) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### 🏠 Internal
+
+- chore(dev-deps): update dependency @types/react to ^19.2.15 [#207](https://github.com/gr4vy/gr4vy-react-native/pull/207) ([@renovate[bot]](https://github.com/renovate[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update babel monorepo to ^7.29.7 [#206](https://github.com/gr4vy/gr4vy-react-native/pull/206) ([@renovate[bot]](https://github.com/renovate[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^2.0.44 [#199](https://github.com/gr4vy/gr4vy-react-native/pull/199) ([@renovate[bot]](https://github.com/renovate[bot]))
+- fix: @babel/plugin-transform-modules-systemjs vulnerability [#196](https://github.com/gr4vy/gr4vy-react-native/pull/196) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency dotenv to ^17.4.2 [#174](https://github.com/gr4vy/gr4vy-react-native/pull/174) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update babel monorepo to ^7.29.2 [#160](https://github.com/gr4vy/gr4vy-react-native/pull/160) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency babel-plugin-module-resolver to ^5.0.3 [#161](https://github.com/gr4vy/gr4vy-react-native/pull/161) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^1.10.18 [#154](https://github.com/gr4vy/gr4vy-react-native/pull/154) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^1.10.16 [#152](https://github.com/gr4vy/gr4vy-react-native/pull/152) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update babel monorepo [#139](https://github.com/gr4vy/gr4vy-react-native/pull/139) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^1.10.12 [#137](https://github.com/gr4vy/gr4vy-react-native/pull/137) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency @evilmartians/lefthook to ^1.13.6 [#140](https://github.com/gr4vy/gr4vy-react-native/pull/140) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^1.10.6 [#123](https://github.com/gr4vy/gr4vy-react-native/pull/123) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency dotenv to ^17.3.1 [#128](https://github.com/gr4vy/gr4vy-react-native/pull/128) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### 🔩 Dependency Updates
+
+- chore(deps): update node.js to v20.20.1 [#150](https://github.com/gr4vy/gr4vy-react-native/pull/150) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update node.js to v20.20.0 [#149](https://github.com/gr4vy/gr4vy-react-native/pull/149) ([@renovate[bot]](https://github.com/renovate[bot]))
+- fix: faraday vulnerability [#136](https://github.com/gr4vy/gr4vy-react-native/pull/136) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 9
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@PieroGr4vy](https://github.com/PieroGr4vy)
+- [@renovate[bot]](https://github.com/renovate[bot])
+- Andrew Mackett ([@andrewmackett](https://github.com/andrewmackett))
+- Bruno Carvalho ([@brunodesde1987](https://github.com/brunodesde1987))
+- Cristiano Betta ([@cbetta](https://github.com/cbetta))
+- Gary Evans ([@gryevns](https://github.com/gryevns))
+- GiordanoArman ([@GiordanoArman](https://github.com/GiordanoArman))
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.2.1 (Mon Feb 02 2026)
 
 #### 🐛 Bug Fix
