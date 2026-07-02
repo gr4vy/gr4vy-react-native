@@ -17,3 +17,4 @@ gem 'mutex_m'
 
 # Fix vulnerabilities
 gem 'rexml', '>= 3.3.9'
+gem 'active-support', '>= 7.2.3.1'
