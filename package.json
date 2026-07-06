@@ -80,6 +80,8 @@
     "picomatch": "^2.3.2",
     "ws": "^7.5.11",
     "shell-quote": "^1.8.4",
-    "@babel/core": "^7.29.6"
+    "@babel/core": "^7.29.6",
+    "eslint/**/js-yaml": "^4.2.0",
+    "react-native/**/js-yaml": "^3.15.0"
   }
 }

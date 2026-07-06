@@ -43,6 +43,8 @@
     "ws": "^7.5.11",
     "@babel/core": "^7.29.6",
     "launch-editor": "^2.14.1",
-    "qs": "^6.15.2"
+    "qs": "^6.15.2",
+    "@react-native-community/cli/**/js-yaml": "^4.2.0",
+    "react-native/**/js-yaml": "^3.15.0"
   }
 }
