@@ -9,3 +9,4 @@ eval_gemfile(plugins_path) if File.exist?(plugins_path)
 gem 'rexml', '>= 3.3.9'
 gem 'aws-sdk-s3', '>= 1.208.0'
 gem 'faraday', '>= 1.10.6'
+gem 'json', '>= 2.19.9'

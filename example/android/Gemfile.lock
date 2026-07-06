@@ -180,7 +180,7 @@ GEM
     httpclient (2.9.0)
       mutex_m
     jmespath (1.6.2)
-    json (2.19.7)
+    json (2.20.0)
     jwt (3.2.0)
       base64
     logger (1.7.0)
@@ -249,6 +249,7 @@ DEPENDENCIES
   fastlane-plugin-commit_android_version_bump
   fastlane-plugin-firebase_app_distribution
   fastlane-plugin-increment_version_code
+  json (>= 2.19.9)
   rexml (>= 3.3.9)
 
 BUNDLED WITH
