@@ -75,7 +75,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   String country;
   String buyerId;
   String externalIdentifier;
-  String store;
+  Gr4vyStore store;
   String display;
   String intent;
   List<CartItem> cartItems;
@@ -281,7 +281,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     this.country = intent.getStringExtra(EXTRA_COUNTRY);
     this.buyerId = intent.getStringExtra(EXTRA_BUYER_ID);
     this.externalIdentifier = intent.getStringExtra(EXTRA_EXTERNAL_IDENTIFIER);
-    this.store = intent.getStringExtra(EXTRA_STORE);
     this.display = intent.getStringExtra(EXTRA_DISPLAY);
     this.intent = intent.getStringExtra(EXTRA_INTENT);
     this.buyerExternalIdentifier = intent.getStringExtra(EXTRA_BUYER_EXTERNAL_IDENTIFIER);
@@ -324,6 +323,13 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       paymentSourceString != null ?
         PaymentSource.valueOf(paymentSourceString.toUpperCase()) :
         PaymentSource.NOT_SET;
+
+    // Set store according to its type requirements
+    String storeString = intent.getStringExtra(EXTRA_STORE);
+    this.store =
+      storeString != null ?
+        Gr4vyStore.valueOf(storeString.toUpperCase()) :
+        null;
 
     this.gr4vySDK = new Gr4vySDK(activityResultRegistry, this, this);
     getLifecycle().addObserver(this.gr4vySDK);
