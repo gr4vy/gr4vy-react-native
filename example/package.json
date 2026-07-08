@@ -36,8 +36,6 @@
     "dotenv": "^17.4.2"
   },
   "resolutions": {
-    "on-headers": "^1.1.0",
-    "fast-xml-parser": "^5.7.0",
-    "picomatch": "^2.3.2"
+    "fast-xml-parser": "^5.7.0"
   }
 }
