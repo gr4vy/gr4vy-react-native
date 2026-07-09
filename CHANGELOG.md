@@ -1,3 +1,25 @@
+# v2.4.0 (Thu Jul 09 2026)
+
+#### 🚀 Enhancement
+
+- fix: upgrade to gr4vy-android 2.0.0 and fix the store option pass-through [#232](https://github.com/gr4vy/gr4vy-react-native/pull/232) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- build(deps): bump activesupport from 7.1.4 to 7.2.3.1 in /example [#230](https://github.com/gr4vy/gr4vy-react-native/pull/230) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps): update dependency react-native-safe-area-context to ^5.8.0 [#214](https://github.com/gr4vy/gr4vy-react-native/pull/214) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### 🏠 Internal
+
+- task: fix vulnerabilities [#231](https://github.com/gr4vy/gr4vy-react-native/pull/231) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: fast-xml-parser vulnerability [#225](https://github.com/gr4vy/gr4vy-react-native/pull/225) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update types to ^19.2.16 [#212](https://github.com/gr4vy/gr4vy-react-native/pull/212) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@renovate[bot]](https://github.com/renovate[bot])
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.3.0 (Tue Jun 02 2026)
 
 #### 🚀 Enhancement
