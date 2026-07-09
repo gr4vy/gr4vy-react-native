@@ -242,8 +242,6 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
           store = config.getString("store");
         } else if (config.getType("store") == ReadableType.Boolean) {
           store = String.valueOf(config.getBoolean("store"));
-        } else {
-          store = null;
         }
       }
 
