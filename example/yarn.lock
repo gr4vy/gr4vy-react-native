@@ -1564,7 +1564,7 @@
     invariant "^2.2.4"
     nullthrows "^1.1.1"
 
-"@react-navigation/bottom-tabs@^7.18.7":
+"@react-navigation/bottom-tabs@^7.18.8":
   version "7.18.8"
   resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-7.18.8.tgz#a611371cbe01f6a84873e1725c269c8746e4510f"
   integrity sha512-7KCsBtwCRwQQSTEw9SLglZCEkxWc+EqgdRKyUOgII+6+xEnemOyg8aDlnLIM2yk9ip6uE+Oxvm0jdpQU2vsu2w==
@@ -1596,7 +1596,7 @@
     use-latest-callback "^0.2.4"
     use-sync-external-store "^1.5.0"
 
-"@react-navigation/native@^7.3.7":
+"@react-navigation/native@^7.3.8":
   version "7.3.8"
   resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-7.3.8.tgz#01513734e93ac40fd3b48fd6169836fbf5678ac8"
   integrity sha512-zHmQcxWBT8GOwsofEOmHqpdM5twkwE/esa9JFGlW4hpXeQTTe/dRcPSLjwsvePtolbDKz0YZbK+I5KrW3j63LQ==
