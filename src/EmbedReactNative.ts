@@ -151,6 +151,7 @@ export type Gr4vyConfig = {
   }
   installmentCount?: number
   excludedMethods?: string[]
+  approvalExpiresAt?: string
   debugMode?: boolean
 }
 
