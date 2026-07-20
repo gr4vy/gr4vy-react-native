@@ -60,6 +60,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
   static final String EXTRA_INSTALLMENT_COUNT = "EXTRA_INSTALLMENT_COUNT";
   static final String EXTRA_DEBUG_MODE = "EXTRA_DEBUG_MODE";
   static final String EXTRA_EXCLUDED_METHODS = "EXTRA_EXCLUDED_METHODS";
+  static final String EXTRA_APPROVAL_EXPIRES_AT = "EXTRA_APPROVAL_EXPIRES_AT";
   private static final int GR4VY_PAYMENT_SHEET_REQUEST = 1;
 
   public static <T> T coalesce(T... items) {
@@ -216,6 +217,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       Boolean requireSecurityCode = config.hasKey("requireSecurityCode") ? config.getBoolean("requireSecurityCode") : false;
       String shippingDetailsId = config.getString("shippingDetailsId");
       String merchantAccountid = config.getString("merchantAccountId");
+      String approvalExpiresAt = config.getString("approvalExpiresAt");
       String paymentSource = config.getString("paymentSource");
       ReadableArray cartItems = coalesce(config.getArray("cartItems"), emptyArray);
       ReadableMap connectionOptions = coalesce(config.getMap("connectionOptions"), emptyMap);
@@ -285,6 +287,7 @@ public class EmbedReactNativeModule extends ReactContextBaseJavaModule {
       androidIntent.putExtra(EXTRA_REQUIRE_SECURITY_CODE, requireSecurityCode);
       androidIntent.putExtra(EXTRA_SHIPPING_DETAILS_ID, shippingDetailsId);
       androidIntent.putExtra(EXTRA_MERCHANT_ACCOUNT_ID, merchantAccountid);
+      androidIntent.putExtra(EXTRA_APPROVAL_EXPIRES_AT, approvalExpiresAt);
       androidIntent.putExtra(EXTRA_CONNECTION_OPTIONS_STRING, convertMapToJsonString(connectionOptions));
       androidIntent.putExtra(EXTRA_BUYER, buyerBundle);
       androidIntent.putExtra(EXTRA_DEBUG_MODE, debugMode);

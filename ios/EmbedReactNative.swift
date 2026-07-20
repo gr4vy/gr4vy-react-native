@@ -34,6 +34,7 @@ class EmbedReactNative: NSObject {
                  debugMode: Bool = false,
                  installmentCount: Int?,
                  excludedMethods: [String]?,
+                 approvalExpiresAt: String?,
                  completion: @escaping(_ gr4vy: Gr4vy?) -> Void)  {
     var paymentSourceConverted: Gr4vyPaymentSource?
     if paymentSource != nil {
@@ -67,7 +68,8 @@ class EmbedReactNative: NSObject {
                               buyer: buyer,
                               debugMode: debugMode,
                               installmentCount: installmentCount,
-                              excludedMethods: excludedMethods) else {
+                              excludedMethods: excludedMethods,
+                              approvalExpiresAt: approvalExpiresAt) else {
         completion(nil)
         return
       }
@@ -315,7 +317,8 @@ class EmbedReactNative: NSObject {
           let buyer = config["buyer"] as? [String: Any?]?,
           let debugMode = config["debugMode"] as? Bool?,
           let installmentCount = config["installmentCount"] as? Int?,
-          let excludedMethods = config["excludedMethods"] as? [String]?
+          let excludedMethods = config["excludedMethods"] as? [String]?,
+          let approvalExpiresAt = config["approvalExpiresAt"] as? String?
     else {
         EmbedReactNativeEvents.emitter.sendEvent(
           withName: "onEvent",
@@ -355,7 +358,8 @@ class EmbedReactNative: NSObject {
              buyer: convertBuyer(buyer),
              debugMode: debugMode ?? false,
              installmentCount: installmentCount,
-             excludedMethods: excludedMethods) { (gr4vy) in
+             excludedMethods: excludedMethods,
+             approvalExpiresAt: approvalExpiresAt) { (gr4vy) in
       if gr4vy == nil {
         EmbedReactNativeEvents.emitter.sendEvent(
           withName: "onEvent",

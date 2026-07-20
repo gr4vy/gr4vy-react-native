@@ -55,6 +55,7 @@ import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_CONNECTION
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_BUYER;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_INSTALLMENT_COUNT;
 import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_EXCLUDED_METHODS;
+import static com.gr4vy.embedreactnative.EmbedReactNativeModule.EXTRA_APPROVAL_EXPIRES_AT;
 
 public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandler {
   private Gr4vySDK gr4vySDK;
@@ -92,6 +93,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   Gr4vyBuyer buyer;
   Integer installmentCount;
   List<String> excludedMethods;
+  String approvalExpiresAt;
   Boolean debugMode;
 
   Boolean sdkLaunched = false;
@@ -291,6 +293,7 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
     this.connectionOptionsString = intent.getStringExtra(EXTRA_CONNECTION_OPTIONS_STRING);
     this.installmentCount = intent.hasExtra(EXTRA_INSTALLMENT_COUNT) ? intent.getIntExtra(EXTRA_INSTALLMENT_COUNT, 0) : null;
     this.excludedMethods = intent.getStringArrayListExtra(EXTRA_EXCLUDED_METHODS);
+    this.approvalExpiresAt = intent.getStringExtra(EXTRA_APPROVAL_EXPIRES_AT);
     this.debugMode = intent.getExtras().getBoolean(EXTRA_DEBUG_MODE);
 
     // Convert the cartItems JSON string to List<CartItem>
@@ -371,7 +374,8 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
             buyer,
             debugMode,
             installmentCount,
-            excludedMethods);
+            excludedMethods,
+            approvalExpiresAt);
 
     sdkLaunched = true;
   }

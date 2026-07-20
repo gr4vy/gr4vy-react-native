@@ -5,15 +5,15 @@ PODS:
   - FBLazyVector (0.83.4)
   - fmt (11.0.2)
   - glog (0.3.5)
-  - gr4vy-embed-react-native (2.3.0):
-    - gr4vy-ios (= 2.9.0)
+  - gr4vy-embed-react-native (2.4.0):
+    - gr4vy-ios (= 2.10.0)
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
     - React-Codegen
     - React-Core
     - ReactCommon/turbomodule/core
-  - gr4vy-ios (2.9.0)
+  - gr4vy-ios (2.10.0)
   - hermes-engine (0.14.1):
     - hermes-engine/Pre-built (= 0.14.1)
   - hermes-engine/Pre-built (0.14.1)
@@ -2604,7 +2604,7 @@ PODS:
     - Yoga
   - RNDeviceInfo (14.1.1):
     - React-Core
-  - RNScreens (4.24.0):
+  - RNScreens (4.25.2):
     - boost
     - DoubleConversion
     - fast_float
@@ -2631,10 +2631,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNScreens/common (= 4.24.0)
+    - RNScreens/common (= 4.25.2)
     - SocketRocket
     - Yoga
-  - RNScreens/common (4.24.0):
+  - RNScreens/common (4.25.2):
     - boost
     - DoubleConversion
     - fast_float
@@ -2935,8 +2935,8 @@ SPEC CHECKSUMS:
   FBLazyVector: 82d1d7996af4c5850242966eb81e73f9a6dfab1e
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
-  gr4vy-embed-react-native: 8072978892123fd221b40f1bd44646e101fd9b07
-  gr4vy-ios: 179d6e3be9004abe884bbd70ba2cc54721f7cdea
+  gr4vy-embed-react-native: f231afc69375c02cbae3fde5508f769915e20fa3
+  gr4vy-ios: 5ef395f6d83a533e8c35f9e16995cc1c06357dad
   hermes-engine: 88352bc2fa687bc1f8917e4ed9577626be09264e
   RCT-Folly: 59ec0ac1f2f39672a0c6e6cecdd39383b764646f
   RCTDeprecation: 9da1d0cf93db23ca8b41e8efe9ae558fd9c0077f
@@ -3012,7 +3012,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 29f0230e1a25f36c20b05f65e2eb8958d6526e82
   RNCPicker: bf95ec4b2483e2ab256047130bc536b437cd916c
   RNDeviceInfo: bcce8752b5043a623fe3c26789679b473f705d3c
-  RNScreens: 7f643ee0fd1407dc5085c7795460bd93da113b8f
+  RNScreens: 9269ab4971b2bd24917be84295d2c2ae7d06e9be
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: b669e79fa0f8d3f6f5e35372345f54b99e06b13c
 
