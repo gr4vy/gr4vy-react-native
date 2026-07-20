@@ -1,3 +1,33 @@
+# v2.5.0 (Mon Jul 20 2026)
+
+#### 🚀 Enhancement
+
+- task: add approvalExpiresAt support [#241](https://github.com/gr4vy/gr4vy-react-native/pull/241) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(deps): update react-navigation monorepo [#237](https://github.com/gr4vy/gr4vy-react-native/pull/237) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency com.fasterxml.jackson.core:jackson-databind to v2.22.1 [#233](https://github.com/gr4vy/gr4vy-react-native/pull/233) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update react-navigation monorepo [#235](https://github.com/gr4vy/gr4vy-react-native/pull/235) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency com.fasterxml.jackson.core:jackson-databind to v2.22.0 [#222](https://github.com/gr4vy/gr4vy-react-native/pull/222) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency react to v19.2.7 [#211](https://github.com/gr4vy/gr4vy-react-native/pull/211) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency react-native-screens to ^4.25.2 [#219](https://github.com/gr4vy/gr4vy-react-native/pull/219) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update react-navigation monorepo [#224](https://github.com/gr4vy/gr4vy-react-native/pull/224) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### 🏠 Internal
+
+- chore(dev-deps): update dependency @gr4vy/sdk to ^2.3.24 [#238](https://github.com/gr4vy/gr4vy-react-native/pull/238) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^2.3.20 [#236](https://github.com/gr4vy/gr4vy-react-native/pull/236) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(dev-deps): update dependency @types/react to ^19.2.17 [#218](https://github.com/gr4vy/gr4vy-react-native/pull/218) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### 🔩 Dependency Updates
+
+- chore(deps): update dependency aws-sdk-s3 to '>= 1.226.0' [#213](https://github.com/gr4vy/gr4vy-react-native/pull/213) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### Authors: 2
+
+- [@renovate[bot]](https://github.com/renovate[bot])
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.4.0 (Thu Jul 09 2026)
 
 #### 🚀 Enhancement
