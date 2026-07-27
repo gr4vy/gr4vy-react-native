@@ -45,3 +45,7 @@ CVE-2026-9277
 # ws
 
 CVE-2026-48779
+
+# brace-expansion (via eslint-plugin-react > minimatch@3.1.5, dev-only tooling; no fix available upstream without breaking eslint-plugin-react, which still requires minimatch@^3.1.2 as of its latest release - https://github.com/typescript-eslint/typescript-eslint/issues/11320)
+
+CVE-2026-14257
