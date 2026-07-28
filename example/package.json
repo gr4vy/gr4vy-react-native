@@ -36,6 +36,6 @@
     "dotenv": "^17.4.2"
   },
   "resolutions": {
-    "fast-xml-parser": "^5.7.0"
+    "fast-xml-parser": "^5.10.1"
   }
 }
