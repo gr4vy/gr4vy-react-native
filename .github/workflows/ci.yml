@@ -29,6 +29,25 @@ jobs:
       - name: Typecheck files
         run: yarn typecheck
 
+  # check for codegen breakages (e.g. native spec changes)
+  codegen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+        with:
+          persist-credentials: false
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Verify codegen (catches native spec breakage)
+        run: node node_modules/react-native/scripts/generate-codegen-artifacts.js -p example/ios/.. -o example/ios -t ios
+
   scan:
     runs-on: ubuntu-latest
     timeout-minutes: 2
