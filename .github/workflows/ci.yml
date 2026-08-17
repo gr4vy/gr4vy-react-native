@@ -86,7 +86,6 @@ jobs:
 
     needs:
       - lint
-      - codegen
       - scan
 
     steps:
