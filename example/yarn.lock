@@ -4946,10 +4946,10 @@ react-native-device-info@^14.1.1:
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-14.1.1.tgz#f50c03902f87e4a99b1c51ed85163b795f02b3ea"
   integrity sha512-lXFpe6DJmzbQXNLWxlMHP2xuTU5gwrKAvI8dCAZuERhW9eOXSubOQIesk9lIBnsi9pI19GMrcpJEvs4ARPRYmw==
 
-react-native-safe-area-context@^5.8.1:
-  version "5.8.1"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-5.8.1.tgz#ceba91293ca06e878f64d3a28abde164191f15a9"
-  integrity sha512-dDYVAJcW5LJlXAqTUFAaWvYJovqxrh6HdJlOkdTQ7dXCcKWhCq5vKoDXJc3n1q5rYcAUaIwmToKNPKibnogC4g==
+react-native-safe-area-context@^5.9.0:
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-5.9.0.tgz#7ef4caff9dde5844fe006de111acca17163c9b10"
+  integrity sha512-jRqIeU7+ezRlSPv1uIeqvjgh7qamxXknqs+vXOgnY2NJqBFpK9u5HfFUWUw7WtBbK8SeoMfVt2fE/KT5c9On0Q==
 
 react-native-screens@4.25.2:
   version "4.25.2"
