@@ -13,6 +13,11 @@
     {
       "groupName": "types",
       "matchPackageNames": ["/@types/"]
+    },
+    {
+      "matchPackageNames": ["react-native-screens"],
+      "allowedVersions": "<4.26.0",
+      "description": "4.26.0+ use React.ComponentRef in codegen specs (src/fabric/**); RN 0.83.4's parser only accepts React.ElementRef, so codegen fails and pod install breaks. 4.25.2 is the newest safe release. Lift once RN is upgraded."
     }
   ]
 }
