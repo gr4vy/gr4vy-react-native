@@ -49,3 +49,7 @@ CVE-2026-48779
 # brace-expansion (via eslint-plugin-react > minimatch@3.1.5, dev-only tooling; no fix available upstream without breaking eslint-plugin-react, which still requires minimatch@^3.1.2 as of its latest release - https://github.com/typescript-eslint/typescript-eslint/issues/11320)
 
 CVE-2026-14257
+
+# rubyzip (pinned <3.0.0 by fastlane via krausefx-shenzhen across every released fastlane version through 2.239.0 as of 2026-09-07; no override mechanism in Bundler to force past the gemspec conflict without breaking `bundle install` - https://github.com/gr4vy/gr4vy-react-native/actions/runs/34079125682/job/101610895218?pr=271)
+
+CVE-2026-85396
