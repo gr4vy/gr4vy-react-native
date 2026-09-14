@@ -383,7 +383,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
   @Override
   public void onGr4vyEvent(@NonNull Gr4vyEvent gr4vyEvent) {
     Log.d("Gr4vy", "onGr4vyEvent");
-    Intent data = new Intent();
 
     // for live events, emit immediately without closing the activity
     if (gr4vyEvent instanceof Gr4vyEvent.CardDetailsChanged) {
@@ -402,18 +401,28 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       return;
     }
 
-    // for others, set the result and close the activity as usual
+    // TransactionFailed is also emitted live: the SDK's own error screen (a separate
+    // Activity) stays on screen until the user dismisses it, so delivering this via
+    // setResult()+finish() queues the result until that dismissal instead of notifying
+    // the host app immediately.
     if (gr4vyEvent instanceof Gr4vyEvent.TransactionFailed) {
       Log.d("Gr4vy", "Gr4vyEvent.TransactionFailed");
 
       Log.d("Gr4vy", "success: " + false);
       Log.d("Gr4vy", "status: " + ((Gr4vyEvent.TransactionFailed) gr4vyEvent).getStatus());
 
-      data.putExtra(EXTRA_EVENT, "transactionFailed");
-      data.putExtra(EXTRA_SUCCESS, false);
-      data.putExtra(EXTRA_STATUS, ((Gr4vyEvent.TransactionFailed) gr4vyEvent).getStatus());
+      WritableMap result = Arguments.createMap();
+      result.putString("name", "transactionFailed");
 
-      setResult(RESULT_OK, data);
+      WritableMap resultData = Arguments.createMap();
+      resultData.putBoolean("success", false);
+      resultData.putString("transactionId", ((Gr4vyEvent.TransactionFailed) gr4vyEvent).getTransactionId());
+      resultData.putString("status", ((Gr4vyEvent.TransactionFailed) gr4vyEvent).getStatus());
+      resultData.putString("paymentMethodId", ((Gr4vyEvent.TransactionFailed) gr4vyEvent).getPaymentMethodId());
+
+      result.putMap("data", resultData);
+
+      EmbedReactNativeEvents.sendEvent(EmbedReactNativeModule.reactContext, "onEvent", result);
     }
 
     sdkLaunched = false;
