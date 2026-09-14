@@ -1022,10 +1022,10 @@
   resolved "https://registry.yarnpkg.com/@eslint-community/regexpp/-/regexpp-4.12.2.tgz#bccdf615bcf7b6e8db830ec0b8d21c9a25de597b"
   integrity sha512-EriSTlt5OC9/7SXkRSCAhfSxxoSUgBm33OH+IkwbdpgoqsSsUg7y3uh+IICI/Qg4BBWr3U2i39RpmycbxMq4ew==
 
-"@gr4vy/sdk@^2.4.16":
-  version "2.4.17"
-  resolved "https://registry.yarnpkg.com/@gr4vy/sdk/-/sdk-2.4.17.tgz#d1427dc61fa66d06d98f1367df1b999278389881"
-  integrity sha512-MOVMGp62w+/3o9KTTKhRBXXzVTktWK29K/2C/Pjd+VJjRnBXvix29qC5w4SzGX7SOVZoYwCZAg+zAxZ+3jZLUA==
+"@gr4vy/sdk@^2.4.18":
+  version "2.4.18"
+  resolved "https://registry.yarnpkg.com/@gr4vy/sdk/-/sdk-2.4.18.tgz#c70b079903db8727576fbb4fbfea9c8be2cfb861"
+  integrity sha512-Pjb74kvlPfVfbXAgVUoR3j5qyGnfrok/xzK4CgXCe30c5D7T2KB6LGhaCjknwODstiC3qFyMFNt8EHSOHaPMmg==
   dependencies:
     jsonwebtoken "^9.0.3"
     snakecase-keys "^8.1.0"
