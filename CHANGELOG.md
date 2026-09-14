@@ -1,3 +1,45 @@
+# v2.6.0 (Mon Sep 14 2026)
+
+#### 🚀 Enhancement
+
+- build(deps): bump baseline-browser-mapping from 2.10.44 to 2.11.22 in /example [#276](https://github.com/gr4vy/gr4vy-react-native/pull/276) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps): update react-navigation monorepo [#264](https://github.com/gr4vy/gr4vy-react-native/pull/264) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency react-native-safe-area-context to ^5.9.1 [#261](https://github.com/gr4vy/gr4vy-react-native/pull/261) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update react-navigation monorepo [#262](https://github.com/gr4vy/gr4vy-react-native/pull/262) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update react-navigation monorepo [#244](https://github.com/gr4vy/gr4vy-react-native/pull/244) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency react-native-safe-area-context to ^5.9.0 [#256](https://github.com/gr4vy/gr4vy-react-native/pull/256) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency react-native-screens to ^4.27.0 [#257](https://github.com/gr4vy/gr4vy-react-native/pull/257) ([@renovate[bot]](https://github.com/renovate[bot]))
+- chore(deps): update dependency react-native-safe-area-context to ^5.8.1 [#249](https://github.com/gr4vy/gr4vy-react-native/pull/249) ([@renovate[bot]](https://github.com/renovate[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency react to v19.2.8 [#246](https://github.com/gr4vy/gr4vy-react-native/pull/246) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### 🐛 Bug Fix
+
+- fix(android): deliver transactionFailed via live event channel [#282](https://github.com/gr4vy/gr4vy-react-native/pull/282) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- build(deps): bump browserslist from 4.28.5 to 4.28.9 [#274](https://github.com/gr4vy/gr4vy-react-native/pull/274) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### 🏠 Internal
+
+- fix(deps): bump js-yaml to patched versions for CVE-2026-84375 [#281](https://github.com/gr4vy/gr4vy-react-native/pull/281) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^2.4.16 [#265](https://github.com/gr4vy/gr4vy-react-native/pull/265) ([@renovate[bot]](https://github.com/renovate[bot]))
+- fix(deps): resolve trivy findings from PR #271 scan (decode-uri-component, browserslist, rubyzip) [#272](https://github.com/gr4vy/gr4vy-react-native/pull/272) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^2.4.10 [#254](https://github.com/gr4vy/gr4vy-react-native/pull/254) ([@renovate[bot]](https://github.com/renovate[bot]))
+- fix(deps): bump js-yaml to patched versions for CVE-2026-59870 [#259](https://github.com/gr4vy/gr4vy-react-native/pull/259) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- fix: pin react-native-screens to fix codegen issue, add CI check [#258](https://github.com/gr4vy/gr4vy-react-native/pull/258) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^2.4.5 [#250](https://github.com/gr4vy/gr4vy-react-native/pull/250) ([@renovate[bot]](https://github.com/renovate[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency @types/react to ^19.2.18 [#251](https://github.com/gr4vy/gr4vy-react-native/pull/251) ([@renovate[bot]](https://github.com/renovate[bot]) [@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency react-native-dotenv to ^3.4.12 [#252](https://github.com/gr4vy/gr4vy-react-native/pull/252) ([@renovate[bot]](https://github.com/renovate[bot]))
+- fix(deps): bump nanoid to 3.3.18 (CVE-2026-67213, CVE-2026-67214) [#253](https://github.com/gr4vy/gr4vy-react-native/pull/253) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+- chore(dev-deps): update dependency @gr4vy/sdk to ^2.3.28 [#245](https://github.com/gr4vy/gr4vy-react-native/pull/245) ([@renovate[bot]](https://github.com/renovate[bot]))
+- fix(vuln): brace-expansion and fast-xml-parser DoS vulnerabilities [#247](https://github.com/gr4vy/gr4vy-react-native/pull/247) ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@renovate[bot]](https://github.com/renovate[bot])
+- Luca Allievi ([@luca-gr4vy](https://github.com/luca-gr4vy))
+
+---
+
 # v2.5.0 (Mon Jul 20 2026)
 
 #### 🚀 Enhancement
