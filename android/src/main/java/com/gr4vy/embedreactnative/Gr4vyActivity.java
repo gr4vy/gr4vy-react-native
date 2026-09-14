@@ -423,10 +423,6 @@ public class Gr4vyActivity extends ComponentActivity implements Gr4vyResultHandl
       result.putMap("data", resultData);
 
       EmbedReactNativeEvents.sendEvent(EmbedReactNativeModule.reactContext, "onEvent", result);
-
-      sdkLaunched = false;
-      finish();
-      return;
     }
 
     sdkLaunched = false;
