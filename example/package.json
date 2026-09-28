@@ -37,7 +37,6 @@
   },
   "resolutions": {
     "fast-xml-parser": "^5.10.1",
-    "decode-uri-component": "^0.5.0",
-    "image-size": "^2.0.3"
+    "decode-uri-component": "^0.5.0"
   }
 }
