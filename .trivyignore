@@ -12,9 +12,11 @@ CVE-2026-33169
 CVE-2026-33170
 CVE-2026-33176
 
-# image-size
+# image-size (transitive dev-only dep of metro@0.83.7, pinned to ^1.0.2; metro calls imageSize() with a bare file-path string, an overload image-size v2 dropped, so forcing v2 via a resolution breaks Metro's asset bundling entirely - verified 2026-09-28. No fix available until a metro/react-native upgrade, tracked separately.)
 
 GHSA-m5qc-5hw7-8vg7
+CVE-2025-71330
+CVE-2025-71329
 
 # concurrent-ruby
 
@@ -50,6 +52,3 @@ CVE-2026-48779
 
 CVE-2026-14257
 
-# rubyzip (pinned <3.0.0 by fastlane via krausefx-shenzhen across every released fastlane version through 2.239.0 as of 2026-09-07; no override mechanism in Bundler to force past the gemspec conflict without breaking `bundle install` - https://github.com/gr4vy/gr4vy-react-native/actions/runs/34079125682/job/101610895218?pr=271)
-
-CVE-2026-85396
