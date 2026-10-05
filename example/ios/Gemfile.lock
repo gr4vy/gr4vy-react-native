@@ -264,7 +264,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-s3 (>= 1.226.0)
-  faraday (>= 1.10.6)
+  faraday (>= 2.14.4)
   fastlane
   fastlane-plugin-firebase_app_distribution
   json (>= 2.21.2)

@@ -266,7 +266,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-s3 (>= 1.226.0)
-  faraday (>= 1.10.6)
+  faraday (>= 2.14.4)
   fastlane
   fastlane-plugin-commit_android_version_bump
   fastlane-plugin-firebase_app_distribution
