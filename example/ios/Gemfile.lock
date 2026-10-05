@@ -267,7 +267,7 @@ DEPENDENCIES
   faraday (>= 1.10.6)
   fastlane
   fastlane-plugin-firebase_app_distribution
-  json (>= 2.19.9)
+  json (>= 2.21.2)
   rexml (>= 3.3.9)
 
 BUNDLED WITH
