@@ -975,10 +975,15 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/runtime@^7.25.0", "@babel/runtime@^7.29.7":
+"@babel/runtime@^7.25.0":
   version "7.29.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.29.7.tgz#12022450c45a4da6d8d8287b18a4ff2ddb23f768"
   integrity sha512-Nq8OhGWiZIZGV6hLHoyAKLLcJihP/xFeBMGJoUrxTX2psI8dCifzLhZISFb+VWS3wFMRDmCGw5R+dOySCqPLhw==
+
+"@babel/runtime@^7.29.10":
+  version "7.29.10"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.29.10.tgz#fe9920782f7ee34029165ac6f272984917a1641b"
+  integrity sha512-NpugTzbKgGrNe45Ui32cN8vCFFMxVtP/9rtfwv0nP5FRDAjvYBxJcLVpYA9mr1jxP6cnIT7x9LUzuDTbWYYNRA==
 
 "@babel/template@^7.25.0", "@babel/template@^7.28.6", "@babel/template@^7.29.7", "@babel/template@^7.3.3":
   version "7.29.7"
@@ -1022,10 +1027,10 @@
   resolved "https://registry.yarnpkg.com/@eslint-community/regexpp/-/regexpp-4.12.2.tgz#bccdf615bcf7b6e8db830ec0b8d21c9a25de597b"
   integrity sha512-EriSTlt5OC9/7SXkRSCAhfSxxoSUgBm33OH+IkwbdpgoqsSsUg7y3uh+IICI/Qg4BBWr3U2i39RpmycbxMq4ew==
 
-"@gr4vy/sdk@^2.4.27":
-  version "2.4.28"
-  resolved "https://registry.yarnpkg.com/@gr4vy/sdk/-/sdk-2.4.28.tgz#ee9ce570ffccb4461f8303f19179ee3b0c323af2"
-  integrity sha512-4+ePqoMc6D+B6zGXsxOyRjnEbPNNQZ4Mb+zq9AcjPTsnsDdu4USlh5jUTFtJUko33SyEdKsNVXV7hAz2viQrVQ==
+"@gr4vy/sdk@^2.4.37":
+  version "2.4.37"
+  resolved "https://registry.yarnpkg.com/@gr4vy/sdk/-/sdk-2.4.37.tgz#520a96533a3b76f5600b8d7238006fb69d7ee1ba"
+  integrity sha512-BZl1haJ80WFIJr71kUhN/vxv1fYW2ENzVnH6bhZ/NZazOiArjk5ypS1kPRRaXMKguBHH2mu/QRwT9bprpkUOJQ==
   dependencies:
     jsonwebtoken "^9.0.3"
     snakecase-keys "^8.1.0"
