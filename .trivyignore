@@ -52,3 +52,7 @@ CVE-2026-48779
 
 CVE-2026-14257
 
+
+# minimatch (dev-only via glob@7, eslint-plugin-react and test-exclude, all requiring minimatch@^3; advisory affects < 11.0.1 with no 3.x backport, and v11 drops the default function export those consumers call, so a resolution breaks them)
+
+CVE-2026-118764
