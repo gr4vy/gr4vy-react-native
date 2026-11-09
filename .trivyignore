@@ -56,3 +56,7 @@ CVE-2026-14257
 # minimatch (dev-only via glob@7, eslint-plugin-react and test-exclude, all requiring minimatch@^3; advisory affects < 11.0.1 with no 3.x backport, and v11 drops the default function export those consumers call, so a resolution breaks them)
 
 CVE-2026-118764
+
+# activesupport (DoS in safe_constantize via Action Cable/untrusted input; build-time only dep of cocoapods in example/, not reachable. Patched only in >= 8.0.5.2, but cocoapods-core <= 1.17.0 pins activesupport < 8)
+
+GHSA-8474-xrp6-wh69
