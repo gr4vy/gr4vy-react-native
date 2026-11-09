@@ -31,7 +31,7 @@
     "@react-native/babel-preset": "0.83.4",
     "@react-native/eslint-config": "0.83.4",
     "@react-native/metro-config": "0.83.4",
-    "@react-native/typescript-config": "0.83.4",
+    "@react-native/typescript-config": "0.88.1",
     "babel-plugin-module-resolver": "^5.0.3",
     "dotenv": "^17.4.2"
   },
