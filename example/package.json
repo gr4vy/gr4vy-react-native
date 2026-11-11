@@ -36,6 +36,8 @@
     "dotenv": "^17.4.2"
   },
   "resolutions": {
-    "fast-xml-parser": "^5.10.1"
+    "fast-xml-parser": "^5.10.1",
+    "**/@typescript-eslint/typescript-estree/minimatch": "^11.0.1",
+    "babel-plugin-module-resolver/glob/minimatch": "^11.0.1"
   }
 }
