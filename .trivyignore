@@ -10,3 +10,7 @@ CVE-2025-71329
 # activesupport (DoS in safe_constantize via Action Cable/untrusted input; build-time only dep of cocoapods in example/, not reachable. Patched only in >= 8.0.5.2, but cocoapods-core <= 1.17.0 pins activesupport < 8)
 
 GHSA-8474-xrp6-wh69
+
+# activesupport CVE-2026-126080 (DoS; fixed only in 8.0.5.2 / 8.1.4.1. Same cocoapods-core pin to activesupport < 8 and build-time-only use in example/ as above. Revisit when cocoapods allows activesupport 8.)
+
+CVE-2026-126080
