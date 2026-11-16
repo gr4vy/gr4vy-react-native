@@ -2,61 +2,15 @@
 
 # Please provide a comment with each vulnerability ID describing why it has been ignored.
 
-# App is crashing on upgrade of @babel\helpers to 7.26.10 version
-
-CVE-2025-27789
-
-# activesupport (they are all denial of service vulnerabilities that do not apply to our case https://github.com/gr4vy/gr4vy-react-native/actions/runs/24998947756/job/73203426007?pr=191)
-
-CVE-2026-33169
-CVE-2026-33170
-CVE-2026-33176
-
 # image-size (transitive dev-only dep of metro@0.83.7, pinned to ^1.0.2; metro calls imageSize() with a bare file-path string, an overload image-size v2 dropped, so forcing v2 via a resolution breaks Metro's asset bundling entirely - verified 2026-09-28. No fix available until a metro/react-native upgrade, tracked separately.)
 
-GHSA-m5qc-5hw7-8vg7
 CVE-2025-71330
 CVE-2025-71329
-
-# concurrent-ruby
-
-CVE-2026-54904
-CVE-2026-54905
-CVE-2026-54906
-
-# excon
-
-CVE-2026-54171
-
-# faraday
-
-CVE-2026-54297
-
-# @babel/core
-
-CVE-2026-49356
-
-# js-yaml
-
-CVE-2026-53550
-
-# shell-quote
-
-CVE-2026-9277
-
-# ws
-
-CVE-2026-48779
-
-# brace-expansion (via eslint-plugin-react > minimatch@3.1.5, dev-only tooling; no fix available upstream without breaking eslint-plugin-react, which still requires minimatch@^3.1.2 as of its latest release - https://github.com/typescript-eslint/typescript-eslint/issues/11320)
-
-CVE-2026-14257
-
-
-# minimatch (dev-only via glob@7, eslint-plugin-react and test-exclude, all requiring minimatch@^3; advisory affects < 11.0.1 with no 3.x backport, and v11 drops the default function export those consumers call, so a resolution breaks them)
-
-CVE-2026-118764
 
 # activesupport (DoS in safe_constantize via Action Cable/untrusted input; build-time only dep of cocoapods in example/, not reachable. Patched only in >= 8.0.5.2, but cocoapods-core <= 1.17.0 pins activesupport < 8)
 
 GHSA-8474-xrp6-wh69
+
+# activesupport CVE-2026-126080 (DoS; fixed only in 8.0.5.2 / 8.1.4.1. Same cocoapods-core pin to activesupport < 8 and build-time-only use in example/ as above. Revisit when cocoapods allows activesupport 8.)
+
+CVE-2026-126080
