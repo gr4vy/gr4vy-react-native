@@ -1120,14 +1120,14 @@
   resolved "https://registry.yarnpkg.com/@eslint-community/regexpp/-/regexpp-4.12.2.tgz#bccdf615bcf7b6e8db830ec0b8d21c9a25de597b"
   integrity sha512-EriSTlt5OC9/7SXkRSCAhfSxxoSUgBm33OH+IkwbdpgoqsSsUg7y3uh+IICI/Qg4BBWr3U2i39RpmycbxMq4ew==
 
-"@gr4vy/sdk@^2.4.44":
-  version "2.4.45"
-  resolved "https://registry.yarnpkg.com/@gr4vy/sdk/-/sdk-2.4.45.tgz#0ac2189ea07c156630a92f73562fee3f082bb5a1"
-  integrity sha512-JD5OKQnUFSe3sukJG1O8OTSWyd4ueCYeNXuO2JYcWUECWfCU1ucyjmd50pOm6+t760gvr6SNvnf3p1nQe/PpnQ==
+"@gr4vy/sdk@^2.4.47":
+  version "2.4.47"
+  resolved "https://registry.yarnpkg.com/@gr4vy/sdk/-/sdk-2.4.47.tgz#9e9ef047ff653fd2bf12f072be5ae8e89b3fb890"
+  integrity sha512-anHSNZiCM4fo1TbFf91P0aPjZEX1KydHNzP3CilmZnmiQTf6Kol+wdJH0o2nNuiLXv+qxIcE0vRZoBaMFGTKeQ==
   dependencies:
     jsonwebtoken "^9.0.3"
     snakecase-keys "^8.1.0"
-    zod "^3.25.0 || ^4.0.0"
+    zod "^3.25.0 || ^4.6.6"
 
 "@hapi/hoek@^9.0.0", "@hapi/hoek@^9.3.0":
   version "9.3.0"
@@ -6100,7 +6100,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/zod-validation-error/-/zod-validation-error-4.0.2.tgz#bc605eba49ce0fcd598c127fee1c236be3f22918"
   integrity sha512-Q6/nZLe6jxuU80qb/4uJ4t5v2VEZ44lzQjPDhYJNztRQ4wyWc6VF3D3Kb/fAuPetZQnhS3hnajCf9CsWesghLQ==
 
-"zod@^3.25.0 || ^4.0.0":
+"zod@^3.25.0 || ^4.0.0", "zod@^3.25.0 || ^4.6.6":
   version "4.6.7"
   resolved "https://registry.yarnpkg.com/zod/-/zod-4.6.7.tgz#e806cf64a7f4e37635ce9f2f52c04c3766f75e5b"
   integrity sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==
