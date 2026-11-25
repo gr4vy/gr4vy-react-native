@@ -5,14 +5,22 @@
   "ignorePaths": [".github/**", ".vscode/**"],
   "packageRules": [
     {
+      "description": "Group all dev dependency updates into a single PR, except the React Native toolchain below",
+      "groupName": "dev dependencies",
       "matchDepTypes": ["devDependencies"],
       "labels": ["dependencies", "internal"],
       "automerge": false,
       "semanticCommitScope": "dev-deps"
     },
     {
-      "groupName": "types",
-      "matchPackageNames": ["/@types/"]
+      "description": "The React Native toolchain must match the react-native version, so it moves only in a deliberate RN upgrade. Keep it out of the dev dependencies group and create its PR only when approved on the Dependency Dashboard.",
+      "groupName": "react-native toolchain",
+      "matchPackageNames": [
+        "react-native",
+        "@react-native/**",
+        "@react-native-community/cli*"
+      ],
+      "dependencyDashboardApproval": true
     },
     {
       "matchPackageNames": ["react-native-screens"],
