@@ -5,7 +5,7 @@
   "ignorePaths": [".github/**", ".vscode/**"],
   "packageRules": [
     {
-      "description": "Group all dev dependency updates into a single PR",
+      "description": "Group all dev dependency updates into a single PR, except the React Native toolchain below",
       "groupName": "dev dependencies",
       "matchDepTypes": ["devDependencies"],
       "labels": ["dependencies", "internal"],
